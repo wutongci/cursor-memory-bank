@@ -3,26 +3,25 @@ description: planning comprehensive
 globs: planning-comprehensive.mdc
 alwaysApply: false
 ---
+# 3级综合规划
 
-# LEVEL 3 COMPREHENSIVE PLANNING
+> **简介：** 本文档为3级（中级功能）任务提供结构化规划指南，重点关注创意阶段的综合规划和明确的实施策略。
 
-> **TL;DR:** This document provides structured planning guidelines for Level 3 (Intermediate Feature) tasks, focusing on comprehensive planning with creative phases and clear implementation strategies.
-
-## 🏗️ PLANNING WORKFLOW
+## 🏗️ 规划工作流程
 
 ```mermaid
 graph TD
-    Start["Planning Start"] --> Req["📋 Requirements<br>Analysis"]
-    Req --> Comp["🔍 Component<br>Analysis"]
-    Comp --> Design["🎨 Design<br>Decisions"]
-    Design --> Impl["⚙️ Implementation<br>Strategy"]
-    Impl --> Test["🧪 Testing<br>Strategy"]
-    Test --> Doc["📚 Documentation<br>Plan"]
+    Start["规划开始"] --> Req["📋 需求<br>分析"]
+    Req --> Comp["🔍 组件<br>分析"]
+    Comp --> Design["🎨 设计<br>决策"]
+    Design --> Impl["⚙️ 实施<br>策略"]
+    Impl --> Test["🧪 测试<br>策略"]
+    Test --> Doc["📚 文档<br>计划"]
     
-    Design --> Creative["Creative Phases:"]
-    Creative --> UI["UI/UX Design"]
-    Creative --> Arch["Architecture"]
-    Creative --> Algo["Algorithm"]
+    Design --> Creative["创意阶段："]
+    Creative --> UI["UI/UX设计"]
+    Creative --> Arch["架构"]
+    Creative --> Algo["算法"]
     
     style Start fill:#4da6ff,stroke:#0066cc,color:white
     style Req fill:#ffa64d,stroke:#cc7a30,color:white
@@ -33,91 +32,91 @@ graph TD
     style Doc fill:#ff71c2,stroke:#c23b8a,color:white
 ```
 
-## 📋 PLANNING TEMPLATE
+## 📋 规划模板
 
 ```markdown
-# Feature Planning Document
+# 功能规划文档
 
-## Requirements Analysis
-- Core Requirements:
-  - [ ] Requirement 1
-  - [ ] Requirement 2
-- Technical Constraints:
-  - [ ] Constraint 1
-  - [ ] Constraint 2
+## 需求分析
+- 核心需求：
+  - [ ] 需求1
+  - [ ] 需求2
+- 技术约束：
+  - [ ] 约束1
+  - [ ] 约束2
 
-## Component Analysis
-- Affected Components:
-  - Component 1
-    - Changes needed:
-    - Dependencies:
-  - Component 2
-    - Changes needed:
-    - Dependencies:
+## 组件分析
+- 受影响组件：
+  - 组件1
+    - 需要的变更：
+    - 依赖项：
+  - 组件2
+    - 需要的变更：
+    - 依赖项：
 
-## Design Decisions
-- Architecture:
-  - [ ] Decision 1
-  - [ ] Decision 2
-- UI/UX:
-  - [ ] Design 1
-  - [ ] Design 2
-- Algorithms:
-  - [ ] Algorithm 1
-  - [ ] Algorithm 2
+## 设计决策
+- 架构：
+  - [ ] 决策1
+  - [ ] 决策2
+- UI/UX：
+  - [ ] 设计1
+  - [ ] 设计2
+- 算法：
+  - [ ] 算法1
+  - [ ] 算法2
 
-## Implementation Strategy
-1. Phase 1:
-   - [ ] Task 1
-   - [ ] Task 2
-2. Phase 2:
-   - [ ] Task 3
-   - [ ] Task 4
+## 实施策略
+1. 阶段1：
+   - [ ] 任务1
+   - [ ] 任务2
+2. 阶段2：
+   - [ ] 任务3
+   - [ ] 任务4
 
-## Testing Strategy
-- Unit Tests:
-  - [ ] Test 1
-  - [ ] Test 2
-- Integration Tests:
-  - [ ] Test 3
-  - [ ] Test 4
+## 测试策略
+- 单元测试：
+  - [ ] 测试1
+  - [ ] 测试2
+- 集成测试：
+  - [ ] 测试3
+  - [ ] 测试4
 
-## Documentation Plan
-- [ ] API Documentation
-- [ ] User Guide Updates
-- [ ] Architecture Documentation
+## 文档计划
+- [ ] API文档
+- [ ] 用户指南更新
+- [ ] 架构文档
 ```
 
-## 🎨 CREATIVE PHASE IDENTIFICATION
+## 🎨 创意阶段识别
 
 ```mermaid
 graph TD
-    subgraph "CREATIVE PHASES REQUIRED"
-    UI["🎨 UI/UX Design<br>Required: Yes/No"]
-    Arch["🏗️ Architecture Design<br>Required: Yes/No"]
-    Algo["⚙️ Algorithm Design<br>Required: Yes/No"]
+    subgraph "所需创意阶段"
+    UI["🎨 UI/UX设计<br>需要：是/否"]
+    Arch["🏗️ 架构设计<br>需要：是/否"]
+    Algo["⚙️ 算法设计<br>需要：是/否"]
     end
     
-    UI --> UITrig["Triggers:<br>- New UI Component<br>- UX Flow Change"]
-    Arch --> ArchTrig["Triggers:<br>- System Structure Change<br>- New Integration"]
-    Algo --> AlgoTrig["Triggers:<br>- Performance Critical<br>- Complex Logic"]
+    UI --> UITrig["触发条件：<br>- 新UI组件<br>- UX流程变更"]
+    Arch --> ArchTrig["触发条件：<br>- 系统结构变更<br>- 新集成"]
+    Algo --> AlgoTrig["触发条件：<br>- 性能关键<br>- 复杂逻辑"]
     
     style UI fill:#4dbb5f,stroke:#36873f,color:white
     style Arch fill:#ffa64d,stroke:#cc7a30,color:white
     style Algo fill:#d94dbb,stroke:#a3378a,color:white
 ```
 
-## ✅ VERIFICATION CHECKLIST
+## ✅ 验证清单
 
 ```mermaid
 graph TD
-    subgraph "PLANNING VERIFICATION"
-    R["Requirements<br>Complete"]
-    C["Components<br>Identified"]
-    D["Design Decisions<br>Made"]
-    I["Implementation<br>Plan Ready"]
-    T["Testing Strategy<br>Defined"]
-    Doc["Documentation<br>Plan Ready"]
+    subgraph "规划验证"
+    R["需求<br>完成"]
+    C["组件<br>已识别"]
+    D["设计决策<br>已制定"]
+    I["实施计划<br>已就绪"]
+    T["测试策略<br>已定义"]
+    Doc["文档计划<br>已就绪"]
     end
     
     R --> C --> D --> I --> T --> Doc
@@ -130,14 +129,14 @@ graph TD
     style Doc fill:#ff71c2,stroke:#c23b8a,color:white
 ```
 
-## 🔄 IMPLEMENTATION PHASES
+## 🔄 实施阶段
 
 ```mermaid
 graph LR
-    Setup["🛠️ Setup"] --> Core["⚙️ Core<br>Implementation"]
-    Core --> UI["🎨 UI<br>Implementation"]
-    UI --> Test["🧪 Testing"]
-    Test --> Doc["📚 Documentation"]
+    Setup["🛠️ 设置"] --> Core["⚙️ 核心<br>实施"]
+    Core --> UI["🎨 UI<br>实施"]
+    UI --> Test["🧪 测试"]
+    Test --> Doc["📚 文档"]
     
     style Setup fill:#4da6ff,stroke:#0066cc,color:white
     style Core fill:#4dbb5f,stroke:#36873f,color:white
@@ -146,12 +145,12 @@ graph LR
     style Doc fill:#4dbbbb,stroke:#368787,color:white
 ```
 
-## 📚 DOCUMENT MANAGEMENT
+## 📚 文档管理
 
 ```mermaid
 graph TD
-    Current["Current Documents"] --> Active["Active:<br>- planning-comprehensive.md<br>- task-tracking-intermediate.md"]
-    Current --> Next["Next Document:<br>- creative-phase-enforcement.md"]
+    Current["当前文档"] --> Active["活动：<br>- planning-comprehensive.md<br>- task-tracking-intermediate.md"]
+    Current --> Next["下一文档：<br>- creative-phase-enforcement.md"]
     
     style Current fill:#4da6ff,stroke:#0066cc,color:white
     style Active fill:#4dbb5f,stroke:#36873f,color:white

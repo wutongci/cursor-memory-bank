@@ -3,158 +3,157 @@ description: Command execution guidelines for isolation-focused Memory Bank
 globs: command-execution.mdc
 alwaysApply: false
 ---
+# 命令执行系统
 
-# COMMAND EXECUTION SYSTEM
+> **简介：** 本系统提供高效命令执行的指南，通过适当的命令链接平衡清晰度和令牌优化，并适当记录命令和结果。
 
-> **TL;DR:** This system provides guidelines for efficient command execution, balancing clarity and token optimization through appropriate command chaining, with proper documentation of commands and results.
-
-## 🔍 COMMAND EFFICIENCY WORKFLOW
+## 🔍 命令效率工作流程
 
 ```mermaid
 graph TD
-    Start["Command<br>Planning"] --> Analyze["Analyze Command<br>Requirements"]
-    Analyze --> Balance["Balance Clarity<br>vs. Efficiency"]
-    Balance --> Complexity{"Command<br>Complexity?"}
+    Start["命令<br>规划"] --> Analyze["分析命令<br>需求"]
+    Analyze --> Balance["平衡清晰度<br>与效率"]
+    Balance --> Complexity{"命令<br>复杂度？"}
     
-    Complexity -->|"Simple"| Single["Execute<br>Single Command"]
-    Complexity -->|"Moderate"| Chain["Use Efficient<br>Command Chaining"]
-    Complexity -->|"Complex"| Group["Group Into<br>Logical Steps"]
+    Complexity -->|"简单"| Single["执行<br>单一命令"]
+    Complexity -->|"中等"| Chain["使用高效<br>命令链接"]
+    Complexity -->|"复杂"| Group["分组为<br>逻辑步骤"]
     
-    Single & Chain & Group --> Verify["Verify<br>Results"]
-    Verify --> Document["Document<br>Command & Result"]
-    Document --> Next["Next<br>Command"]
+    Single & Chain & Group --> Verify["验证<br>结果"]
+    Verify --> Document["记录<br>命令和结果"]
+    Document --> Next["下一个<br>命令"]
 ```
 
-## 📋 COMMAND CHAINING GUIDELINES
+## 📋 命令链接指南
 
 ```mermaid
 graph TD
-    Command["Command<br>Execution"] --> ChainApprop{"Is Chaining<br>Appropriate?"}
+    Command["命令<br>执行"] --> ChainApprop{"链接是否<br>适当？"}
     
-    ChainApprop -->|"Yes"| ChainTypes["Chain<br>Types"]
-    ChainApprop -->|"No"| SingleCmd["Use Single<br>Commands"]
+    ChainApprop -->|"是"| ChainTypes["链接<br>类型"]
+    ChainApprop -->|"否"| SingleCmd["使用单个<br>命令"]
     
-    ChainTypes --> Sequential["Sequential Operations<br>cmd1 && cmd2"]
-    ChainTypes --> Conditional["Conditional Operations<br>cmd1 || cmd2"]
-    ChainTypes --> Piping["Piping<br>cmd1 | cmd2"]
-    ChainTypes --> Grouping["Command Grouping<br>(cmd1; cmd2)"]
+    ChainTypes --> Sequential["顺序操作<br>cmd1 && cmd2"]
+    ChainTypes --> Conditional["条件操作<br>cmd1 || cmd2"]
+    ChainTypes --> Piping["管道<br>cmd1 | cmd2"]
+    ChainTypes --> Grouping["命令分组<br>(cmd1; cmd2)"]
     
-    Sequential & Conditional & Piping & Grouping --> Doc["Document<br>Commands & Results"]
+    Sequential & Conditional & Piping & Grouping --> Doc["记录<br>命令和结果"]
 ```
 
-## 🚦 DIRECTORY VERIFICATION WORKFLOW
+## 🚦 目录验证工作流程
 
 ```mermaid
 graph TD
-    Command["Command<br>Execution"] --> DirCheck["Check Current<br>Directory"]
-    DirCheck --> ProjectRoot{"In Project<br>Root?"}
+    Command["命令<br>执行"] --> DirCheck["检查当前<br>目录"]
+    DirCheck --> ProjectRoot{"在项目<br>根目录？"}
     
-    ProjectRoot -->|"Yes"| Execute["Execute<br>Command"]
-    ProjectRoot -->|"No"| Locate["Locate<br>Project Root"]
+    ProjectRoot -->|"是"| Execute["执行<br>命令"]
+    ProjectRoot -->|"否"| Locate["定位<br>项目根目录"]
     
-    Locate --> Found{"Project Root<br>Found?"}
-    Found -->|"Yes"| Navigate["Navigate to<br>Project Root"]
-    Found -->|"No"| Error["Error: Cannot<br>Find Project Root"]
+    Locate --> Found{"找到项目<br>根目录？"}
+    Found -->|"是"| Navigate["导航到<br>项目根目录"]
+    Found -->|"否"| Error["错误：无法<br>找到项目根目录"]
     
     Navigate --> Execute
-    Execute --> Verify["Verify<br>Results"]
+    Execute --> Verify["验证<br>结果"]
 ```
 
-## 📋 DIRECTORY VERIFICATION CHECKLIST
+## 📋 目录验证清单
 
-Before executing any npm or build command:
+在执行任何npm或构建命令前：
 
-| Step | Windows (PowerShell) | Unix/Linux/Mac | Purpose |
+| 步骤 | Windows (PowerShell) | Unix/Linux/Mac | 目的 |
 |------|----------------------|----------------|---------|
-| **Check package.json** | `Test-Path package.json` | `ls package.json` | Verify current directory is project root |
-| **Check for parent directory** | `Test-Path "*/package.json"` | `find . -maxdepth 2 -name package.json` | Find potential project directories |
-| **Navigate to project root** | `cd [project-dir]` | `cd [project-dir]` | Move to correct directory before executing commands |
+| **检查package.json** | `Test-Path package.json` | `ls package.json` | 验证当前目录是项目根目录 |
+| **检查父目录** | `Test-Path "*/package.json"` | `find . -maxdepth 2 -name package.json` | 查找潜在的项目目录 |
+| **导航到项目根目录** | `cd [project-dir]` | `cd [project-dir]` | 在执行命令前移动到正确的目录 |
 
-## 📋 REACT-SPECIFIC COMMAND GUIDELINES
+## 📋 React特定命令指南
 
-For React applications, follow these strict guidelines:
+对于React应用，请遵循这些严格指南：
 
-| Command | Correct Usage | Incorrect Usage | Notes |
-|---------|---------------|----------------|-------|
-| **npm start** | `cd [project-root] && npm start` | `npm start` (from parent dir) | Must execute from directory with package.json |
-| **npm run build** | `cd [project-root] && npm run build` | `cd [parent-dir] && npm run build` | Must execute from directory with package.json |
-| **npm install** | `cd [project-root] && npm install [pkg]` | `npm install [pkg]` (wrong dir) | Dependencies installed to nearest package.json |
-| **npm create** | `npm create vite@latest my-app -- --template react` | Manually configuring webpack | Use standard tools for project creation |
+| 命令 | 正确用法 | 错误用法 | 注意事项 |
+|------|----------|----------|----------|
+| **npm start** | `cd [project-root] && npm start` | `npm start`（从父目录） | 必须从包含package.json的目录执行 |
+| **npm run build** | `cd [project-root] && npm run build` | `cd [parent-dir] && npm run build` | 必须从包含package.json的目录执行 |
+| **npm install** | `cd [project-root] && npm install [pkg]` | `npm install [pkg]`（错误目录） | 依赖项安装到最近的package.json |
+| **npm create** | `npm create vite@latest my-app -- --template react` | 手动配置webpack | 使用标准工具创建项目 |
 
-## 🔄 COMMAND CHAINING PATTERNS
+## 🔄 命令链接模式
 
-Effective command chaining patterns include:
+有效的命令链接模式包括：
 
-| Pattern | Format | Examples | Use Case |
-|---------|--------|----------|----------|
-| **Sequential** | `cmd1 && cmd2` | `mkdir dir && cd dir` | Commands that should run in sequence, second only if first succeeds |
-| **Conditional** | `cmd1 || cmd2` | `test -f file.txt || touch file.txt` | Fallback commands, second only if first fails |
-| **Piping** | `cmd1 \| cmd2` | `grep "pattern" file.txt \| wc -l` | Pass output of first command as input to second |
-| **Background** | `cmd &` | `npm start &` | Run command in background |
-| **Grouping** | `(cmd1; cmd2)` | `(echo "Start"; npm test; echo "End")` | Group commands to run as a unit |
+| 模式 | 格式 | 示例 | 使用场景 |
+|------|------|------|----------|
+| **顺序** | `cmd1 && cmd2` | `mkdir dir && cd dir` | 按顺序运行的命令，第一个成功后才运行第二个 |
+| **条件** | `cmd1 || cmd2` | `test -f file.txt || touch file.txt` | 备用命令，第一个失败时才运行第二个 |
+| **管道** | `cmd1 \| cmd2` | `grep "pattern" file.txt \| wc -l` | 将第一个命令的输出作为第二个命令的输入 |
+| **后台** | `cmd &` | `npm start &` | 在后台运行命令 |
+| **分组** | `(cmd1; cmd2)` | `(echo "Start"; npm test; echo "End")` | 将命令分组作为一个单元运行 |
 
-## 📋 COMMAND DOCUMENTATION TEMPLATE
+## 📋 命令文档模板
 
 ```
-## Command Execution: [Purpose]
+## 命令执行：[目的]
 
-### Command
+### 命令
 ```
-[actual command or chain]
-```
-
-### Result
-```
-[command output]
+[实际命令或链]
 ```
 
-### Effect
-[Brief description of what changed in the system]
-
-### Next Steps
-[What needs to be done next]
+### 结果
+```
+[命令输出]
 ```
 
-## 🔍 PLATFORM-SPECIFIC CONSIDERATIONS
+### 效果
+[系统中变化的简要描述]
+
+### 下一步
+[接下来需要做什么]
+```
+
+## 🔍 平台特定考虑
 
 ```mermaid
 graph TD
-    Platform["Platform<br>Detection"] --> Windows["Windows<br>Commands"]
-    Platform --> Unix["Unix/Linux/Mac<br>Commands"]
+    Platform["平台<br>检测"] --> Windows["Windows<br>命令"]
+    Platform --> Unix["Unix/Linux/Mac<br>命令"]
     
-    Windows --> WinAdapt["Windows Command<br>Adaptations"]
-    Unix --> UnixAdapt["Unix Command<br>Adaptations"]
+    Windows --> WinAdapt["Windows命令<br>适配"]
+    Unix --> UnixAdapt["Unix命令<br>适配"]
     
-    WinAdapt --> WinChain["Windows Chaining:<br>Commands separated by &"]
-    UnixAdapt --> UnixChain["Unix Chaining:<br>Commands separated by ;"]
+    WinAdapt --> WinChain["Windows链接：<br>命令用&分隔"]
+    UnixAdapt --> UnixChain["Unix链接：<br>命令用;分隔"]
     
-    WinChain & UnixChain --> Execute["Execute<br>Platform-Specific<br>Commands"]
+    WinChain & UnixChain --> Execute["执行<br>平台特定<br>命令"]
 ```
 
-## 📋 COMMAND EFFICIENCY EXAMPLES
+## 📋 命令效率示例
 
-Examples of efficient command usage:
+高效命令使用示例：
 
-| Inefficient | Efficient | Explanation |
-|-------------|-----------|-------------|
-| `mkdir dir`<br>`cd dir`<br>`npm init -y` | `mkdir dir && cd dir && npm init -y` | Combines related sequential operations |
-| `ls`<br>`grep "\.js$"` | `ls \| grep "\.js$"` | Pipes output of first command to second |
-| `test -f file.txt`<br>`if not exists, touch file.txt` | `test -f file.txt \|\| touch file.txt` | Creates file only if it doesn't exist |
-| `mkdir dir1`<br>`mkdir dir2`<br>`mkdir dir3` | `mkdir dir1 dir2 dir3` | Uses command's built-in multiple argument capability |
-| `npm install pkg1`<br>`npm install pkg2` | `npm install pkg1 pkg2` | Installs multiple packages in one command |
+| 低效 | 高效 | 解释 |
+|------|------|------|
+| `mkdir dir`<br>`cd dir`<br>`npm init -y` | `mkdir dir && cd dir && npm init -y` | 结合相关的顺序操作 |
+| `ls`<br>`grep "\.js$"` | `ls \| grep "\.js$"` | 将第一个命令的输出管道到第二个命令 |
+| `test -f file.txt`<br>`if not exists, touch file.txt` | `test -f file.txt \|\| touch file.txt` | 仅在文件不存在时创建 |
+| `mkdir dir1`<br>`mkdir dir2`<br>`mkdir dir3` | `mkdir dir1 dir2 dir3` | 使用命令内置的多参数能力 |
+| `npm install pkg1`<br>`npm install pkg2` | `npm install pkg1 pkg2` | 一次安装多个包 |
 
-## 📋 REACT PROJECT INITIALIZATION STANDARDS
+## 📋 React项目初始化标准
 
-Always use these standard approaches for React project creation:
+始终使用这些标准方法创建React项目：
 
-| Approach | Command | Benefits | Avoids |
-|----------|---------|----------|--------|
-| **Create React App** | `npx create-react-app my-app` | Preconfigured webpack & babel | Manual configuration errors |
-| **Create React App w/TypeScript** | `npx create-react-app my-app --template typescript` | Type safety + preconfigured | Inconsistent module systems |
-| **Vite** | `npm create vite@latest my-app -- --template react` | Faster build times | Complex webpack setups |
-| **Next.js** | `npx create-next-app@latest my-app` | SSR support | Module system conflicts |
+| 方法 | 命令 | 优势 | 避免 |
+|------|------|------|------|
+| **Create React App** | `npx create-react-app my-app` | 预配置webpack和babel | 手动配置错误 |
+| **Create React App w/TypeScript** | `npx create-react-app my-app --template typescript` | 类型安全+预配置 | 不一致的模块系统 |
+| **Vite** | `npm create vite@latest my-app -- --template react` | 更快的构建时间 | 复杂的webpack设置 |
+| **Next.js** | `npx create-next-app@latest my-app` | SSR支持 | 模块系统冲突 |
 
-## ⚠️ ERROR HANDLING WORKFLOW
+## ⚠️ 错误处理工作流程
 
 ```mermaid
 sequenceDiagram
@@ -162,74 +161,74 @@ sequenceDiagram
     participant AI
     participant System
     
-    AI->>System: Execute Command
-    System->>AI: Return Result
+    AI->>System: 执行命令
+    System->>AI: 返回结果
     
-    alt Success
-        AI->>AI: Verify Expected Result
-        AI->>User: Report Success
-    else Error
-        AI->>AI: Analyze Error Message
-        AI->>AI: Identify Likely Cause
-        AI->>User: Explain Error & Cause
-        AI->>User: Suggest Corrective Action
-        User->>AI: Approve Correction
-        AI->>System: Execute Corrected Command
+    alt 成功
+        AI->>AI: 验证预期结果
+        AI->>User: 报告成功
+    else 错误
+        AI->>AI: 分析错误消息
+        AI->>AI: 识别可能原因
+        AI->>User: 解释错误和原因
+        AI->>User: 建议纠正措施
+        User->>AI: 批准修正
+        AI->>System: 执行修正命令
     end
 ```
 
-## 📋 COMMAND RESULT VERIFICATION
+## 📋 命令结果验证
 
-After command execution, verify:
-
-```mermaid
-graph TD
-    Execute["Execute<br>Command"] --> Check{"Check<br>Result"}
-    
-    Check -->|"Success"| Verify["Verify Expected<br>Outcome"]
-    Check -->|"Error"| Analyze["Analyze<br>Error"]
-    
-    Verify -->|"Expected"| Document["Document<br>Success"]
-    Verify -->|"Unexpected"| Investigate["Investigate<br>Unexpected Result"]
-    
-    Analyze --> Diagnose["Diagnose<br>Error Cause"]
-    Diagnose --> Correct["Propose<br>Correction"]
-    
-    Document & Investigate & Correct --> Next["Next Step<br>in Process"]
-```
-
-## 📝 COMMAND EXECUTION CHECKLIST
-
-```
-✓ COMMAND EXECUTION CHECKLIST
-- Command purpose clearly identified? [YES/NO]
-- Appropriate balance of clarity vs. efficiency? [YES/NO]
-- Platform-specific considerations addressed? [YES/NO]
-- Command documented with results? [YES/NO]
-- Outcome verified against expectations? [YES/NO]
-- Errors properly handled (if any)? [YES/NO/NA]
-- For npm/build commands: Executed from project root? [YES/NO/NA]
-- For React projects: Using standard tooling? [YES/NO/NA]
-
-→ If all YES: Command execution complete
-→ If any NO: Address missing elements
-```
-
-## 🚨 COMMAND EXECUTION WARNINGS
-
-Avoid these common command issues:
+命令执行后，验证：
 
 ```mermaid
 graph TD
-    Warning["Command<br>Warnings"] --> W1["Excessive<br>Verbosity"]
-    Warning --> W2["Insufficient<br>Error Handling"]
-    Warning --> W3["Unnecessary<br>Complexity"]
-    Warning --> W4["Destructive<br>Operations Without<br>Confirmation"]
-    Warning --> W5["Wrong Directory<br>Execution"]
+    Execute["执行<br>命令"] --> Check{"检查<br>结果"}
     
-    W1 --> S1["Use flags to reduce<br>unnecessary output"]
-    W2 --> S2["Include error handling<br>in command chains"]
-    W3 --> S3["Prefer built-in<br>command capabilities"]
-    W4 --> S4["Show confirmation<br>before destructive actions"]
-    W5 --> S5["Verify directory before<br>npm/build commands"]
+    Check -->|"成功"| Verify["验证预期<br>结果"]
+    Check -->|"错误"| Analyze["分析<br>错误"]
+    
+    Verify -->|"符合预期"| Document["记录<br>成功"]
+    Verify -->|"不符预期"| Investigate["调查<br>意外结果"]
+    
+    Analyze --> Diagnose["诊断<br>错误原因"]
+    Diagnose --> Correct["提出<br>修正"]
+    
+    Document & Investigate & Correct --> Next["流程中的<br>下一步"]
+```
+
+## 📝 命令执行清单
+
+```
+✓ 命令执行清单
+- 命令目的明确识别？[是/否]
+- 清晰度与效率适当平衡？[是/否]
+- 解决平台特定考虑？[是/否]
+- 命令及结果已记录？[是/否]
+- 结果已根据预期验证？[是/否]
+- 错误已适当处理（如有）？[是/否/不适用]
+- 对于npm/构建命令：从项目根目录执行？[是/否/不适用]
+- 对于React项目：使用标准工具？[是/否/不适用]
+
+→ 如果全部为是：命令执行完成
+→ 如果任一为否：解决缺失元素
+```
+
+## 🚨 命令执行警告
+
+避免这些常见命令问题：
+
+```mermaid
+graph TD
+    Warning["命令<br>警告"] --> W1["过度<br>冗长"]
+    Warning --> W2["错误处理<br>不足"]
+    Warning --> W3["不必要的<br>复杂性"]
+    Warning --> W4["无确认的<br>破坏性操作"]
+    Warning --> W5["错误目录<br>执行"]
+    
+    W1 --> S1["使用标志减少<br>不必要输出"]
+    W2 --> S2["在命令链中<br>包含错误处理"]
+    W3 --> S3["优先使用内置<br>命令功能"]
+    W4 --> S4["在破坏性操作前<br>显示确认"]
+    W5 --> S5["在npm/构建命令前<br>验证目录"]
 ``` 

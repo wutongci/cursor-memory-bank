@@ -83,7 +83,7 @@ v0.6-beta的关键架构变化是将规则完全隔离到自定义模式：
 只需将此存储库克隆到您的项目目录：
 
 ```
-git clone https://github.com/vanzan01/cursor-memory-bank.git
+git clone https://github.com/wutongci/cursor-memory-bank.git
 
 ```
 

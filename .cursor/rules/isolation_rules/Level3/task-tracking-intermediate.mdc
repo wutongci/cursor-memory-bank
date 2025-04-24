@@ -3,31 +3,31 @@ description: task tracking intermediate
 globs: task-tracking-intermediate.mdc
 alwaysApply: false
 ---
-# LEVEL 3 INTERMEDIATE TASK TRACKING
+# 3级中级任务跟踪
 
-> **TL;DR:** This document provides structured task tracking guidelines for Level 3 (Intermediate Feature) tasks, using visual tracking elements and clear checkpoints.
+> **简介：** 本文档为3级（中级功能）任务提供结构化任务跟踪指南，使用可视化跟踪元素和明确的检查点。
 
-## 🔍 TASK TRACKING WORKFLOW
+## 🔍 任务跟踪工作流程
 
 ```mermaid
 graph TD
-    Start["Task Start"] --> Init["📋 Initialize<br>Task Entry"]
-    Init --> Struct["🏗️ Create Task<br>Structure"]
-    Struct --> Track["📊 Progress<br>Tracking"]
-    Track --> Update["🔄 Regular<br>Updates"]
-    Update --> Complete["✅ Task<br>Completion"]
+    Start["任务开始"] --> Init["📋 初始化<br>任务条目"]
+    Init --> Struct["🏗️ 创建任务<br>结构"]
+    Struct --> Track["📊 进度<br>跟踪"]
+    Track --> Update["🔄 定期<br>更新"]
+    Update --> Complete["✅ 任务<br>完成"]
     
-    Struct --> Components["Components:"]
-    Components --> Req["Requirements"]
-    Components --> Steps["Implementation<br>Steps"]
-    Components --> Creative["Creative Phase<br>Markers"]
-    Components --> Check["Checkpoints"]
+    Struct --> Components["组件："]
+    Components --> Req["需求"]
+    Components --> Steps["实施<br>步骤"]
+    Components --> Creative["创意阶段<br>标记"]
+    Components --> Check["检查点"]
     
-    Track --> Status["Track Status:"]
-    Status --> InProg["🔄 In Progress"]
-    Status --> Block["⛔ Blocked"]
-    Status --> Done["✅ Complete"]
-    Status --> Skip["⏭️ Skipped"]
+    Track --> Status["跟踪状态："]
+    Status --> InProg["🔄 进行中"]
+    Status --> Block["⛔ 已阻止"]
+    Status --> Done["✅ 完成"]
+    Status --> Skip["⏭️ 已跳过"]
     
     style Start fill:#4da6ff,stroke:#0066cc,color:white
     style Init fill:#ffa64d,stroke:#cc7a30,color:white
@@ -37,54 +37,54 @@ graph TD
     style Complete fill:#d971ff,stroke:#a33bc2,color:white
 ```
 
-## 📋 TASK ENTRY TEMPLATE
+## 📋 任务条目模板
 
 ```markdown
-# [Task Title]
+# [任务标题]
 
-## Requirements
-- [ ] Requirement 1
-- [ ] Requirement 2
-- [ ] Requirement 3
+## 需求
+- [ ] 需求1
+- [ ] 需求2
+- [ ] 需求3
 
-## Components Affected
-- Component 1
-- Component 2
-- Component 3
+## 受影响组件
+- 组件1
+- 组件2
+- 组件3
 
-## Implementation Steps
-1. [ ] Step 1
-2. [ ] Step 2
-3. [ ] Step 3
+## 实施步骤
+1. [ ] 步骤1
+2. [ ] 步骤2
+3. [ ] 步骤3
 
-## Creative Phases Required
-- [ ] 🎨 UI/UX Design
-- [ ] 🏗️ Architecture Design
-- [ ] ⚙️ Algorithm Design
+## 所需创意阶段
+- [ ] 🎨 UI/UX设计
+- [ ] 🏗️ 架构设计
+- [ ] ⚙️ 算法设计
 
-## Checkpoints
-- [ ] Requirements verified
-- [ ] Creative phases completed
-- [ ] Implementation tested
-- [ ] Documentation updated
+## 检查点
+- [ ] 需求已验证
+- [ ] 创意阶段已完成
+- [ ] 实施已测试
+- [ ] 文档已更新
 
-## Current Status
-- Phase: [Current Phase]
-- Status: [In Progress/Blocked/Complete]
-- Blockers: [If any]
+## 当前状态
+- 阶段：[当前阶段]
+- 状态：[进行中/已阻止/完成]
+- 阻碍因素：[如有]
 ```
 
-## 🔄 PROGRESS TRACKING VISUALIZATION
+## 🔄 进度跟踪可视化
 
 ```mermaid
 graph TD
-    subgraph "TASK PROGRESS"
-    P1["✓ Requirements<br>Defined"]
-    P2["✓ Components<br>Identified"]
-    P3["→ Creative Phase<br>In Progress"]
-    P4["□ Implementation"]
-    P5["□ Testing"]
-    P6["□ Documentation"]
+    subgraph "任务进度"
+    P1["✓ 需求<br>已定义"]
+    P2["✓ 组件<br>已识别"]
+    P3["→ 创意阶段<br>进行中"]
+    P4["□ 实施"]
+    P5["□ 测试"]
+    P6["□ 文档"]
     end
     
     style P1 fill:#4dbb5f,stroke:#36873f,color:white
@@ -95,39 +95,39 @@ graph TD
     style P6 fill:#d971ff,stroke:#a33bc2,color:white
 ```
 
-## ✅ UPDATE PROTOCOL
+## ✅ 更新协议
 
 ```mermaid
 sequenceDiagram
-    participant Task as Task Entry
-    participant Status as Status Update
-    participant Creative as Creative Phase
-    participant Implementation as Implementation
+    participant Task as 任务条目
+    participant Status as 状态更新
+    participant Creative as 创意阶段
+    participant Implementation as 实施
     
-    Task->>Status: Update Progress
-    Status->>Creative: Flag for Creative Phase
-    Creative->>Implementation: Complete Design
-    Implementation->>Status: Update Status
-    Status->>Task: Mark Complete
+    Task->>Status: 更新进度
+    Status->>Creative: 标记创意阶段
+    Creative->>Implementation: 完成设计
+    Implementation->>Status: 更新状态
+    Status->>Task: 标记完成
 ```
 
-## 🎯 CHECKPOINT VERIFICATION
+## 🎯 检查点验证
 
-| Phase | Verification Items | Status |
+| 阶段 | 验证项目 | 状态 |
 |-------|-------------------|--------|
-| Requirements | All requirements documented | [ ] |
-| Components | Affected components listed | [ ] |
-| Creative | Design decisions documented | [ ] |
-| Implementation | Code changes tracked | [ ] |
-| Testing | Test results recorded | [ ] |
-| Documentation | Updates completed | [ ] |
+| 需求 | 所有需求已记录 | [ ] |
+| 组件 | 受影响组件已列出 | [ ] |
+| 创意 | 设计决策已记录 | [ ] |
+| 实施 | 代码变更已跟踪 | [ ] |
+| 测试 | 测试结果已记录 | [ ] |
+| 文档 | 更新已完成 | [ ] |
 
-## 🔄 DOCUMENT MANAGEMENT
+## 🔄 文档管理
 
 ```mermaid
 graph TD
-    Current["Current Documents"] --> Active["Active:<br>- task-tracking-intermediate.md<br>- planning-comprehensive.md"]
-    Current --> Required["Required Next:<br>- creative-phase-enforcement.md<br>- implementation-phase-reference.md"]
+    Current["当前文档"] --> Active["活动：<br>- task-tracking-intermediate.md<br>- planning-comprehensive.md"]
+    Current --> Required["下一步所需：<br>- creative-phase-enforcement.md<br>- implementation-phase-reference.md"]
     
     style Current fill:#4da6ff,stroke:#0066cc,color:white
     style Active fill:#4dbb5f,stroke:#36873f,color:white

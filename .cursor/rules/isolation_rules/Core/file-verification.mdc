@@ -3,41 +3,41 @@ description: Optimized file verification
 globs: file-verification.mdc
 alwaysApply: false
 ---
-# OPTIMIZED FILE VERIFICATION SYSTEM
+# 优化文件验证系统
 
-> **TL;DR:** This system efficiently verifies and creates required Memory Bank file structures using batch operations and platform-optimized commands.
+> **简介：** 本系统使用批处理操作和平台优化命令高效验证和创建必要的Memory Bank文件结构。
 
-## 🔍 OPTIMIZED FILE VERIFICATION WORKFLOW
+## 🔍 优化文件验证工作流程
 
 ```mermaid
 graph TD
-    Start["Start File<br>Verification"] --> VerifyAll["Verify All<br>Required Components"]
-    VerifyAll --> MissingCheck{"Missing<br>Components?"}
-    MissingCheck -->|"Yes"| BatchCreate["Batch Create<br>All Missing Items"]
-    MissingCheck -->|"No"| Complete["Verification<br>Complete"]
-    BatchCreate --> Report["Generate<br>Verification Report"]
+    Start["开始文件<br>验证"] --> VerifyAll["验证所有<br>必需组件"]
+    VerifyAll --> MissingCheck{"缺失<br>组件？"}
+    MissingCheck -->|"是"| BatchCreate["批量创建<br>所有缺失项目"]
+    MissingCheck -->|"否"| Complete["验证<br>完成"]
+    BatchCreate --> Report["生成<br>验证报告"]
     Report --> Complete
 ```
 
-## 📋 OPTIMIZED DIRECTORY CREATION
+## 📋 优化目录创建
 
 ```mermaid
 graph TD
-    Start["Directory<br>Creation"] --> DetectOS["Detect Operating<br>System"]
-    DetectOS -->|"Windows"| WinCmd["Batch Create<br>Windows Command"]
-    DetectOS -->|"Mac/Linux"| UnixCmd["Batch Create<br>Unix Command"]
-    WinCmd & UnixCmd --> Verify["Verify<br>Creation Success"]
-    Verify --> Complete["Directory Setup<br>Complete"]
+    Start["目录<br>创建"] --> DetectOS["检测操作<br>系统"]
+    DetectOS -->|"Windows"| WinCmd["批量创建<br>Windows命令"]
+    DetectOS -->|"Mac/Linux"| UnixCmd["批量创建<br>Unix命令"]
+    WinCmd & UnixCmd --> Verify["验证<br>创建成功"]
+    Verify --> Complete["目录设置<br>完成"]
 ```
 
-### Platform-Specific Commands
+### 平台特定命令
 
 #### Windows (PowerShell)
 ```powershell
-# Create all directories in one command
+# 一次性创建所有目录
 mkdir memory-bank, docs, docs\archive -ErrorAction SilentlyContinue
 
-# Create all required files
+# 创建所有必需文件
 $files = @(".cursorrules", "tasks.md", 
            "memory-bank\projectbrief.md", 
            "memory-bank\productContext.md",
@@ -55,10 +55,10 @@ foreach ($file in $files) {
 
 #### Mac/Linux (Bash)
 ```bash
-# Create all directories in one command
+# 一次性创建所有目录
 mkdir -p memory-bank docs/archive
 
-# Create all required files
+# 创建所有必需文件
 touch .cursorrules tasks.md \
       memory-bank/projectbrief.md \
       memory-bank/productContext.md \
@@ -68,9 +68,9 @@ touch .cursorrules tasks.md \
       memory-bank/progress.md
 ```
 
-## 📝 STREAMLINED VERIFICATION PROCESS
+## 📝 简化验证流程
 
-Instead of checking each component separately, perform batch verification:
+不是单独检查每个组件，而是执行批量验证：
 
 ```powershell
 # Windows - PowerShell
@@ -85,9 +85,9 @@ $missingMBFiles = $mbFiles | ForEach-Object { "memory-bank\$_" } |
                   Where-Object { -not (Test-Path $_) -or (Test-Path $_ -PathType Container) }
 
 if ($missingDirs.Count -eq 0 -and $missingFiles.Count -eq 0 -and $missingMBFiles.Count -eq 0) {
-    Write-Output "✓ All required components verified"
+    Write-Output "✓ 所有必需组件已验证"
 } else {
-    # Create all missing items at once
+    # 一次性创建所有缺失项目
     if ($missingDirs.Count -gt 0) {
         $missingDirs | ForEach-Object { mkdir $_ -Force }
     }
@@ -98,43 +98,43 @@ if ($missingDirs.Count -eq 0 -and $missingFiles.Count -eq 0 -and $missingMBFiles
 }
 ```
 
-## 📝 TEMPLATE INITIALIZATION
+## 📝 模板初始化
 
-Optimize template creation with a single script:
+使用单个脚本优化模板创建：
 
 ```powershell
 # Windows - PowerShell
 $templates = @{
     "tasks.md" = @"
-# Memory Bank: Tasks
+# Memory Bank: 任务
 
-## Current Task
-[Task not yet defined]
+## 当前任务
+[尚未定义任务]
 
-## Status
-- [ ] Task definition
-- [ ] Implementation plan
-- [ ] Execution
-- [ ] Documentation
+## 状态
+- [ ] 任务定义
+- [ ] 实施计划
+- [ ] 执行
+- [ ] 文档
 
-## Requirements
-[No requirements defined yet]
+## 需求
+[尚未定义需求]
 "@
 
     "memory-bank\activeContext.md" = @"
-# Memory Bank: Active Context
+# Memory Bank: 活动上下文
 
-## Current Focus
-[No active focus defined]
+## 当前焦点
+[未定义活动焦点]
 
-## Status
-[No status defined]
+## 状态
+[未定义状态]
 
-## Latest Changes
-[No changes recorded]
+## 最新变更
+[未记录变更]
 "@
 
-    # Add other templates here
+    # 在此处添加其他模板
 }
 
 foreach ($file in $templates.Keys) {
@@ -144,55 +144,55 @@ foreach ($file in $templates.Keys) {
 }
 ```
 
-## 🔍 PERFORMANCE OPTIMIZATION BEST PRACTICES
+## 🔍 性能优化最佳实践
 
-1. **Batch Operations**: Always use batch operations instead of individual commands
+1. **批处理操作**：始终使用批处理操作而非单独命令
    ```
-   # GOOD: Create all directories at once
+   # 好：一次性创建所有目录
    mkdir memory-bank docs docs\archive
    
-   # BAD: Create directories one at a time
+   # 差：一次创建一个目录
    mkdir memory-bank
    mkdir docs
    mkdir docs\archive
    ```
 
-2. **Pre-Check Optimization**: Check all requirements first, then create only what's missing
+2. **预检查优化**：先检查所有需求，然后只创建缺失的内容
    ```
-   # First check what's missing
+   # 首先检查缺失内容
    $missingItems = ...
    
-   # Then create only what's missing
+   # 然后只创建缺失的内容
    if ($missingItems) { ... }
    ```
 
-3. **Error Handling**: Include error handling in all commands
+3. **错误处理**：在所有命令中包含错误处理
    ```
    mkdir memory-bank, docs, docs\archive -ErrorAction SilentlyContinue
    ```
 
-4. **Platform Adaptation**: Auto-detect platform and use appropriate commands
+4. **平台适配**：自动检测平台并使用适当的命令
    ```
    if ($IsWindows) {
-       # Windows commands
+       # Windows命令
    } else {
-       # Unix commands
+       # Unix命令
    }
    ```
 
-5. **One-Pass Verification**: Verify directory structure in a single pass
+5. **一次性验证**：单次验证目录结构
    ```
    $requiredPaths = @("memory-bank", "docs", "docs\archive", ".cursorrules", "tasks.md")
    $missingPaths = $requiredPaths | Where-Object { -not (Test-Path $_) }
    ```
 
-## 📝 VERIFICATION REPORT FORMAT
+## 📝 验证报告格式
 
 ```
-✅ VERIFICATION COMPLETE
-- Created directories: [list]
-- Created files: [list]
-- All components verified
+✅ 验证完成
+- 已创建目录：[列表]
+- 已创建文件：[列表]
+- 所有组件已验证
 
-Memory Bank system ready for use.
+Memory Bank系统已准备就绪。
 ``` 

@@ -3,69 +3,67 @@ description: Platform detection and command adaptation for isolation-focused Mem
 globs: platform-awareness.mdc
 alwaysApply: false
 ---
+# 平台感知系统
 
+> **简介：** 该系统检测操作系统、路径格式和Shell环境，然后相应地调整命令以确保跨平台兼容性。
 
-# PLATFORM AWARENESS SYSTEM
-
-> **TL;DR:** This system detects the operating system, path format, and shell environment, then adapts commands accordingly to ensure cross-platform compatibility.
-
-## 🔍 PLATFORM DETECTION PROCESS
+## 🔍 平台检测流程
 
 ```mermaid
 graph TD
-    Start["Start Platform<br>Detection"] --> DetectOS["Detect OS<br>Environment"]
-    DetectOS --> Windows["Windows<br>Detection"]
-    DetectOS --> Mac["macOS<br>Detection"]
-    DetectOS --> Linux["Linux<br>Detection"]
+    Start["开始平台<br>检测"] --> DetectOS["检测操作系统<br>环境"]
+    DetectOS --> Windows["Windows<br>检测"]
+    DetectOS --> Mac["macOS<br>检测"]
+    DetectOS --> Linux["Linux<br>检测"]
     
-    Windows & Mac & Linux --> PathCheck["Path Separator<br>Detection"]
-    PathCheck --> CmdAdapt["Command<br>Adaptation"]
-    CmdAdapt --> ShellCheck["Shell Type<br>Detection"]
-    ShellCheck --> Complete["Platform Detection<br>Complete"]
+    Windows & Mac & Linux --> PathCheck["路径分隔符<br>检测"]
+    PathCheck --> CmdAdapt["命令<br>适配"]
+    CmdAdapt --> ShellCheck["Shell类型<br>检测"]
+    ShellCheck --> Complete["平台检测<br>完成"]
 ```
 
-## 📋 PLATFORM DETECTION IMPLEMENTATION
+## 📋 平台检测实现
 
-For reliable platform detection:
+为了可靠的平台检测：
 
 ```
-## Platform Detection Results
-Operating System: [Windows/macOS/Linux]
-Path Separator: [\ or /]
-Shell Environment: [PowerShell/Bash/Zsh/Cmd]
-Command Adaptation: [Required/Not Required]
+## 平台检测结果
+操作系统：[Windows/macOS/Linux]
+路径分隔符：[\ 或 /]
+Shell环境：[PowerShell/Bash/Zsh/Cmd]
+命令适配：[需要/不需要]
 
-Adapting commands for [detected platform]...
+正在为[检测到的平台]适配命令...
 ```
 
-## 🔍 PATH FORMAT CONVERSION
+## 🔍 路径格式转换
 
-When converting paths between formats:
+当在格式之间转换路径时：
 
 ```mermaid
 sequenceDiagram
-    participant Input as Path Input
-    participant Detector as Format Detector
-    participant Converter as Format Converter
-    participant Output as Adapted Path
+    participant Input as 路径输入
+    participant Detector as 格式检测器
+    participant Converter as 格式转换器
+    participant Output as 适配后的路径
     
-    Input->>Detector: Raw Path
-    Detector->>Detector: Detect Current Format
-    Detector->>Converter: Path + Current Format
-    Converter->>Converter: Apply Target Format
-    Converter->>Output: Platform-Specific Path
+    Input->>Detector: 原始路径
+    Detector->>Detector: 检测当前格式
+    Detector->>Converter: 路径 + 当前格式
+    Converter->>Converter: 应用目标格式
+    Converter->>Output: 平台特定路径
 ```
 
-## 📝 PLATFORM VERIFICATION CHECKLIST
+## 📝 平台验证清单
 
 ```
-✓ PLATFORM VERIFICATION
-- Operating system correctly identified? [YES/NO]
-- Path separator format detected? [YES/NO]
-- Shell environment identified? [YES/NO]
-- Command set adapted appropriately? [YES/NO]
-- Path format handling configured? [YES/NO]
+✓ 平台验证
+- 操作系统正确识别？[是/否]
+- 路径分隔符格式已检测？[是/否]
+- Shell环境已识别？[是/否]
+- 命令集适当适配？[是/否]
+- 路径格式处理已配置？[是/否]
 
-→ If all YES: Platform adaptation complete
-→ If any NO: Run additional detection steps
+→ 如果全部为是：平台适配完成
+→ 如果任一为否：运行额外检测步骤
 ``` 

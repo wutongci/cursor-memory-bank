@@ -1,29 +1,28 @@
 ---
-description: creative phase enforcement 
+description: creative phase enforcement
 globs: creative-phase-enforcement.md
 alwaysApply: false
 ---
+# 创意阶段执行
 
-# CREATIVE PHASE ENFORCEMENT
+> **简介：** 本文档为3-4级任务实施严格的创意阶段要求执行，确保所有设计决策在实施前得到适当记录和验证。
 
-> **TL;DR:** This document implements strict enforcement of creative phase requirements for Level 3-4 tasks, ensuring all design decisions are properly documented and verified before implementation can proceed.
-
-## 🔍 ENFORCEMENT WORKFLOW
+## 🔍 执行工作流程
 
 ```mermaid
 graph TD
-    Start["Task Start"] --> Check{"Level 3-4<br>Task?"}
-    Check -->|Yes| Analyze["Analyze Design<br>Decision Points"]
-    Check -->|No| Optional["Creative Phase<br>Optional"]
+    Start["任务开始"] --> Check{"3-4级<br>任务？"}
+    Check -->|是| Analyze["分析设计<br>决策点"]
+    Check -->|否| Optional["创意阶段<br>可选"]
     
-    Analyze --> Decision{"Design Decisions<br>Required?"}
-    Decision -->|Yes| Gate["🚨 IMPLEMENTATION<br>BLOCKED"]
-    Decision -->|No| Allow["Allow<br>Implementation"]
+    Analyze --> Decision{"需要设计<br>决策？"}
+    Decision -->|是| Gate["🚨 实施<br>已阻止"]
+    Decision -->|否| Allow["允许<br>实施"]
     
-    Gate --> Creative["Enter Creative<br>Phase"]
-    Creative --> Verify{"All Decisions<br>Documented?"}
-    Verify -->|No| Return["Return to<br>Creative Phase"]
-    Verify -->|Yes| Proceed["Allow<br>Implementation"]
+    Gate --> Creative["进入创意<br>阶段"]
+    Creative --> Verify{"所有决策<br>已记录？"}
+    Verify -->|否| Return["返回<br>创意阶段"]
+    Verify -->|是| Proceed["允许<br>实施"]
     
     style Start fill:#4da6ff,stroke:#0066cc,color:white
     style Check fill:#ffa64d,stroke:#cc7a30,color:white
@@ -33,14 +32,14 @@ graph TD
     style Verify fill:#d971ff,stroke:#a33bc2,color:white
 ```
 
-## 🚨 ENFORCEMENT GATES
+## 🚨 执行门槛
 
 ```mermaid
 graph TD
-    subgraph "CREATIVE PHASE GATES"
-    G1["Entry Gate<br>Verify Requirements"]
-    G2["Process Gate<br>Verify Progress"]
-    G3["Exit Gate<br>Verify Completion"]
+    subgraph "创意阶段门槛"
+    G1["入口门槛<br>验证需求"]
+    G2["过程门槛<br>验证进度"]
+    G3["出口门槛<br>验证完成"]
     end
     
     G1 --> G2 --> G3
@@ -50,55 +49,55 @@ graph TD
     style G3 fill:#d94dbb,stroke:#a3378a,color:white
 ```
 
-## 📋 ENFORCEMENT CHECKLIST
+## 📋 执行清单
 
 ```markdown
-## Entry Gate Verification
-- [ ] Task complexity is Level 3-4
-- [ ] Design decisions identified
-- [ ] Creative phase requirements documented
-- [ ] Required participants notified
+## 入口门槛验证
+- [ ] 任务复杂度为3-4级
+- [ ] 已识别设计决策
+- [ ] 已记录创意阶段需求
+- [ ] 已通知所需参与者
 
-## Process Gate Verification
-- [ ] All options being considered
-- [ ] Pros/cons documented
-- [ ] Technical constraints identified
-- [ ] Implementation impacts assessed
+## 过程门槛验证
+- [ ] 正在考虑所有选项
+- [ ] 已记录优缺点
+- [ ] 已识别技术约束
+- [ ] 已评估实施影响
 
-## Exit Gate Verification
-- [ ] All decisions documented
-- [ ] Rationale provided for choices
-- [ ] Implementation plan outlined
-- [ ] Verification against requirements
+## 出口门槛验证
+- [ ] 已记录所有决策
+- [ ] 已提供选择理由
+- [ ] 已概述实施计划
+- [ ] 已针对需求进行验证
 ```
 
-## 🚨 IMPLEMENTATION BLOCK NOTICE
+## 🚨 实施阻止通知
 
-When a creative phase is required but not completed:
+当需要创意阶段但尚未完成时：
 
 ```
-🚨 IMPLEMENTATION BLOCKED
-Creative phases MUST be completed before implementation.
+🚨 实施已阻止
+创意阶段必须在实施前完成。
 
-Required Creative Phases:
-- [ ] [Creative Phase 1]
-- [ ] [Creative Phase 2]
-- [ ] [Creative Phase 3]
+所需创意阶段：
+- [ ] [创意阶段1]
+- [ ] [创意阶段2]
+- [ ] [创意阶段3]
 
-⛔ This is a HARD BLOCK
-Implementation CANNOT proceed until all creative phases are completed.
-Type "PHASE.REVIEW" to begin creative phase review.
+⛔ 这是一个硬性阻止
+实施无法继续，直到所有创意阶段完成。
+输入"PHASE.REVIEW"开始创意阶段审核。
 ```
 
-## ✅ VERIFICATION PROTOCOL
+## ✅ 验证协议
 
 ```mermaid
 graph TD
-    subgraph "VERIFICATION STEPS"
-    V1["1. Requirements<br>Check"]
-    V2["2. Documentation<br>Review"]
-    V3["3. Decision<br>Validation"]
-    V4["4. Implementation<br>Readiness"]
+    subgraph "验证步骤"
+    V1["1. 需求<br>检查"]
+    V2["2. 文档<br>审查"]
+    V3["3. 决策<br>验证"]
+    V4["4. 实施<br>准备就绪"]
     end
     
     V1 --> V2 --> V3 --> V4
@@ -109,35 +108,35 @@ graph TD
     style V4 fill:#4dbbbb,stroke:#368787,color:white
 ```
 
-## 🔄 CREATIVE PHASE MARKERS
+## 🔄 创意阶段标记
 
-Use these markers to clearly indicate creative phase boundaries:
+使用这些标记清晰地表示创意阶段边界：
 
 ```markdown
-🎨🎨🎨 ENTERING CREATIVE PHASE: [TYPE] 🎨🎨🎨
-Focus: [Specific component/feature]
-Objective: [Clear goal of this creative phase]
-Requirements: [List of requirements]
+🎨🎨🎨 进入创意阶段：[类型] 🎨🎨🎨
+焦点：[特定组件/功能]
+目标：[此创意阶段的明确目标]
+需求：[需求列表]
 
-[Creative phase content]
+[创意阶段内容]
 
-🎨 CREATIVE CHECKPOINT: [Milestone]
-- Progress: [Status]
-- Decisions: [List]
-- Next steps: [Plan]
+🎨 创意检查点：[里程碑]
+- 进度：[状态]
+- 决策：[列表]
+- 下一步：[计划]
 
-🎨🎨🎨 EXITING CREATIVE PHASE 🎨🎨🎨
-Summary: [Brief description]
-Key Decisions: [List]
-Next Steps: [Implementation plan]
+🎨🎨🎨 退出创意阶段 🎨🎨🎨
+摘要：[简要描述]
+关键决策：[列表]
+下一步：[实施计划]
 ```
 
-## 🔄 DOCUMENT MANAGEMENT
+## 🔄 文档管理
 
 ```mermaid
 graph TD
-    Current["Current Document"] --> Active["Active:<br>- creative-phase-enforcement.md"]
-    Current --> Related["Related:<br>- creative-phase-architecture.md<br>- task-tracking-intermediate.md"]
+    Current["当前文档"] --> Active["活动：<br>- creative-phase-enforcement.md"]
+    Current --> Related["相关：<br>- creative-phase-architecture.md<br>- task-tracking-intermediate.md"]
     
     style Current fill:#4da6ff,stroke:#0066cc,color:white
     style Active fill:#4dbb5f,stroke:#36873f,color:white
