@@ -3,48 +3,48 @@ description: Visual process map for VAN mode platform detection
 globs: van-platform-detection.mdc
 alwaysApply: false
 ---
-# VAN MODE: PLATFORM DETECTION
+# VAN模式: 平台检测
 
-> **TL;DR:** Detects the OS, determines path separators, and notes command adaptations required.
+> **简介:** 检测操作系统，确定路径分隔符，并记录所需的命令适配。
 
-## 🌐 PLATFORM DETECTION PROCESS
+## 🌐 平台检测流程
 
 ```mermaid
 graph TD
-    PD["Platform Detection"] --> CheckOS["Detect Operating System"]
+    PD["平台检测"] --> CheckOS["检测操作系统"]
     CheckOS --> Win["Windows"]
     CheckOS --> Mac["macOS"]
     CheckOS --> Lin["Linux"]
     
-    Win & Mac & Lin --> Adapt["Adapt Commands<br>for Platform"]
+    Win & Mac & Lin --> Adapt["适配命令<br>到平台"]
     
-    Win --> WinPath["Path: Backslash (\\)"]
-    Mac --> MacPath["Path: Forward Slash (/)"]
-    Lin --> LinPath["Path: Forward Slash (/)"]
+    Win --> WinPath["路径: 反斜杠 (\\)"]
+    Mac --> MacPath["路径: 正斜杠 (/)"]
+    Lin --> LinPath["路径: 正斜杠 (/)"]
     
-    Win --> WinCmd["Command Adaptations:<br>dir, icacls, etc."]
-    Mac --> MacCmd["Command Adaptations:<br>ls, chmod, etc."]
-    Lin --> LinCmd["Command Adaptations:<br>ls, chmod, etc."]
+    Win --> WinCmd["命令适配:<br>dir, icacls等"]
+    Mac --> MacCmd["命令适配:<br>ls, chmod等"]
+    Lin --> LinCmd["命令适配:<br>ls, chmod等"]
     
-    WinPath & MacPath & LinPath --> PathCP["Path Separator<br>Checkpoint"]
-    WinCmd & MacCmd & LinCmd --> CmdCP["Command<br>Checkpoint"]
+    WinPath & MacPath & LinPath --> PathCP["路径分隔符<br>检查点"]
+    WinCmd & MacCmd & LinCmd --> CmdCP["命令<br>检查点"]
     
-    PathCP & CmdCP --> PlatformComplete["Platform Detection<br>Complete"]
+    PathCP & CmdCP --> PlatformComplete["平台检测<br>完成"]
     
     style PD fill:#4da6ff,stroke:#0066cc,color:white
     style PlatformComplete fill:#10b981,stroke:#059669,color:white
 ```
 
-## 📋 CHECKPOINT VERIFICATION TEMPLATE (Example)
+## 📋 检查点验证模板(示例)
 
 ```
-✓ SECTION CHECKPOINT: PLATFORM DETECTION
-- Operating System Detected? [YES/NO]
-- Path Separator Confirmed? [YES/NO]
-- Command Adaptations Noted? [YES/NO]
+✓ 部分检查点: 平台检测
+- 操作系统已检测? [是/否]
+- 路径分隔符已确认? [是/否]
+- 命令适配已记录? [是/否]
 
-→ If all YES: Platform Detection Complete.
-→ If any NO: Resolve before proceeding.
+→ 如果全部为是: 平台检测完成。
+→ 如果任何为否: 在继续前解决问题。
 ```
 
-**Next Step:** Load and process `van-file-verification.mdc`. 
+**下一步:** 加载并处理`van-file-verification.mdc`。 

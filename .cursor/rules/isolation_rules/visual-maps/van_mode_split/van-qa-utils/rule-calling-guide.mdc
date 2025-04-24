@@ -3,28 +3,28 @@ description: Comprehensive guide for calling VAN QA rules
 globs: van-qa-utils/rule-calling-guide.mdc
 alwaysApply: false
 ---
-# VAN QA: COMPREHENSIVE RULE CALLING GUIDE
+# VAN QA: 全面规则调用指南
 
-> **TL;DR:** This reference guide shows how to properly call all VAN QA rules at the right time during the validation process.
+> **简介:** 此参考指南展示了如何在验证过程中适时正确调用所有VAN QA规则。
 
-## 🔍 RULE CALLING BASICS
+## 🔍 规则调用基础
 
-Remember these key principles:
-1. Always use the `fetch_rules` tool to load rules
-2. Use exact rule paths
-3. Load components only when needed
+记住这些关键原则:
+1. 始终使用`fetch_rules`工具加载规则
+2. 使用准确的规则路径
+3. 仅在需要时加载组件
 
-## 📋 MAIN QA ENTRY POINT
+## 📋 主QA入口点
 
-When user types "VAN QA", load the main entry point:
+当用户输入"VAN QA"时，加载主入口点:
 
 ```
 fetch_rules with "isolation_rules/visual-maps/van-qa-main"
 ```
 
-## 📋 VALIDATION CHECKS
+## 📋 验证检查
 
-Load these components sequentially during validation:
+在验证过程中按顺序加载这些组件:
 
 ```
 1. fetch_rules with "isolation_rules/visual-maps/van-qa-checks/dependency-check"
@@ -33,34 +33,34 @@ Load these components sequentially during validation:
 4. fetch_rules with "isolation_rules/visual-maps/van-qa-checks/build-test"
 ```
 
-## 📋 UTILITY COMPONENTS
+## 📋 工具组件
 
-Load these when needed based on validation results:
+根据验证结果在需要时加载这些组件:
 
 ```
-- For reports: fetch_rules with "isolation_rules/visual-maps/van-qa-utils/reports"
-- For fixes: fetch_rules with "isolation_rules/visual-maps/van-qa-utils/common-fixes"
-- For transitions: fetch_rules with "isolation_rules/visual-maps/van-qa-utils/mode-transitions"
+- 生成报告: fetch_rules with "isolation_rules/visual-maps/van-qa-utils/reports"
+- 修复问题: fetch_rules with "isolation_rules/visual-maps/van-qa-utils/common-fixes"
+- 模式转换: fetch_rules with "isolation_rules/visual-maps/van-qa-utils/mode-transitions"
 ```
 
-## ⚠️ CRITICAL REMINDERS
+## ⚠️ 重要提醒
 
-Remember to call these rules at these specific points:
-- ALWAYS load the main QA entry point when "VAN QA" is typed
-- ALWAYS load dependency-check before starting validation
-- ALWAYS load reports after completing validation
-- ALWAYS load mode-transitions after successful validation
-- ALWAYS load common-fixes after failed validation
+记住在以下特定时点调用这些规则:
+- 当输入"VAN QA"时始终加载主QA入口点
+- 在开始验证前始终加载dependency-check
+- 在完成验证后始终加载reports
+- 在验证成功后始终加载mode-transitions
+- 在验证失败后始终加载common-fixes
 
-## 🔄 FULL VALIDATION SEQUENCE
+## 🔄 完整验证序列
 
-Complete sequence for a QA validation process:
+QA验证过程的完整序列:
 
-1. Load main entry: `isolation_rules/visual-maps/van-qa-main`
-2. Load first check: `isolation_rules/visual-maps/van-qa-checks/dependency-check`
-3. Load second check: `isolation_rules/visual-maps/van-qa-checks/config-check`
-4. Load third check: `isolation_rules/visual-maps/van-qa-checks/environment-check`
-5. Load fourth check: `isolation_rules/visual-maps/van-qa-checks/build-test`
-6. If pass, load: `isolation_rules/visual-maps/van-qa-utils/reports`
-7. If pass, load: `isolation_rules/visual-maps/van-qa-utils/mode-transitions` 
-8. If fail, load: `isolation_rules/visual-maps/van-qa-utils/common-fixes` 
+1. 加载主入口: `isolation_rules/visual-maps/van-qa-main`
+2. 加载第一个检查: `isolation_rules/visual-maps/van-qa-checks/dependency-check`
+3. 加载第二个检查: `isolation_rules/visual-maps/van-qa-checks/config-check`
+4. 加载第三个检查: `isolation_rules/visual-maps/van-qa-checks/environment-check`
+5. 加载第四个检查: `isolation_rules/visual-maps/van-qa-checks/build-test`
+6. 如果通过，加载: `isolation_rules/visual-maps/van-qa-utils/reports`
+7. 如果通过，加载: `isolation_rules/visual-maps/van-qa-utils/mode-transitions` 
+8. 如果失败，加载: `isolation_rules/visual-maps/van-qa-utils/common-fixes` 

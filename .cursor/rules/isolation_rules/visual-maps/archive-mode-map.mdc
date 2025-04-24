@@ -9,120 +9,120 @@ globs: "**/archive*/**", "**/document*/**", "**/complete*/**"
 alwaysApply: false
 ---
 
-# ARCHIVE MODE: TASK DOCUMENTATION PROCESS MAP
+# 归档模式：任务文档流程图
 
-> **TL;DR:** This visual map guides the ARCHIVE mode process, focusing on creating comprehensive documentation of the completed task, archiving relevant files, and updating the Memory Bank for future reference.
+> **简介：** 这个可视化地图指导归档模式流程，专注于创建已完成任务的综合文档、归档相关文件，以及更新内存库以供未来参考。
 
-## 🧭 ARCHIVE MODE PROCESS FLOW
+## 🧭 归档模式流程
 
 ```mermaid
 graph TD
-    Start["START ARCHIVE MODE"] --> ReadTasks["Read tasks.md<br>reflection.md and<br>progress.md"]
+    Start["开始归档模式"] --> ReadTasks["读取tasks.md<br>reflection.md和<br>progress.md"]
     
-    %% Initial Assessment
-    ReadTasks --> VerifyReflect{"Reflection<br>Complete?"}
-    VerifyReflect -->|"No"| ReturnReflect["Return to<br>REFLECT Mode"]
-    VerifyReflect -->|"Yes"| AssessLevel{"Determine<br>Complexity Level"}
+    %% 初始评估
+    ReadTasks --> VerifyReflect{"反思<br>完成？"}
+    VerifyReflect -->|"否"| ReturnReflect["返回<br>反思模式"]
+    VerifyReflect -->|"是"| AssessLevel{"确定<br>复杂度级别"}
     
-    %% Level-Based Archiving
-    AssessLevel -->|"Level 1"| L1Archive["LEVEL 1 ARCHIVING<br>Level1/archive-minimal.md"]
-    AssessLevel -->|"Level 2"| L2Archive["LEVEL 2 ARCHIVING<br>Level2/archive-basic.md"]
-    AssessLevel -->|"Level 3"| L3Archive["LEVEL 3 ARCHIVING<br>Level3/archive-standard.md"]
-    AssessLevel -->|"Level 4"| L4Archive["LEVEL 4 ARCHIVING<br>Level4/archive-comprehensive.md"]
+    %% 基于级别的归档
+    AssessLevel -->|"第1级"| L1Archive["第1级归档<br>Level1/archive-minimal.md"]
+    AssessLevel -->|"第2级"| L2Archive["第2级归档<br>Level2/archive-basic.md"]
+    AssessLevel -->|"第3级"| L3Archive["第3级归档<br>Level3/archive-standard.md"]
+    AssessLevel -->|"第4级"| L4Archive["第4级归档<br>Level4/archive-comprehensive.md"]
     
-    %% Level 1 Archiving (Minimal)
-    L1Archive --> L1Summary["Create Quick<br>Summary"]
-    L1Summary --> L1Task["Update<br>tasks.md"]
-    L1Task --> L1Complete["Mark Task<br>Complete"]
+    %% 第1级归档（最小）
+    L1Archive --> L1Summary["创建快速<br>摘要"]
+    L1Summary --> L1Task["更新<br>tasks.md"]
+    L1Task --> L1Complete["标记任务<br>完成"]
     
-    %% Level 2 Archiving (Basic)
-    L2Archive --> L2Summary["Create Basic<br>Archive Document"]
-    L2Summary --> L2Doc["Document<br>Changes"]
-    L2Doc --> L2Task["Update<br>tasks.md"]
-    L2Task --> L2Progress["Update<br>progress.md"]
-    L2Progress --> L2Complete["Mark Task<br>Complete"]
+    %% 第2级归档（基础）
+    L2Archive --> L2Summary["创建基础<br>归档文档"]
+    L2Summary --> L2Doc["记录<br>更改"]
+    L2Doc --> L2Task["更新<br>tasks.md"]
+    L2Task --> L2Progress["更新<br>progress.md"]
+    L2Progress --> L2Complete["标记任务<br>完成"]
     
-    %% Level 3-4 Archiving (Comprehensive)
-    L3Archive & L4Archive --> L34Summary["Create Comprehensive<br>Archive Document"]
-    L34Summary --> L34Doc["Document<br>Implementation"]
-    L34Doc --> L34Creative["Archive Creative<br>Phase Documents"]
-    L34Creative --> L34Code["Document Code<br>Changes"]
-    L34Code --> L34Test["Document<br>Testing"]
-    L34Test --> L34Lessons["Summarize<br>Lessons Learned"]
-    L34Lessons --> L34Task["Update<br>tasks.md"]
-    L34Task --> L34Progress["Update<br>progress.md"]
-    L34Progress --> L34System["Update System<br>Documentation"]
-    L34System --> L34Complete["Mark Task<br>Complete"]
+    %% 第3-4级归档（综合）
+    L3Archive & L4Archive --> L34Summary["创建综合<br>归档文档"]
+    L34Summary --> L34Doc["记录<br>实现"]
+    L34Doc --> L34Creative["归档创意<br>阶段文档"]
+    L34Creative --> L34Code["记录代码<br>更改"]
+    L34Code --> L34Test["记录<br>测试"]
+    L34Test --> L34Lessons["总结<br>经验教训"]
+    L34Lessons --> L34Task["更新<br>tasks.md"]
+    L34Task --> L34Progress["更新<br>progress.md"]
+    L34Progress --> L34System["更新系统<br>文档"]
+    L34System --> L34Complete["标记任务<br>完成"]
     
-    %% Completion
-    L1Complete & L2Complete & L34Complete --> CreateArchive["Create Archive<br>Document in<br>docs/archive/"]
-    CreateArchive --> UpdateActive["Update<br>activeContext.md"]
-    UpdateActive --> Reset["Reset for<br>Next Task"]
+    %% 完成
+    L1Complete & L2Complete & L34Complete --> CreateArchive["在docs/archive/<br>创建归档<br>文档"]
+    CreateArchive --> UpdateActive["更新<br>activeContext.md"]
+    UpdateActive --> Reset["为下一个<br>任务重置"]
 ```
 
-## 📋 ARCHIVE DOCUMENT STRUCTURE
+## 📋 归档文档结构
 
-The archive document should follow this structured format:
+归档文档应遵循以下结构化格式：
 
 ```mermaid
 graph TD
-    subgraph "Archive Document Structure"
-        Header["# TASK ARCHIVE: [Task Name]"]
-        Meta["## METADATA<br>Task info, dates, complexity"]
-        Summary["## SUMMARY<br>Brief overview of the task"]
-        Requirements["## REQUIREMENTS<br>What the task needed to accomplish"]
-        Implementation["## IMPLEMENTATION<br>How the task was implemented"]
-        Testing["## TESTING<br>How the solution was verified"]
-        Lessons["## LESSONS LEARNED<br>Key takeaways from the task"]
-        Refs["## REFERENCES<br>Links to related documents"]
+    subgraph "归档文档结构"
+        Header["# 任务归档：[任务名称]"]
+        Meta["## 元数据<br>任务信息、日期、复杂度"]
+        Summary["## 摘要<br>任务的简要概述"]
+        Requirements["## 需求<br>任务需要完成的内容"]
+        Implementation["## 实现<br>任务的实现方式"]
+        Testing["## 测试<br>解决方案的验证方式"]
+        Lessons["## 经验教训<br>任务的关键收获"]
+        Refs["## 参考<br>相关文档的链接"]
     end
     
     Header --> Meta --> Summary --> Requirements --> Implementation --> Testing --> Lessons --> Refs
 ```
 
-## 📊 REQUIRED FILE STATE VERIFICATION
+## 📊 必需的文件状态验证
 
-Before archiving can begin, verify file state:
+在开始归档前，验证文件状态：
 
 ```mermaid
 graph TD
-    Start["File State<br>Verification"] --> CheckTasks{"tasks.md has<br>reflection<br>complete?"}
+    Start["文件状态<br>验证"] --> CheckTasks{"tasks.md<br>已完成反思？"}
     
-    CheckTasks -->|"No"| ErrorReflect["ERROR:<br>Return to REFLECT Mode"]
-    CheckTasks -->|"Yes"| CheckReflection{"reflection.md<br>exists?"}
+    CheckTasks -->|"否"| ErrorReflect["错误：<br>返回反思模式"]
+    CheckTasks -->|"是"| CheckReflection{"reflection.md<br>存在？"}
     
-    CheckReflection -->|"No"| ErrorCreate["ERROR:<br>Create reflection.md first"]
-    CheckReflection -->|"Yes"| CheckProgress{"progress.md<br>updated?"}
+    CheckReflection -->|"否"| ErrorCreate["错误：<br>先创建reflection.md"]
+    CheckReflection -->|"是"| CheckProgress{"progress.md<br>已更新？"}
     
-    CheckProgress -->|"No"| ErrorProgress["ERROR:<br>Update progress.md first"]
-    CheckProgress -->|"Yes"| ReadyArchive["Ready for<br>Archiving"]
+    CheckProgress -->|"否"| ErrorProgress["错误：<br>先更新progress.md"]
+    CheckProgress -->|"是"| ReadyArchive["准备进行<br>归档"]
 ```
 
-## 🔍 ARCHIVE TYPES BY COMPLEXITY
+## 🔍 按复杂度划分的归档类型
 
 ```mermaid
 graph TD
-    subgraph "Level 1: Minimal Archive"
-        L1A["Basic Bug<br>Description"]
-        L1B["Solution<br>Summary"]
-        L1C["Affected<br>Files"]
+    subgraph "第1级：最小归档"
+        L1A["基本错误<br>描述"]
+        L1B["解决方案<br>摘要"]
+        L1C["受影响的<br>文件"]
     end
     
-    subgraph "Level 2: Basic Archive"
-        L2A["Enhancement<br>Description"]
-        L2B["Implementation<br>Summary"]
-        L2C["Testing<br>Results"]
-        L2D["Lessons<br>Learned"]
+    subgraph "第2级：基础归档"
+        L2A["增强功能<br>描述"]
+        L2B["实现<br>摘要"]
+        L2C["测试<br>结果"]
+        L2D["经验<br>教训"]
     end
     
-    subgraph "Level 3-4: Comprehensive Archive"
-        L3A["Detailed<br>Requirements"]
-        L3B["Architecture/<br>Design Decisions"]
-        L3C["Implementation<br>Details"]
-        L3D["Testing<br>Strategy"]
-        L3E["Performance<br>Considerations"]
-        L3F["Future<br>Enhancements"]
-        L3G["Cross-References<br>to Other Systems"]
+    subgraph "第3-4级：综合归档"
+        L3A["详细<br>需求"]
+        L3B["架构/<br>设计决策"]
+        L3C["实现<br>细节"]
+        L3D["测试<br>策略"]
+        L3E["性能<br>考虑"]
+        L3F["未来<br>增强"]
+        L3G["与其他系统的<br>交叉引用"]
     end
     
     L1A --> L1B --> L1C
@@ -132,82 +132,82 @@ graph TD
     L3A --> L3B --> L3C --> L3D --> L3E --> L3F --> L3G
 ```
 
-## 📝 ARCHIVE DOCUMENT TEMPLATES
+## 📝 归档文档模板
 
-### Level 1 (Minimal) Archive
+### 第1级（最小）归档
 ```
-# Bug Fix Archive: [Bug Name]
+# 错误修复归档：[错误名称]
 
-## Date
-[Date of fix]
+## 日期
+[修复日期]
 
-## Summary
-[Brief description of the bug and solution]
+## 摘要
+[错误和解决方案的简要描述]
 
-## Implementation
-[Description of the fix implemented]
+## 实现
+[已实施修复的描述]
 
-## Files Changed
-- [File 1]
-- [File 2]
-```
-
-### Levels 2-4 (Comprehensive) Archive
-```
-# Task Archive: [Task Name]
-
-## Metadata
-- **Complexity**: Level [2/3/4]
-- **Type**: [Enhancement/Feature/System]
-- **Date Completed**: [Date]
-- **Related Tasks**: [Related task references]
-
-## Summary
-[Comprehensive summary of the task]
-
-## Requirements
-- [Requirement 1]
-- [Requirement 2]
-- [Requirement 3]
-
-## Implementation
-### Approach
-[Description of implementation approach]
-
-### Key Components
-- [Component 1]: [Description]
-- [Component 2]: [Description]
-
-### Files Changed
-- [File 1]: [Description of changes]
-- [File 2]: [Description of changes]
-
-## Testing
-- [Test 1]: [Result]
-- [Test 2]: [Result]
-
-## Lessons Learned
-- [Lesson 1]
-- [Lesson 2]
-- [Lesson 3]
-
-## Future Considerations
-- [Future enhancement 1]
-- [Future enhancement 2]
-
-## References
-- [Link to reflection document]
-- [Link to creative phase documents]
-- [Other relevant references]
+## 更改的文件
+- [文件1]
+- [文件2]
 ```
 
-## 📋 ARCHIVE LOCATION AND NAMING
+### 第2-4级（综合）归档
+```
+# 任务归档：[任务名称]
 
-Archive documents should be organized following this pattern:
+## 元数据
+- **复杂度**：第[2/3/4]级
+- **类型**：[增强功能/特性/系统]
+- **完成日期**：[日期]
+- **相关任务**：[相关任务引用]
+
+## 摘要
+[任务的综合摘要]
+
+## 需求
+- [需求1]
+- [需求2]
+- [需求3]
+
+## 实现
+### 方法
+[实现方法的描述]
+
+### 关键组件
+- [组件1]：[描述]
+- [组件2]：[描述]
+
+### 更改的文件
+- [文件1]：[更改描述]
+- [文件2]：[更改描述]
+
+## 测试
+- [测试1]：[结果]
+- [测试2]：[结果]
+
+## 经验教训
+- [经验1]
+- [经验2]
+- [经验3]
+
+## 未来考虑
+- [未来增强1]
+- [未来增强2]
+
+## 参考
+- [反思文档链接]
+- [创意阶段文档链接]
+- [其他相关参考]
+```
+
+## 📋 归档位置和命名
+
+归档文档应按以下模式组织：
 
 ```mermaid
 graph TD
-    subgraph "Archive Structure"
+    subgraph "归档结构"
         Root["docs/archive/"]
         Tasks["tasks/"]
         Features["features/"]
@@ -224,40 +224,35 @@ graph TD
     end
 ```
 
-## 📊 TASKS.MD FINAL UPDATE
+## 📊 TASKS.MD最终更新
 
-When archiving is complete, update tasks.md with:
-
-```
-## Status
-- [x] Initialization complete
-- [x] Planning complete
-[For Level 3-4:]
-- [x] Creative phases complete
-- [x] Implementation complete
-- [x] Reflection complete
-- [x] Archiving complete
-
-## Archive
-- **Date**: [Completion date]
-- **Archive Document**: [Link to archive document]
-- **Status**: COMPLETED
-```
-
-## 📋 ARCHIVE VERIFICATION CHECKLIST
+归档完成后，使用以下内容更新tasks.md：
 
 ```
-✓ ARCHIVE VERIFICATION
-- Reflection document reviewed? [YES/NO]
-- Archive document created with all sections? [YES/NO]
-- Archive document placed in correct location? [YES/NO]
-- tasks.md marked as completed? [YES/NO]
-- progress.md updated with archive reference? [YES/NO]
-- activeContext.md updated for next task? [YES/NO]
-- Creative phase documents archived (Level 3-4)? [YES/NO/NA]
+## 状态
+- [x] 初始化完成
+- [x] 规划完成
+[对于第3-4级：]
+- [x] 创意阶段完成
+- [x] 实现完成
+- [x] 反思完成
+- [x] 归档完成
 
-→ If all YES: Archiving complete - Memory Bank reset for next task
-→ If any NO: Complete missing archive elements
+## 归档
+- **日期**：[完成日期]
+- **归档文档**：[归档文档链接]
+- **状态**：已完成
+```
+
+## 📋 归档验证清单
+
+```
+✓ 归档验证
+- 反思文档已审查？[是/否]
+- 所有部分的归档文档已创建？[是/否]
+- 归档文档已放置在正确位置？[是/否]
+- tasks.md已标记为完成？[是/否]
+- progress.md已更新归档引用？[是/否]
 ```
 
 ## 🔄 TASK COMPLETION NOTIFICATION

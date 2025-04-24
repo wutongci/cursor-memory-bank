@@ -3,26 +3,26 @@ description: Process map for VAN QA dependency verification
 globs: van-qa-checks/dependency-check.mdc
 alwaysApply: false
 ---
-# VAN QA: DEPENDENCY VERIFICATION
+# VAN QA: 依赖验证
 
-> **TL;DR:** This component verifies that all required dependencies are installed and compatible with the project requirements.
+> **简介:** 此组件验证所有必需的依赖项是否已安装，并与项目需求兼容。
 
-## 1️⃣ DEPENDENCY VERIFICATION PROCESS
+## 1️⃣ 依赖验证流程
 
 ```mermaid
 graph TD
-    Start["Dependency Verification"] --> ReadDeps["Read Required Dependencies<br>from Creative Phase"]
-    ReadDeps --> CheckInstalled["Check if Dependencies<br>are Installed"]
-    CheckInstalled --> DepStatus{"All Dependencies<br>Installed?"}
+    Start["依赖验证"] --> ReadDeps["从创意阶段读取<br>所需依赖"]
+    ReadDeps --> CheckInstalled["检查依赖<br>是否已安装"]
+    CheckInstalled --> DepStatus{"所有依赖<br>都已安装?"}
     
-    DepStatus -->|"Yes"| VerifyVersions["Verify Versions<br>and Compatibility"]
-    DepStatus -->|"No"| InstallMissing["Install Missing<br>Dependencies"]
+    DepStatus -->|"是"| VerifyVersions["验证版本<br>和兼容性"]
+    DepStatus -->|"否"| InstallMissing["安装缺失<br>依赖"]
     InstallMissing --> VerifyVersions
     
-    VerifyVersions --> VersionStatus{"Versions<br>Compatible?"}
-    VersionStatus -->|"Yes"| DepSuccess["Dependencies Verified<br>✅ PASS"]
-    VersionStatus -->|"No"| UpgradeVersions["Upgrade/Downgrade<br>as Needed"]
-    UpgradeVersions --> RetryVerify["Retry Verification"]
+    VerifyVersions --> VersionStatus{"版本<br>兼容?"}
+    VersionStatus -->|"是"| DepSuccess["依赖已验证<br>✅ 通过"]
+    VersionStatus -->|"否"| UpgradeVersions["根据需要<br>升级/降级"]
+    UpgradeVersions --> RetryVerify["重试验证"]
     RetryVerify --> VersionStatus
     
     style Start fill:#4da6ff,stroke:#0066cc,color:white
@@ -31,117 +31,117 @@ graph TD
     style VersionStatus fill:#f6546a,stroke:#c30052,color:white
 ```
 
-### Windows (PowerShell) Implementation:
+### Windows (PowerShell) 实现:
 ```powershell
-# Example: Verify Node.js dependencies for a React project
+# 示例: 验证React项目的Node.js依赖
 function Verify-Dependencies {
     $requiredDeps = @{ "node" = ">=14.0.0"; "npm" = ">=6.0.0" }
     $missingDeps = @(); $incompatibleDeps = @()
     
-    # Check Node.js version
+    # 检查Node.js版本
     try { 
         $nodeVersion = node -v
         if ($nodeVersion -match "v(\d+)\.(\d+)\.(\d+)") {
             $major = [int]$Matches[1]
             if ($major -lt 14) {
-                $incompatibleDeps += "node (found $nodeVersion, required >=14.0.0)"
+                $incompatibleDeps += "node (发现 $nodeVersion, 需要 >=14.0.0)"
             }
         }
     } catch {
         $missingDeps += "node"
     }
     
-    # Check npm version
+    # 检查npm版本
     try { 
         $npmVersion = npm -v
         if ($npmVersion -match "(\d+)\.(\d+)\.(\d+)") {
             $major = [int]$Matches[1]
             if ($major -lt 6) {
-                $incompatibleDeps += "npm (found $npmVersion, required >=6.0.0)"
+                $incompatibleDeps += "npm (发现 $npmVersion, 需要 >=6.0.0)"
             }
         }
     } catch {
         $missingDeps += "npm"
     }
     
-    # Display results
+    # 显示结果
     if ($missingDeps.Count -eq 0 -and $incompatibleDeps.Count -eq 0) {
-        Write-Output "✅ All dependencies verified and compatible"
+        Write-Output "✅ 所有依赖已验证并兼容"
         return $true
     } else {
         if ($missingDeps.Count -gt 0) {
-            Write-Output "❌ Missing dependencies: $($missingDeps -join ', ')"
+            Write-Output "❌ 缺少依赖: $($missingDeps -join ', ')"
         }
         if ($incompatibleDeps.Count -gt 0) {
-            Write-Output "❌ Incompatible versions: $($incompatibleDeps -join ', ')"
+            Write-Output "❌ 不兼容版本: $($incompatibleDeps -join ', ')"
         }
         return $false
     }
 }
 ```
 
-### Mac/Linux (Bash) Implementation:
+### Mac/Linux (Bash) 实现:
 ```bash
 #!/bin/bash
 
-# Example: Verify Node.js dependencies for a React project
+# 示例: 验证React项目的Node.js依赖
 verify_dependencies() {
     local missing_deps=()
     local incompatible_deps=()
     
-    # Check Node.js version
+    # 检查Node.js版本
     if command -v node &> /dev/null; then
         local node_version=$(node -v)
         if [[ $node_version =~ v([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
             local major=${BASH_REMATCH[1]}
             if (( major < 14 )); then
-                incompatible_deps+=("node (found $node_version, required >=14.0.0)")
+                incompatible_deps+=("node (发现 $node_version, 需要 >=14.0.0)")
             fi
         fi
     else
         missing_deps+=("node")
     fi
     
-    # Check npm version
+    # 检查npm版本
     if command -v npm &> /dev/null; then
         local npm_version=$(npm -v)
         if [[ $npm_version =~ ([0-9]+)\.([0-9]+)\.([0-9]+) ]]; then
             local major=${BASH_REMATCH[1]}
             if (( major < 6 )); then
-                incompatible_deps+=("npm (found $npm_version, required >=6.0.0)")
+                incompatible_deps+=("npm (发现 $npm_version, 需要 >=6.0.0)")
             fi
         fi
     else
         missing_deps+=("npm")
     fi
     
-    # Display results
+    # 显示结果
     if [ ${#missing_deps[@]} -eq 0 ] && [ ${#incompatible_deps[@]} -eq 0 ]; then
-        echo "✅ All dependencies verified and compatible"
+        echo "✅ 所有依赖已验证并兼容"
         return 0
     else
         if [ ${#missing_deps[@]} -gt 0 ]; then
-            echo "❌ Missing dependencies: ${missing_deps[*]}"
+            echo "❌ 缺少依赖: ${missing_deps[*]}"
         fi
         if [ ${#incompatible_deps[@]} -gt 0 ]; then
-            echo "❌ Incompatible versions: ${incompatible_deps[*]}"
+            echo "❌ 不兼容版本: ${incompatible_deps[*]}"
         fi
         return 1
     fi
 }
 ```
 
-## 📋 DEPENDENCY VERIFICATION CHECKPOINT
+## 📋 依赖验证检查点
 
 ```
-✓ CHECKPOINT: DEPENDENCY VERIFICATION
-- Required dependencies identified? [YES/NO]
-- All dependencies installed? [YES/NO]
-- All versions compatible? [YES/NO]
+✓ 检查点: 依赖验证
+- 已识别所需依赖? [是/否]
+- 所有依赖已安装? [是/否]
+- 所有版本兼容? [是/否]
 
-→ If all YES: Continue to Configuration Validation.
-→ If any NO: Fix dependency issues before continuing.
+→ 如果全部为是: 继续进行配置验证。
+→ 如果任一为否: 在继续前修复依赖问题。
 ```
 
-**Next Step (on PASS):** Load `van-qa-checks/config-check.mdc`.
-**Next Step (on FAIL):** Check `van-qa-utils/common-fixes.mdc` for dependency fixes. 
+**下一步(通过时):** 加载 `van-qa-checks/config-check.mdc`。
+**下一步(失败时):** 查看 `van-qa-utils/common-fixes.mdc` 获取依赖修复方案。 

@@ -3,88 +3,88 @@ description: Utility for VAN QA validation reports
 globs: van-qa-utils/reports.mdc
 alwaysApply: false
 ---
-# VAN QA: VALIDATION REPORTS
+# VAN QA: 验证报告
 
-> **TL;DR:** This component contains the formats for comprehensive success and failure reports generated upon completion of the QA validation process.
+> **简介:** 此组件包含在QA验证过程完成时生成的全面成功和失败报告的格式。
 
-## 📋 COMPREHENSIVE SUCCESS REPORT FORMAT
+## 📋 全面成功报告格式
 
-After all four validation points pass, generate this success report:
+在所有四个验证点都通过后，生成此成功报告:
 
 ```
-╔═════════════════════ 🔍 QA VALIDATION REPORT ══════════════════════╗
-│ PROJECT: [Project Name] | TIMESTAMP: [Current Date/Time]            │
+╔═════════════════════ 🔍 QA验证报告 ══════════════════════╗
+│ 项目: [项目名称] | 时间戳: [当前日期/时间]                │
 ├─────────────────────────────────────────────────────────────────────┤
-│ 1️⃣ DEPENDENCIES: ✓ Compatible                                       │
-│ 2️⃣ CONFIGURATION: ✓ Valid & Compatible                             │
-│ 3️⃣ ENVIRONMENT: ✓ Ready                                             │
-│ 4️⃣ MINIMAL BUILD: ✓ Successful & Passed                            │
+│ 1️⃣ 依赖: ✓ 兼容                                           │
+│ 2️⃣ 配置: ✓ 有效且兼容                                     │
+│ 3️⃣ 环境: ✓ 就绪                                           │
+│ 4️⃣ 最小构建: ✓ 成功且通过                                  │
 ├─────────────────────────────────────────────────────────────────────┤
-│ 🚨 FINAL VERDICT: PASS                                              │
-│ ➡️ Clear to proceed to BUILD mode                                   │
+│ 🚨 最终结果: 通过                                          │
+│ ➡️ 可以继续进入BUILD模式                                   │
 ╚═════════════════════════════════════════════════════════════════════╝
 ```
 
-### Success Report Generation Example:
+### 成功报告生成示例:
 ```powershell
 function Generate-SuccessReport {
     param (
-        [string]$ProjectName = "Current Project"
+        [string]$ProjectName = "当前项目"
     )
     
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     
     $report = @"
-╔═════════════════════ 🔍 QA VALIDATION REPORT ══════════════════════╗
-│ PROJECT: $ProjectName | TIMESTAMP: $timestamp            │
+╔═════════════════════ 🔍 QA验证报告 ══════════════════════╗
+│ 项目: $ProjectName | 时间戳: $timestamp            │
 ├─────────────────────────────────────────────────────────────────────┤
-│ 1️⃣ DEPENDENCIES: ✓ Compatible                                       │
-│ 2️⃣ CONFIGURATION: ✓ Valid & Compatible                             │
-│ 3️⃣ ENVIRONMENT: ✓ Ready                                             │
-│ 4️⃣ MINIMAL BUILD: ✓ Successful & Passed                            │
+│ 1️⃣ 依赖: ✓ 兼容                                           │
+│ 2️⃣ 配置: ✓ 有效且兼容                                     │
+│ 3️⃣ 环境: ✓ 就绪                                           │
+│ 4️⃣ 最小构建: ✓ 成功且通过                                  │
 ├─────────────────────────────────────────────────────────────────────┤
-│ 🚨 FINAL VERDICT: PASS                                              │
-│ ➡️ Clear to proceed to BUILD mode                                   │
+│ 🚨 最终结果: 通过                                          │
+│ ➡️ 可以继续进入BUILD模式                                   │
 ╚═════════════════════════════════════════════════════════════════════╝
 "@
     
-    # Save validation status (used by BUILD mode prevention mechanism)
+    # 保存验证状态(由BUILD模式防护机制使用)
     "PASS" | Set-Content -Path "memory-bank\.qa_validation_status"
     
     return $report
 }
 ```
 
-## ❌ FAILURE REPORT FORMAT
+## ❌ 失败报告格式
 
-If any validation step fails, generate this detailed failure report:
+如果任何验证步骤失败，生成此详细的失败报告:
 
 ```
-⚠️⚠️⚠️ QA VALIDATION FAILED ⚠️⚠️⚠️
+⚠️⚠️⚠️ QA验证失败 ⚠️⚠️⚠️
 
-The following issues must be resolved before proceeding to BUILD mode:
+在继续进入BUILD模式前必须解决以下问题:
 
-1️⃣ DEPENDENCY ISSUES:
-- [Detailed description of dependency issues]
-- [Recommended fix]
+1️⃣ 依赖问题:
+- [依赖问题的详细描述]
+- [推荐修复方法]
 
-2️⃣ CONFIGURATION ISSUES:
-- [Detailed description of configuration issues]
-- [Recommended fix]
+2️⃣ 配置问题:
+- [配置问题的详细描述]
+- [推荐修复方法]
 
-3️⃣ ENVIRONMENT ISSUES:
-- [Detailed description of environment issues]
-- [Recommended fix]
+3️⃣ 环境问题:
+- [环境问题的详细描述]
+- [推荐修复方法]
 
-4️⃣ BUILD TEST ISSUES:
-- [Detailed description of build test issues]
-- [Recommended fix]
+4️⃣ 构建测试问题:
+- [构建测试问题的详细描述]
+- [推荐修复方法]
 
-⚠️ BUILD MODE IS BLOCKED until these issues are resolved.
-Type 'VAN QA' after fixing the issues to re-validate.
+⚠️ 在解决这些问题前，BUILD模式被阻止。
+修复问题后输入'VAN QA'重新验证。
 ```
 
-### Failure Report Generation Example:
+### 失败报告生成示例:
 ```powershell
 function Generate-FailureReport {
     param (
@@ -95,15 +95,15 @@ function Generate-FailureReport {
     )
     
     $report = @"
-⚠️⚠️⚠️ QA VALIDATION FAILED ⚠️⚠️⚠️
+⚠️⚠️⚠️ QA验证失败 ⚠️⚠️⚠️
 
-The following issues must be resolved before proceeding to BUILD mode:
+在继续进入BUILD模式前必须解决以下问题:
 
 "@
     
     if ($DependencyIssues.Count -gt 0) {
         $report += @"
-1️⃣ DEPENDENCY ISSUES:
+1️⃣ 依赖问题:
 $(($DependencyIssues | ForEach-Object { "- $_" }) -join "`n")
 
 "@
@@ -111,7 +111,7 @@ $(($DependencyIssues | ForEach-Object { "- $_" }) -join "`n")
     
     if ($ConfigIssues.Count -gt 0) {
         $report += @"
-2️⃣ CONFIGURATION ISSUES:
+2️⃣ 配置问题:
 $(($ConfigIssues | ForEach-Object { "- $_" }) -join "`n")
 
 "@
@@ -119,7 +119,7 @@ $(($ConfigIssues | ForEach-Object { "- $_" }) -join "`n")
     
     if ($EnvironmentIssues.Count -gt 0) {
         $report += @"
-3️⃣ ENVIRONMENT ISSUES:
+3️⃣ 环境问题:
 $(($EnvironmentIssues | ForEach-Object { "- $_" }) -join "`n")
 
 "@
@@ -127,23 +127,23 @@ $(($EnvironmentIssues | ForEach-Object { "- $_" }) -join "`n")
     
     if ($BuildIssues.Count -gt 0) {
         $report += @"
-4️⃣ BUILD TEST ISSUES:
+4️⃣ 构建测试问题:
 $(($BuildIssues | ForEach-Object { "- $_" }) -join "`n")
 
 "@
     }
     
     $report += @"
-⚠️ BUILD MODE IS BLOCKED until these issues are resolved.
-Type 'VAN QA' after fixing the issues to re-validate.
+⚠️ 在解决这些问题前，BUILD模式被阻止。
+修复问题后输入'VAN QA'重新验证。
 "@
     
-    # Save validation status (used by BUILD mode prevention mechanism)
+    # 保存验证状态(由BUILD模式防护机制使用)
     "FAIL" | Set-Content -Path "memory-bank\.qa_validation_status"
     
     return $report
 }
 ```
 
-**Next Step (on SUCCESS):** Load `van-qa-utils/mode-transitions.mdc` to handle BUILD mode transition.
-**Next Step (on FAILURE):** Load `van-qa-utils/common-fixes.mdc` for issue remediation guidance. 
+**下一步(成功时):** 加载 `van-qa-utils/mode-transitions.mdc` 处理BUILD模式转换。
+**下一步(失败时):** 加载 `van-qa-utils/common-fixes.mdc` 获取问题修复指导。 

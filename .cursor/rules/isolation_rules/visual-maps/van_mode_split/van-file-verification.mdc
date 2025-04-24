@@ -3,31 +3,31 @@ description: Visual process map for VAN mode file verification
 globs: van-file-verification.mdc
 alwaysApply: false
 ---
-# VAN MODE: FILE VERIFICATION
+# VAN模式: 文件验证
 
-> **TL;DR:** Checks for the existence and basic structure of essential Memory Bank and documentation components.
+> **简介:** 检查必要的Memory Bank和文档组件的存在性及基本结构。
 
-## 📁 FILE VERIFICATION PROCESS
+## 📁 文件验证流程
 
 ```mermaid
 graph TD
-    FV["File Verification"] --> CheckFiles["Check Essential Files"]
-    CheckFiles --> CheckMB["Check Memory Bank<br>Structure"]
-    CheckMB --> MBExists{"Memory Bank<br>Exists?"}
+    FV["文件验证"] --> CheckFiles["检查必要文件"]
+    CheckFiles --> CheckMB["检查Memory Bank<br>结构"]
+    CheckMB --> MBExists{"Memory Bank<br>存在?"}
     
-    MBExists -->|"Yes"| VerifyMB["Verify Memory Bank<br>Contents (Basic)"]
-    MBExists -->|"No"| CreateMB["Create Memory Bank<br>Structure (Basic)"]
+    MBExists -->|"是"| VerifyMB["验证Memory Bank<br>内容(基本)"]
+    MBExists -->|"否"| CreateMB["创建Memory Bank<br>结构(基本)"]
     
-    CheckFiles --> CheckDocs["Check Documentation<br>Files (e.g., tasks.md)"]
-    CheckDocs --> DocsExist{"Docs<br>Exist?"}
+    CheckFiles --> CheckDocs["检查文档<br>文件(例如tasks.md)"]
+    CheckDocs --> DocsExist{"文档<br>存在?"}
     
-    DocsExist -->|"Yes"| VerifyDocs["Verify Documentation<br>Presence"]
-    DocsExist -->|"No"| CreateDocs["Create Essential<br>Documentation Files"]
+    DocsExist -->|"是"| VerifyDocs["验证文档<br>存在性"]
+    DocsExist -->|"否"| CreateDocs["创建必要<br>文档文件"]
     
-    VerifyMB & CreateMB --> MBCP["Memory Bank<br>Checkpoint"]
-    VerifyDocs & CreateDocs --> DocsCP["Documentation<br>Checkpoint"]
+    VerifyMB & CreateMB --> MBCP["Memory Bank<br>检查点"]
+    VerifyDocs & CreateDocs --> DocsCP["文档<br>检查点"]
     
-    MBCP & DocsCP --> FileComplete["File Verification<br>Complete"]
+    MBCP & DocsCP --> FileComplete["文件验证<br>完成"]
     
     style FV fill:#4da6ff,stroke:#0066cc,color:white
     style FileComplete fill:#10b981,stroke:#059669,color:white
@@ -35,15 +35,15 @@ graph TD
     style DocsCP fill:#f6546a,stroke:#c30052,color:white
 ```
 
-## 📋 CHECKPOINT VERIFICATION TEMPLATE (Example)
+## 📋 检查点验证模板(示例)
 
 ```
-✓ SECTION CHECKPOINT: FILE VERIFICATION
-- Memory Bank Directory Exists/Created? [YES/NO]
-- Essential Docs (tasks.md) Exist/Created? [YES/NO]
+✓ 部分检查点: 文件验证
+- Memory Bank目录已存在/已创建? [是/否]
+- 必要文档(tasks.md)已存在/已创建? [是/否]
 
-→ If all YES: File Verification Complete.
-→ If any NO: Resolve before proceeding.
+→ 如果全部为是: 文件验证完成。
+→ 如果任何为否: 在继续前解决问题。
 ```
 
-**Next Step:** Load and process `van-complexity-determination.mdc`. 
+**下一步:** 加载并处理`van-complexity-determination.mdc`。 

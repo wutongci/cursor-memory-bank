@@ -3,90 +3,90 @@ description: Utility for VAN QA common validation fixes
 globs: van-qa-utils/common-fixes.mdc
 alwaysApply: false
 ---
-# VAN QA: COMMON VALIDATION FIXES
+# VAN QA: 常见验证修复方案
 
-> **TL;DR:** This component provides common fixes for issues that may arise during the QA validation process.
+> **简介:** 此组件提供在QA验证过程中可能出现的问题的常见修复方法。
 
-## 🧪 COMMON QA VALIDATION FIXES BY CATEGORY
+## 🧪 按类别划分的常见QA验证修复方案
 
-### Dependency Issues
+### 依赖问题
 
-| Issue | Fix |
+| 问题 | 修复方法 |
 |-------|-----|
-| **Missing Node.js** | Download and install Node.js from https://nodejs.org/ |
-| **Outdated npm** | Run `npm install -g npm@latest` to update |
-| **Missing packages** | Run `npm install` or `npm install [package-name]` |
-| **Package version conflicts** | Adjust versions in package.json and run `npm install` |
-| **Dependency resolution issues** | Run `npm cache clean -f` and try installing again |
+| **缺少Node.js** | 从https://nodejs.org/下载并安装Node.js |
+| **npm版本过旧** | 运行`npm install -g npm@latest`进行更新 |
+| **缺少包** | 运行`npm install`或`npm install [包名]` |
+| **包版本冲突** | 调整package.json中的版本并运行`npm install` |
+| **依赖解析问题** | 运行`npm cache clean -f`然后重新安装 |
 
-### Configuration Issues
+### 配置问题
 
-| Issue | Fix |
+| 问题 | 修复方法 |
 |-------|-----|
-| **Invalid JSON** | Use a JSON validator (e.g., jsonlint) to check syntax |
-| **Missing React plugin** | Add `import react from '@vitejs/plugin-react'` and `plugins: [react()]` to vite.config.js |
-| **Incompatible TypeScript config** | Update `tsconfig.json` with correct React settings |
-| **Mismatched version references** | Ensure consistent versions across configuration files |
-| **Missing entries in config files** | Add required fields to configuration files |
+| **无效的JSON** | 使用JSON验证器(如jsonlint)检查语法 |
+| **缺少React插件** | 在vite.config.js中添加`import react from '@vitejs/plugin-react'`和`plugins: [react()]` |
+| **不兼容的TypeScript配置** | 用正确的React设置更新`tsconfig.json` |
+| **版本引用不匹配** | 确保配置文件中的版本一致 |
+| **配置文件中缺少条目** | 向配置文件添加必要的字段 |
 
-### Environment Issues
+### 环境问题
 
-| Issue | Fix |
+| 问题 | 修复方法 |
 |-------|-----|
-| **Permission denied** | Run terminal as administrator (Windows) or use sudo (Mac/Linux) |
-| **Port already in use** | Kill process using the port: `netstat -ano \| findstr :PORT` then `taskkill /F /PID PID` (Windows) or `lsof -i :PORT` then `kill -9 PID` (Mac/Linux) |
-| **Missing build tools** | Install required command-line tools (git, node, etc.) |
-| **Environment variable issues** | Set required environment variables: `$env:VAR_NAME = "value"` (PowerShell) or `export VAR_NAME="value"` (Bash) |
-| **Disk space issues** | Free up disk space, clean npm/package cache files |
+| **权限被拒绝** | 以管理员身份运行终端(Windows)或使用sudo(Mac/Linux) |
+| **端口已被占用** | 终止使用该端口的进程: `netstat -ano \| findstr :PORT`然后`taskkill /F /PID PID`(Windows)或`lsof -i :PORT`然后`kill -9 PID`(Mac/Linux) |
+| **缺少构建工具** | 安装必要的命令行工具(git, node等) |
+| **环境变量问题** | 设置必要的环境变量: `$env:VAR_NAME = "value"`(PowerShell)或`export VAR_NAME="value"`(Bash) |
+| **磁盘空间问题** | 释放磁盘空间，清理npm/包缓存文件 |
 
-### Build Test Issues
+### 构建测试问题
 
-| Issue | Fix |
+| 问题 | 修复方法 |
 |-------|-----|
-| **Build fails** | Check console for specific error messages |
-| **Test fails** | Verify minimal configuration is correct |
-| **Path issues** | Ensure paths use correct separators for the platform (`\` for Windows, `/` for Mac/Linux) |
-| **Missing dependencies** | Make sure all required dependencies are installed |
-| **Script permissions** | Ensure script files have execution permissions (chmod +x on Unix) |
+| **构建失败** | 检查控制台中的具体错误信息 |
+| **测试失败** | 验证最小配置是否正确 |
+| **路径问题** | 确保路径使用正确的平台分隔符(Windows用`\`，Mac/Linux用`/`) |
+| **缺少依赖** | 确保安装了所有必需的依赖 |
+| **脚本权限** | 确保脚本文件有执行权限(Unix上使用chmod +x) |
 
-## 📝 ISSUE DIAGNOSIS PROCEDURES
+## 📝 问题诊断流程
 
-### 1. Dependency Diagnosis
+### 1. 依赖诊断
 ```powershell
-# Find conflicting dependencies
-npm ls [package-name]
+# 查找冲突的依赖
+npm ls [包名]
 
-# Check for outdated packages
+# 检查过时的包
 npm outdated
 
-# Check for vulnerabilities
+# 检查安全漏洞
 npm audit
 ```
 
-### 2. Configuration Diagnosis
+### 2. 配置诊断
 ```powershell
-# List all configuration files
+# 列出所有配置文件
 Get-ChildItem -Recurse -Include "*.json","*.config.js" | Select-Object FullName
 
-# Find missing references in tsconfig.json
+# 查找tsconfig.json中缺少的引用
 if (Test-Path "tsconfig.json") { 
     $tsconfig = Get-Content "tsconfig.json" -Raw | ConvertFrom-Json
     if (-not $tsconfig.compilerOptions.jsx) {
-        Write-Output "Missing jsx setting in tsconfig.json"
+        Write-Output "tsconfig.json中缺少jsx设置"
     }
 }
 ```
 
-### 3. Environment Diagnosis
+### 3. 环境诊断
 ```powershell
-# Check process using a port (Windows)
+# 检查使用特定端口的进程(Windows)
 netstat -ano | findstr ":3000"
 
-# List environment variables
+# 列出环境变量
 Get-ChildItem Env:
 
-# Check disk space
+# 检查磁盘空间
 Get-PSDrive C | Select-Object Used,Free
 ```
 
-**Next Step:** Return to the validation process or follow the specific fix recommendations provided above. 
+**下一步:** 返回验证过程或按照上述提供的具体修复建议操作。 

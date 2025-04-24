@@ -5,46 +5,46 @@ alwaysApply: false
 ---
 
 
-> **TL;DR:** This enhanced QA mode provides comprehensive validation at any stage of development. It automatically detects the current phase, validates Memory Bank consistency, verifies task tracking, and performs phase-specific technical validation to ensure project quality throughout the development lifecycle.
+> **简介:** 这种增强型QA模式提供了开发各阶段的全面验证功能。它能自动检测当前项目阶段，验证记忆库一致性，核实任务跟踪，并执行特定阶段的技术验证，确保整个开发生命周期的项目质量。
 
-## 🔍 ENHANCED QA MODE PROCESS FLOW
+## 🔍 增强型QA模式流程
 
 ```mermaid
 graph TD
-    Start["🚀 START QA MODE"] --> DetectPhase["🧭 PHASE DETECTION<br>Determine current project phase"]
+    Start["🚀 启动QA模式"] --> DetectPhase["🧭 阶段检测<br>确定当前项目阶段"]
     
-    %% Phase detection decision path
-    DetectPhase --> PhaseDetermination{"Current Phase?"}
-    PhaseDetermination -->|"VAN"| VANChecks["VAN Phase Validation"]
-    PhaseDetermination -->|"PLAN"| PLANChecks["PLAN Phase Validation"]
-    PhaseDetermination -->|"CREATIVE"| CREATIVEChecks["CREATIVE Phase Validation"] 
-    PhaseDetermination -->|"IMPLEMENT"| IMPLEMENTChecks["IMPLEMENT Phase Validation"]
+    %% 阶段检测决策路径
+    DetectPhase --> PhaseDetermination{"当前阶段?"}
+    PhaseDetermination -->|"VAN"| VANChecks["VAN阶段验证"]
+    PhaseDetermination -->|"PLAN"| PLANChecks["PLAN阶段验证"]
+    PhaseDetermination -->|"CREATIVE"| CREATIVEChecks["CREATIVE阶段验证"] 
+    PhaseDetermination -->|"IMPLEMENT"| IMPLEMENTChecks["IMPLEMENT阶段验证"]
     
-    %% Universal checks that apply to all phases
-    DetectPhase --> UniversalChecks["🔍 UNIVERSAL VALIDATION"]
-    UniversalChecks --> MemoryBankCheck["1️⃣ MEMORY BANK VERIFICATION<br>Check consistency & updates"]
-    MemoryBankCheck --> TaskTrackingCheck["2️⃣ TASK TRACKING VERIFICATION<br>Validate tasks.md as source of truth"]
-    TaskTrackingCheck --> ReferenceCheck["3️⃣ REFERENCE VALIDATION<br>Verify cross-references between docs"]
+    %% 适用于所有阶段的通用检查
+    DetectPhase --> UniversalChecks["🔍 通用验证"]
+    UniversalChecks --> MemoryBankCheck["1️⃣ 记忆库验证<br>检查一致性和更新"]
+    MemoryBankCheck --> TaskTrackingCheck["2️⃣ 任务跟踪验证<br>验证tasks.md作为事实来源"]
+    TaskTrackingCheck --> ReferenceCheck["3️⃣ 引用验证<br>验证文档间的交叉引用"]
     
-    %% Phase-specific validations feed into comprehensive report
-    VANChecks & PLANChecks & CREATIVEChecks & IMPLEMENTChecks --> PhaseSpecificResults["Phase-Specific Results"]
-    ReferenceCheck & PhaseSpecificResults --> ValidationResults{"✅ All Checks<br>Passed?"}
+    %% 特定阶段验证结果汇入综合报告
+    VANChecks & PLANChecks & CREATIVEChecks & IMPLEMENTChecks --> PhaseSpecificResults["特定阶段结果"]
+    ReferenceCheck & PhaseSpecificResults --> ValidationResults{"✅ 所有检查<br>通过?"}
     
-    %% Results Processing
-    ValidationResults -->|"Yes"| SuccessReport["📝 GENERATE SUCCESS REPORT<br>All validations passed"]
-    ValidationResults -->|"No"| FailureReport["⚠️ GENERATE FAILURE REPORT<br>With specific fix instructions"]
+    %% 结果处理
+    ValidationResults -->|"是"| SuccessReport["📝 生成成功报告<br>所有验证通过"]
+    ValidationResults -->|"否"| FailureReport["⚠️ 生成失败报告<br>含特定修复指南"]
     
-    %% Success Path
-    SuccessReport --> UpdateMB["📚 Update Memory Bank<br>Record successful validation"]
-    UpdateMB --> ContinueProcess["🚦 CONTINUE: Phase processes<br>can proceed"]
+    %% 成功路径
+    SuccessReport --> UpdateMB["📚 更新记忆库<br>记录成功验证"]
+    UpdateMB --> ContinueProcess["🚦 继续: 阶段流程<br>可以进行"]
     
-    %% Failure Path
-    FailureReport --> IdentifyFixes["🔧 IDENTIFY REQUIRED FIXES"]
-    IdentifyFixes --> ApplyFixes["🛠️ APPLY FIXES"]
-    ApplyFixes --> Revalidate["🔄 Re-run validation"]
+    %% 失败路径
+    FailureReport --> IdentifyFixes["🔧 确定所需修复"]
+    IdentifyFixes --> ApplyFixes["🛠️ 应用修复"]
+    ApplyFixes --> Revalidate["🔄 重新运行验证"]
     Revalidate --> ValidationResults
     
-    %% Style nodes for clarity
+    %% 节点样式设置
     style Start fill:#4da6ff,stroke:#0066cc,color:white
     style DetectPhase fill:#f6ad55,stroke:#c27022,color:white
     style UniversalChecks fill:#f6546a,stroke:#c30052,color:white
@@ -58,48 +58,48 @@ graph TD
     style IdentifyFixes fill:#f6ad55,stroke:#c27022,color:white
 ```
 
-## 🧭 PHASE DETECTION PROCESS
+## 🧭 阶段检测流程
 
-The enhanced QA mode first determines which phase the project is currently in:
+增强型QA模式首先确定项目当前所处的阶段:
 
 ```mermaid
 graph TD
-    PD["Phase Detection"] --> CheckMB["Analyze Memory Bank Files"]
-    CheckMB --> CheckActive["Check activeContext.md<br>for current phase"]
-    CheckActive --> CheckProgress["Check progress.md<br>for recent activities"]
-    CheckProgress --> CheckTasks["Check tasks.md<br>for task status"]
+    PD["阶段检测"] --> CheckMB["分析记忆库文件"]
+    CheckMB --> CheckActive["检查activeContext.md<br>获取当前阶段"]
+    CheckActive --> CheckProgress["检查progress.md<br>获取最近活动"]
+    CheckProgress --> CheckTasks["检查tasks.md<br>获取任务状态"]
     
-    CheckTasks --> PhaseResult{"Determine<br>Current Phase"}
-    PhaseResult -->|"VAN"| VAN["VAN Phase<br>Initialization"]
-    PhaseResult -->|"PLAN"| PLAN["PLAN Phase<br>Task Planning"]
-    PhaseResult -->|"CREATIVE"| CREATIVE["CREATIVE Phase<br>Design Decisions"]
-    PhaseResult -->|"IMPLEMENT"| IMPLEMENT["IMPLEMENT Phase<br>Implementation"]
+    CheckTasks --> PhaseResult{"确定<br>当前阶段"}
+    PhaseResult -->|"VAN"| VAN["VAN阶段<br>初始化"]
+    PhaseResult -->|"PLAN"| PLAN["PLAN阶段<br>任务规划"]
+    PhaseResult -->|"CREATIVE"| CREATIVE["CREATIVE阶段<br>设计决策"]
+    PhaseResult -->|"IMPLEMENT"| IMPLEMENT["IMPLEMENT阶段<br>实现"]
     
-    VAN & PLAN & CREATIVE & IMPLEMENT --> LoadChecks["Load Phase-Specific<br>Validation Checks"]
+    VAN & PLAN & CREATIVE & IMPLEMENT --> LoadChecks["加载特定阶段<br>验证检查"]
     
     style PD fill:#4da6ff,stroke:#0066cc,color:white
     style PhaseResult fill:#f6546a,stroke:#c30052,color:white
     style LoadChecks fill:#10b981,stroke:#059669,color:white
 ```
 
-## 📝 UNIVERSAL MEMORY BANK VERIFICATION
+## 📝 通用记忆库验证
 
-This process ensures Memory Bank files are consistent and up-to-date regardless of phase:
+此流程确保记忆库文件在各阶段保持一致性和最新状态:
 
 ```mermaid
 graph TD
-    MBVS["Memory Bank<br>Verification"] --> CoreCheck["Check Core Files Exist"]
-    CoreCheck --> CoreFiles["Verify Required Files:<br>projectbrief.md<br>activeContext.md<br>tasks.md<br>progress.md"]
+    MBVS["记忆库<br>验证"] --> CoreCheck["检查核心文件是否存在"]
+    CoreCheck --> CoreFiles["验证必需文件:<br>projectbrief.md<br>activeContext.md<br>tasks.md<br>progress.md"]
     
-    CoreFiles --> ContentCheck["Verify Content<br>Consistency"]
-    ContentCheck --> LastModified["Check Last Modified<br>Timestamps"]
-    LastModified --> CrossRef["Validate Cross-<br>References"]
+    CoreFiles --> ContentCheck["验证内容<br>一致性"]
+    ContentCheck --> LastModified["检查最后修改<br>时间戳"]
+    LastModified --> CrossRef["验证交叉<br>引用"]
     
-    CrossRef --> ConsistencyCheck{"All Files<br>Consistent?"}
-    ConsistencyCheck -->|"Yes"| PassMB["✅ Memory Bank<br>Verification Passed"]
-    ConsistencyCheck -->|"No"| FailMB["❌ Memory Bank<br>Inconsistencies Found"]
+    CrossRef --> ConsistencyCheck{"所有文件<br>一致?"}
+    ConsistencyCheck -->|"是"| PassMB["✅ 记忆库<br>验证通过"]
+    ConsistencyCheck -->|"否"| FailMB["❌ 发现记忆库<br>不一致"]
     
-    FailMB --> FixSuggestions["Generate Fix<br>Suggestions"]
+    FailMB --> FixSuggestions["生成修复<br>建议"]
     
     style MBVS fill:#4da6ff,stroke:#0066cc,color:white
     style ConsistencyCheck fill:#f6546a,stroke:#c30052,color:white
@@ -107,22 +107,22 @@ graph TD
     style FailMB fill:#ff5555,stroke:#dd3333,color:white
 ```
 
-## 📋 TASK TRACKING VERIFICATION
+## 📋 任务跟踪验证
 
-This process validates tasks.md as the single source of truth:
+此流程验证tasks.md作为单一事实来源:
 
 ```mermaid
 graph TD
-    TTV["Task Tracking<br>Verification"] --> CheckTasksFile["Check tasks.md<br>Existence & Format"]
-    CheckTasksFile --> VerifyReferences["Verify Task References<br>in Other Documents"]
-    VerifyReferences --> ProgressCheck["Check Consistency with<br>progress.md"]
-    ProgressCheck --> StatusCheck["Verify Task Status<br>Accuracy"]
+    TTV["任务跟踪<br>验证"] --> CheckTasksFile["检查tasks.md<br>存在性和格式"]
+    CheckTasksFile --> VerifyReferences["验证其他文档中<br>的任务引用"]
+    VerifyReferences --> ProgressCheck["检查与<br>progress.md的一致性"]
+    ProgressCheck --> StatusCheck["验证任务状态<br>准确性"]
     
-    StatusCheck --> TaskConsistency{"Tasks Properly<br>Tracked?"}
-    TaskConsistency -->|"Yes"| PassTasks["✅ Task Tracking<br>Verification Passed"]
-    TaskConsistency -->|"No"| FailTasks["❌ Task Tracking<br>Issues Found"]
+    StatusCheck --> TaskConsistency{"任务正确<br>跟踪?"}
+    TaskConsistency -->|"是"| PassTasks["✅ 任务跟踪<br>验证通过"]
+    TaskConsistency -->|"否"| FailTasks["❌ 发现任务跟踪<br>问题"]
     
-    FailTasks --> TaskFixSuggestions["Generate Task Tracking<br>Fix Suggestions"]
+    FailTasks --> TaskFixSuggestions["生成任务跟踪<br>修复建议"]
     
     style TTV fill:#4da6ff,stroke:#0066cc,color:white
     style TaskConsistency fill:#f6546a,stroke:#c30052,color:white
@@ -130,21 +130,21 @@ graph TD
     style FailTasks fill:#ff5555,stroke:#dd3333,color:white
 ```
 
-## 🔄 REFERENCE VALIDATION PROCESS
+## 🔄 引用验证流程
 
-This process ensures proper cross-referencing between documents:
+此流程确保文档之间的正确交叉引用:
 
 ```mermaid
 graph TD
-    RV["Reference<br>Validation"] --> FindRefs["Find Cross-References<br>in Documents"]
-    FindRefs --> VerifyRefs["Verify Reference<br>Accuracy"]
-    VerifyRefs --> CheckBackRefs["Check Bidirectional<br>References"]
+    RV["引用<br>验证"] --> FindRefs["查找文档中<br>的交叉引用"]
+    FindRefs --> VerifyRefs["验证引用<br>准确性"]
+    VerifyRefs --> CheckBackRefs["检查双向<br>引用"]
     
-    CheckBackRefs --> RefConsistency{"References<br>Consistent?"}
-    RefConsistency -->|"Yes"| PassRefs["✅ Reference Validation<br>Passed"]
-    RefConsistency -->|"No"| FailRefs["❌ Reference<br>Issues Found"]
+    CheckBackRefs --> RefConsistency{"引用<br>一致?"}
+    RefConsistency -->|"是"| PassRefs["✅ 引用验证<br>通过"]
+    RefConsistency -->|"否"| FailRefs["❌ 发现引用<br>问题"]
     
-    FailRefs --> RefFixSuggestions["Generate Reference<br>Fix Suggestions"]
+    FailRefs --> RefFixSuggestions["生成引用<br>修复建议"]
     
     style RV fill:#4da6ff,stroke:#0066cc,color:white
     style RefConsistency fill:#f6546a,stroke:#c30052,color:white
@@ -152,19 +152,19 @@ graph TD
     style FailRefs fill:#ff5555,stroke:#dd3333,color:white
 ```
 
-## 🚨 PHASE-SPECIFIC VALIDATION PROCESSES
+## 🚨 特定阶段验证流程
 
-### VAN Phase Validation
+### VAN阶段验证
 
 ```mermaid
 graph TD
-    VAN["VAN Phase<br>Validation"] --> InitCheck["Check Initialization<br>Completeness"]
-    InitCheck --> PlatformCheck["Verify Platform<br>Detection"]
-    PlatformCheck --> ComplexityCheck["Validate Complexity<br>Determination"]
+    VAN["VAN阶段<br>验证"] --> InitCheck["检查初始化<br>完整性"]
+    InitCheck --> PlatformCheck["验证平台<br>检测"]
+    PlatformCheck --> ComplexityCheck["验证复杂度<br>确定"]
     
-    ComplexityCheck --> VANConsistency{"VAN Phase<br>Complete?"}
-    VANConsistency -->|"Yes"| PassVAN["✅ VAN Phase<br>Validation Passed"]
-    VANConsistency -->|"No"| FailVAN["❌ VAN Phase<br>Issues Found"]
+    ComplexityCheck --> VANConsistency{"VAN阶段<br>完成?"}
+    VANConsistency -->|"是"| PassVAN["✅ VAN阶段<br>验证通过"]
+    VANConsistency -->|"否"| FailVAN["❌ 发现VAN阶段<br>问题"]
     
     style VAN fill:#4da6ff,stroke:#0066cc,color:white
     style VANConsistency fill:#f6546a,stroke:#c30052,color:white
@@ -172,17 +172,17 @@ graph TD
     style FailVAN fill:#ff5555,stroke:#dd3333,color:white
 ```
 
-### PLAN Phase Validation
+### PLAN阶段验证
 
 ```mermaid
 graph TD
-    PLAN["PLAN Phase<br>Validation"] --> PlanCheck["Check Planning<br>Documentation"]
-    PlanCheck --> TaskBreakdown["Verify Task<br>Breakdown"]
-    TaskBreakdown --> ScopeCheck["Validate Scope<br>Definition"]
+    PLAN["PLAN阶段<br>验证"] --> PlanCheck["检查规划<br>文档"]
+    PlanCheck --> TaskBreakdown["验证任务<br>分解"]
+    TaskBreakdown --> ScopeCheck["验证范围<br>定义"]
     
-    ScopeCheck --> PLANConsistency{"PLAN Phase<br>Complete?"}
-    PLANConsistency -->|"Yes"| PassPLAN["✅ PLAN Phase<br>Validation Passed"]
-    PLANConsistency -->|"No"| FailPLAN["❌ PLAN Phase<br>Issues Found"]
+    ScopeCheck --> PLANConsistency{"PLAN阶段<br>完成?"}
+    PLANConsistency -->|"是"| PassPLAN["✅ PLAN阶段<br>验证通过"]
+    PLANConsistency -->|"否"| FailPLAN["❌ 发现PLAN阶段<br>问题"]
     
     style PLAN fill:#4da6ff,stroke:#0066cc,color:white
     style PLANConsistency fill:#f6546a,stroke:#c30052,color:white
@@ -190,17 +190,17 @@ graph TD
     style FailPLAN fill:#ff5555,stroke:#dd3333,color:white
 ```
 
-### CREATIVE Phase Validation
+### CREATIVE阶段验证
 
 ```mermaid
 graph TD
-    CREATIVE["CREATIVE Phase<br>Validation"] --> DesignCheck["Check Design<br>Documents"]
-    DesignCheck --> ArchCheck["Verify Architectural<br>Decisions"]
-    ArchCheck --> PatternCheck["Validate Design<br>Patterns"]
+    CREATIVE["CREATIVE阶段<br>验证"] --> DesignCheck["检查设计<br>文档"]
+    DesignCheck --> ArchCheck["验证架构<br>决策"]
+    ArchCheck --> PatternCheck["验证设计<br>模式"]
     
-    PatternCheck --> CREATIVEConsistency{"CREATIVE Phase<br>Complete?"}
-    CREATIVEConsistency -->|"Yes"| PassCREATIVE["✅ CREATIVE Phase<br>Validation Passed"]
-    CREATIVEConsistency -->|"No"| FailCREATIVE["❌ CREATIVE Phase<br>Issues Found"]
+    PatternCheck --> CREATIVEConsistency{"CREATIVE阶段<br>完成?"}
+    CREATIVEConsistency -->|"是"| PassCREATIVE["✅ CREATIVE阶段<br>验证通过"]
+    CREATIVEConsistency -->|"否"| FailCREATIVE["❌ 发现CREATIVE阶段<br>问题"]
     
     style CREATIVE fill:#4da6ff,stroke:#0066cc,color:white
     style CREATIVEConsistency fill:#f6546a,stroke:#c30052,color:white
@@ -208,23 +208,23 @@ graph TD
     style FailCREATIVE fill:#ff5555,stroke:#dd3333,color:white
 ```
 
-### IMPLEMENT Phase Technical Validation
+### IMPLEMENT阶段技术验证
 
-This retains the original QA validation from the previous version:
+这保留了先前版本的原始QA验证:
 
 ```mermaid
 graph TD
-    IMPLEMENT["IMPLEMENT Phase<br>Validation"] --> ReadDesign["Read Design Decisions"]
-    ReadDesign --> FourChecks["Four-Point Technical<br>Validation"]
+    IMPLEMENT["IMPLEMENT阶段<br>验证"] --> ReadDesign["阅读设计决策"]
+    ReadDesign --> FourChecks["四点技术<br>验证"]
     
-    FourChecks --> DepCheck["1️⃣ Dependency<br>Verification"]
-    DepCheck --> ConfigCheck["2️⃣ Configuration<br>Validation"]
-    ConfigCheck --> EnvCheck["3️⃣ Environment<br>Validation"]
-    EnvCheck --> MinBuildCheck["4️⃣ Minimal Build<br>Test"]
+    FourChecks --> DepCheck["1️⃣ 依赖项<br>验证"]
+    DepCheck --> ConfigCheck["2️⃣ 配置<br>验证"]
+    ConfigCheck --> EnvCheck["3️⃣ 环境<br>验证"]
+    EnvCheck --> MinBuildCheck["4️⃣ 最小构建<br>测试"]
     
-    MinBuildCheck --> IMPLEMENTConsistency{"Technical<br>Prerequisites Met?"}
-    IMPLEMENTConsistency -->|"Yes"| PassIMPLEMENT["✅ IMPLEMENT Phase<br>Validation Passed"]
-    IMPLEMENTConsistency -->|"No"| FailIMPLEMENT["❌ IMPLEMENT Phase<br>Issues Found"]
+    MinBuildCheck --> IMPLEMENTConsistency{"技术<br>先决条件满足?"}
+    IMPLEMENTConsistency -->|"是"| PassIMPLEMENT["✅ IMPLEMENT阶段<br>验证通过"]
+    IMPLEMENTConsistency -->|"否"| FailIMPLEMENT["❌ 发现IMPLEMENT阶段<br>问题"]
     
     style IMPLEMENT fill:#4da6ff,stroke:#0066cc,color:white
     style FourChecks fill:#f6546a,stroke:#c30052,color:white
@@ -233,258 +233,258 @@ graph TD
     style FailIMPLEMENT fill:#ff5555,stroke:#dd3333,color:white
 ```
 
-## 📋 UNIVERSAL VALIDATION COMMAND EXECUTION
+## 📋 通用验证命令执行
 
-### Memory Bank Verification Commands:
+### 记忆库验证命令:
 
 ```bash
-# Check Memory Bank file existence and recency
+# 检查记忆库文件存在和最近情况
 ls -la memory-bank/
 find memory-bank/ -type f -mtime -7 | sort
 
-# Check for consistency between files
+# 检查文件之间的一致性
 grep -r "task" memory-bank/
 grep -r "requirement" memory-bank/
 ```
 
-### Task Tracking Verification Commands:
+### 任务跟踪验证命令:
 
 ```bash
-# Verify tasks.md as source of truth
-test -f tasks.md && echo "✅ tasks.md exists" || echo "❌ tasks.md missing"
+# 验证tasks.md作为事实来源
+test -f tasks.md && echo "✅ tasks.md存在" || echo "❌ tasks.md缺失"
 
-# Check references to tasks in other files
+# 检查其他文件中对任务的引用
 grep -r "Task" --include="*.md" .
 grep -r "task" --include="*.md" . | grep -v "tasks.md" | wc -l
 
-# Verify task status consistency
+# 验证任务状态一致性
 grep -i "completed\|done\|finished" tasks.md
 grep -i "in progress\|started" tasks.md
 ```
 
-### Reference Validation Commands:
+### 引用验证命令:
 
 ```bash
-# Find cross-references between files
+# 查找文件之间的交叉引用
 grep -r "see\|refer\|reference" --include="*.md" .
 
-# Check for broken references
+# 检查断开的引用
 for file in $(grep -l "see\|refer\|reference" --include="*.md" .); do
   for ref in $(grep -o '[a-zA-Z0-9_-]*\.md' $file); do
-    test -f $ref || echo "❌ Broken reference: $ref in $file"
+    test -f $ref || echo "❌ 断开的引用: $ref 在 $file 中"
   done
 done
 ```
 
-## 📋 1️⃣ DEPENDENCY VERIFICATION PROCESS (Original)
+## 📋 1️⃣ 依赖验证流程 (原始)
 
-This validation point ensures all required packages are correctly installed.
+此验证点确保所有必需的包都正确安装。
 
-### Command Execution:
+### 命令执行:
 
 ```bash
-# Check if packages are installed
+# 检查包是否安装
 npm list react react-dom tailwindcss postcss autoprefixer
 
-# Verify package versions match requirements
+# 验证包版本是否符合要求
 npm list | grep -E "react|tailwind|postcss"
 
-# Check for peer dependency warnings
+# 检查对等依赖警告
 npm ls --depth=0
 ```
 
-### Validation Criteria:
-- All required packages must be installed
-- Versions must be compatible with requirements
-- No critical peer dependency warnings
-- Required dev dependencies must be present
+### 验证标准:
+- 所有必需的包必须已安装
+- 版本必须与要求兼容
+- 没有关键的对等依赖警告
+- 必需的开发依赖项必须存在
 
-### Common Fixes:
-- `npm install [missing-package]` - Install missing packages
-- `npm install [package]@[version]` - Fix version mismatches
-- `npm install --save-dev [dev-dependency]` - Add development dependencies
+### 常见修复:
+- `npm install [缺失包]` - 安装缺失的包
+- `npm install [包]@[版本]` - 修复版本不匹配
+- `npm install --save-dev [开发依赖项]` - 添加开发依赖项
 
-## 📝 2️⃣ CONFIGURATION VALIDATION PROCESS (Original)
+## 📝 2️⃣ 配置验证流程 (原始)
 
-This validation point ensures configuration files are in the correct format for the project.
+此验证点确保配置文件格式正确适用于项目。
 
-### Command Execution:
+### 命令执行:
 
 ```bash
-# Check package.json for module type
+# 检查package.json的模块类型
 grep "\"type\":" package.json
 
-# Verify configuration file extensions match module type
+# 验证配置文件扩展名是否与模块类型匹配
 find . -name "*.config.*" | grep -E "\.(js|cjs|mjs)$"
 
-# Test configuration syntax
+# 测试配置语法
 node -c *.config.js || node -c *.config.cjs || node -c *.config.mjs
 ```
 
-### Validation Criteria:
-- Configuration file extensions must match module type in package.json
-- File syntax must be valid
-- Configuration must reference installed packages
+### 验证标准:
+- 配置文件扩展名必须与package.json中的模块类型匹配
+- 文件语法必须有效
+- 配置必须引用已安装的包
 
-### Common Fixes:
-- Rename `.js` to `.cjs` for CommonJS in ES module projects
-- Fix syntax errors in configuration files
-- Adjust configuration to reference installed packages
+### 常见修复:
+- 在ES模块项目中将`.js`重命名为`.cjs`(用于CommonJS)
+- 修复配置文件中的语法错误
+- 调整配置以引用已安装的包
 
-## 🌐 3️⃣ ENVIRONMENT VALIDATION PROCESS (Original)
+## 🌐 3️⃣ 环境验证流程 (原始)
 
-This validation point ensures the development environment is correctly set up.
+此验证点确保开发环境设置正确。
 
-### Command Execution:
+### 命令执行:
 
 ```bash
-# Check build tools 
+# 检查构建工具 
 npm run --help
 
-# Verify node version compatibility
+# 验证node版本兼容性
 node -v
 
-# Check for environment variables
+# 检查环境变量
 printenv | grep -E "NODE_|PATH|HOME"
 
-# Verify access permissions
+# 验证访问权限
 ls -la .
 ```
 
-### Validation Criteria:
-- Node.js version must be compatible with requirements
-- Build commands must be defined in package.json
-- Environment must have necessary access permissions
-- Required environment variables must be set
+### 验证标准:
+- Node.js版本必须与要求兼容
+- 构建命令必须在package.json中定义
+- 环境必须具有必要的访问权限
+- 必须设置所需的环境变量
 
-### Common Fixes:
-- Update Node.js version
-- Add missing scripts to package.json
-- Fix file permissions with chmod/icacls
-- Set required environment variables
+### 常见修复:
+- 更新Node.js版本
+- 在package.json中添加缺失的脚本
+- 用chmod/icacls修复文件权限
+- 设置所需的环境变量
 
-## 🔥 4️⃣ MINIMAL BUILD TEST PROCESS (Original)
+## 🔥 4️⃣ 最小构建测试流程 (原始)
 
-This validation point tests a minimal build to ensure basic functionality works.
+此验证点测试最小构建以确保基本功能正常工作。
 
-### Command Execution:
+### 命令执行:
 
 ```bash
-# Run a minimal build
+# 运行最小构建
 npm run build -- --dry-run || npm run dev -- --dry-run
 
-# Test entry point file existence
+# 测试入口点文件存在
 find src -name "main.*" -o -name "index.*"
 
-# Validate HTML entry point
+# 验证HTML入口点
 grep -i "script.*src=" index.html
 ```
 
-### Validation Criteria:
-- Build process must complete without errors
-- Entry point files must exist and be correctly referenced
-- HTML must reference the correct JavaScript entry point
-- Basic rendering must work in a test environment
+### 验证标准:
+- 构建过程必须无错误完成
+- 入口点文件必须存在并被正确引用
+- HTML必须引用正确的JavaScript入口点
+- 基本渲染必须在测试环境中工作
 
-### Common Fixes:
-- Fix entry point references in HTML
-- Correct import paths in JavaScript
-- Fix build configuration errors
-- Update incorrect paths or references
+### 常见修复:
+- 修复HTML中的入口点引用
+- 修正JavaScript中的导入路径
+- 修复构建配置错误
+- 更新不正确的路径或引用
 
-## 📊 ENHANCED COMPREHENSIVE QA REPORT FORMAT
-
-```
-╔═════════════════════════ 🔍 ENHANCED QA VALIDATION REPORT ═════════════════════╗
-│                                                                               │
-│ Project: [Project Name]               Date: [Current Date]                    │
-│ Platform: [OS Platform]               Detected Phase: [Current Phase]         │
-│                                                                               │
-│ ━━━━━━━━━━━━━━━━━━━━━━━━ UNIVERSAL VALIDATION RESULTS ━━━━━━━━━━━━━━━━━━━━━━━ │
-│                                                                               │
-│ 1️⃣ MEMORY BANK VERIFICATION                                                   │
-│    ✓ Core Files: [Status]                                                     │
-│    ✓ Content Consistency: [Status]                                            │
-│    ✓ Last Modified: [Status]                                                  │
-│                                                                               │
-│ 2️⃣ TASK TRACKING VERIFICATION                                                 │
-│    ✓ tasks.md Status: [Status]                                                │
-│    ✓ Task References: [Status]                                                │
-│    ✓ Status Consistency: [Status]                                             │
-│                                                                               │
-│ 3️⃣ REFERENCE VALIDATION                                                       │
-│    ✓ Cross-References: [Status]                                               │
-│    ✓ Reference Accuracy: [Status]                                             │
-│                                                                               │
-│ ━━━━━━━━━━━━━━━━━━━━━━━ PHASE-SPECIFIC VALIDATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
-│                                                                               │
-│ [VAN/PLAN/CREATIVE/IMPLEMENT] PHASE VALIDATION                                │
-│    ✓ [Phase-specific check 1]: [Status]                                       │
-│    ✓ [Phase-specific check 2]: [Status]                                       │
-│    ✓ [Phase-specific check 3]: [Status]                                       │
-│                                                                               │
-│ [Technical validation section shown only for IMPLEMENT phase]                  │
-│                                                                               │
-│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━ OVERALL STATUS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
-│                                                                               │
-│ ✅ VALIDATION PASSED - Project quality verified for current phase              │
-│                                                                               │
-╚═══════════════════════════════════════════════════════════════════════════════╝
-```
-
-## 🚫 ENHANCED FAILURE REPORT FORMAT
-
-If validation fails, a detailed failure report is generated:
+## 📊 增强型综合QA报告格式
 
 ```
-╔═════════════════════════ ⚠️ QA VALIDATION FAILURES ═════════════════════════════╗
-│                                                                                 │
-│ Project: [Project Name]               Date: [Current Date]                      │
-│ Platform: [OS Platform]               Detected Phase: [Current Phase]           │
-│                                                                                 │
-│ ━━━━━━━━━━━━━━━━━━━━━━━━━━ FAILED CHECKS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
-│                                                                                 │
-│ ❌ MEMORY BANK ISSUES                                                           │
-│    • [Specific issue details]                                                   │
-│    • [Specific issue details]                                                   │
-│                                                                                 │
-│ ❌ TASK TRACKING ISSUES                                                         │
-│    • [Specific issue details]                                                   │
-│    • [Specific issue details]                                                   │
-│                                                                                 │
-│ ❌ REFERENCE ISSUES                                                             │
-│    • [Specific issue details]                                                   │
-│    • [Specific issue details]                                                   │
-│                                                                                 │
-│ ❌ [PHASE]-SPECIFIC ISSUES                                                      │
-│    • [Specific issue details]                                                   │
-│    • [Specific issue details]                                                   │
-│                                                                                 │
-│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━ REQUIRED FIXES ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
-│                                                                                 │
-│ 1. [Specific fix instruction with command]                                      │
-│ 2. [Specific fix instruction with command]                                      │
-│ 3. [Specific fix instruction with command]                                      │
-│                                                                                 │
-│ ⚠️ VALIDATION FAILED - Please resolve issues before proceeding                  │
-│                                                                                 │
-╚═════════════════════════════════════════════════════════════════════════════════╝
+╔═════════════════════════ 🔍 增强型QA验证报告 ═════════════════════╗
+│                                                                  │
+│ 项目: [项目名称]               日期: [当前日期]                    │
+│ 平台: [操作系统平台]           检测阶段: [当前阶段]                │
+│                                                                  │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━ 通用验证结果 ━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                                                  │
+│ 1️⃣ 记忆库验证                                                    │
+│    ✓ 核心文件: [状态]                                            │
+│    ✓ 内容一致性: [状态]                                          │
+│    ✓ 最后修改: [状态]                                            │
+│                                                                  │
+│ 2️⃣ 任务跟踪验证                                                  │
+│    ✓ tasks.md状态: [状态]                                        │
+│    ✓ 任务引用: [状态]                                            │
+│    ✓ 状态一致性: [状态]                                          │
+│                                                                  │
+│ 3️⃣ 引用验证                                                      │
+│    ✓ 交叉引用: [状态]                                            │
+│    ✓ 引用准确性: [状态]                                          │
+│                                                                  │
+│ ━━━━━━━━━━━━━━━━━━━━━━━ 特定阶段验证 ━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                                                  │
+│ [VAN/PLAN/CREATIVE/IMPLEMENT]阶段验证                           │
+│    ✓ [特定阶段检查1]: [状态]                                     │
+│    ✓ [特定阶段检查2]: [状态]                                     │
+│    ✓ [特定阶段检查3]: [状态]                                     │
+│                                                                  │
+│ [技术验证部分仅在IMPLEMENT阶段显示]                              │
+│                                                                  │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 总体状态 ━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                                                  │
+│ ✅ 验证通过 - 当前阶段的项目质量已验证                            │
+│                                                                  │
+╚══════════════════════════════════════════════════════════════════╝
+```
+
+## 🚫 增强型失败报告格式
+
+如果验证失败，将生成详细的失败报告:
+
+```
+╔═════════════════════════ ⚠️ QA验证失败 ═════════════════════════════╗
+│                                                                    │
+│ 项目: [项目名称]               日期: [当前日期]                     │
+│ 平台: [操作系统平台]           检测阶段: [当前阶段]                 │
+│                                                                    │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━ 失败检查 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                                                    │
+│ ❌ 记忆库问题                                                      │
+│    • [具体问题详情]                                                │
+│    • [具体问题详情]                                                │
+│                                                                    │
+│ ❌ 任务跟踪问题                                                    │
+│    • [具体问题详情]                                                │
+│    • [具体问题详情]                                                │
+│                                                                    │
+│ ❌ 引用问题                                                        │
+│    • [具体问题详情]                                                │
+│    • [具体问题详情]                                                │
+│                                                                    │
+│ ❌ [阶段]特定问题                                                  │
+│    • [具体问题详情]                                                │
+│    • [具体问题详情]                                                │
+│                                                                    │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 所需修复 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │
+│                                                                    │
+│ 1. [带命令的具体修复指南]                                          │
+│ 2. [带命令的具体修复指南]                                          │
+│ 3. [带命令的具体修复指南]                                          │
+│                                                                    │
+│ ⚠️ 验证失败 - 请在继续之前解决这些问题                            │
+│                                                                    │
+╚════════════════════════════════════════════════════════════════════╝
 ```
 
 ## 🔄 QA-ANYTIME ACTIVATION PROTOCOL
 
-The enhanced QA mode can be activated at any time in the development process:
+增强型QA模式可以在开发过程的任何时间激活:
 
 ```mermaid
 graph TD
-    Start["User Types: QA"] --> DetectContext["Detect Current Context"]
-    DetectContext --> RunQA["Run QA with Context-Aware Checks"]
-    RunQA --> GenerateReport["Generate Appropriate QA Report"]
-    GenerateReport --> UserResponse["Present Report to User"]
+    Start["用户类型: QA"] --> DetectContext["检测当前上下文"]
+    DetectContext --> RunQA["运行上下文感知检查的QA"]
+    RunQA --> GenerateReport["生成适当的QA报告"]
+    GenerateReport --> UserResponse["向用户展示报告"]
     
-    UserResponse --> FixNeeded{"Fixes<br>Needed?"}
-    FixNeeded -->|"Yes"| SuggestFixes["Display Fix Instructions"]
-    FixNeeded -->|"No"| ContinueWork["Continue Current Phase Work"]
+    UserResponse --> FixNeeded{"需要修复<br>吗?"}
+    FixNeeded -->|"是"| SuggestFixes["显示修复指南"]
+    FixNeeded -->|"否"| ContinueWork["继续当前阶段工作"]
     
     style Start fill:#4da6ff,stroke:#0066cc,color:white
     style FixNeeded fill:#f6546a,stroke:#c30052,color:white
@@ -492,4 +492,4 @@ graph TD
     style ContinueWork fill:#10b981,stroke:#059669,color:white
 ```
 
-This enhanced QA mode serves as a "quality guardian" throughout the development process, ensuring documentation is consistently maintained and all phase requirements are met before proceeding to the next phase. 
+这种增强型QA模式在整个开发过程中充当了"质量守护者"的角色，确保文档始终保持一致性，并在进入下一个阶段之前满足所有阶段要求。 

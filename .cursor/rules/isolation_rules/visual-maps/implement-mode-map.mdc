@@ -3,187 +3,186 @@ description: Visual process map for BUILD mode (Code Implementation)
 globs: implementation-mode-map.mdc
 alwaysApply: false
 ---
+# 构建模式：代码执行流程图
 
-# BUILD MODE: CODE EXECUTION PROCESS MAP
+> **简介：** 本可视化地图指导构建模式流程，专注于基于规划和创意阶段的高效代码实现，确保正确的命令执行和进度跟踪。
 
-> **TL;DR:** This visual map guides the BUILD mode process, focusing on efficient code implementation based on the planning and creative phases, with proper command execution and progress tracking.
-
-## 🧭 BUILD MODE PROCESS FLOW
+## 🧭 构建模式流程
 
 ```mermaid
 graph TD
-    Start["START BUILD MODE"] --> ReadDocs["Read Reference Documents<br>Core/command-execution.md"]
+    Start["开始构建模式"] --> ReadDocs["阅读参考文档<br>Core/command-execution.md"]
     
-    %% Initialization
-    ReadDocs --> CheckLevel{"Determine<br>Complexity Level<br>from tasks.md"}
+    %% 初始化
+    ReadDocs --> CheckLevel{"从tasks.md<br>确定<br>复杂度级别"}
     
-    %% Level 1 Implementation
-    CheckLevel -->|"Level 1<br>Quick Bug Fix"| L1Process["LEVEL 1 PROCESS<br>Level1/quick-bug-workflow.md"]
-    L1Process --> L1Review["Review Bug<br>Report"]
-    L1Review --> L1Examine["Examine<br>Relevant Code"]
-    L1Examine --> L1Fix["Implement<br>Targeted Fix"]
-    L1Fix --> L1Test["Test<br>Fix"]
-    L1Test --> L1Update["Update<br>tasks.md"]
+    %% 第1级实现
+    CheckLevel -->|"第1级<br>快速错误修复"| L1Process["第1级流程<br>Level1/quick-bug-workflow.md"]
+    L1Process --> L1Review["审查错误<br>报告"]
+    L1Review --> L1Examine["检查<br>相关代码"]
+    L1Examine --> L1Fix["实现<br>目标修复"]
+    L1Fix --> L1Test["测试<br>修复"]
+    L1Test --> L1Update["更新<br>tasks.md"]
     
-    %% Level 2 Implementation
-    CheckLevel -->|"Level 2<br>Simple Enhancement"| L2Process["LEVEL 2 PROCESS<br>Level2/enhancement-workflow.md"]
-    L2Process --> L2Review["Review Build<br>Plan"]
-    L2Review --> L2Examine["Examine Relevant<br>Code Areas"]
-    L2Examine --> L2Implement["Implement Changes<br>Sequentially"]
-    L2Implement --> L2Test["Test<br>Changes"]
-    L2Test --> L2Update["Update<br>tasks.md"]
+    %% 第2级实现
+    CheckLevel -->|"第2级<br>简单增强"| L2Process["第2级流程<br>Level2/enhancement-workflow.md"]
+    L2Process --> L2Review["审查构建<br>计划"]
+    L2Review --> L2Examine["检查相关<br>代码区域"]
+    L2Examine --> L2Implement["按顺序<br>实现更改"]
+    L2Implement --> L2Test["测试<br>更改"]
+    L2Test --> L2Update["更新<br>tasks.md"]
     
-    %% Level 3-4 Implementation
-    CheckLevel -->|"Level 3-4<br>Feature/System"| L34Process["LEVEL 3-4 PROCESS<br>Level3/feature-workflow.md<br>Level4/system-workflow.md"]
-    L34Process --> L34Review["Review Plan &<br>Creative Decisions"]
-    L34Review --> L34Phase{"Creative Phase<br>Documents<br>Complete?"}
+    %% 第3-4级实现
+    CheckLevel -->|"第3-4级<br>功能/系统"| L34Process["第3-4级流程<br>Level3/feature-workflow.md<br>Level4/system-workflow.md"]
+    L34Process --> L34Review["审查计划和<br>创意决策"]
+    L34Review --> L34Phase{"创意阶段<br>文档<br>完成？"}
     
-    L34Phase -->|"No"| L34Error["ERROR:<br>Return to CREATIVE Mode"]
-    L34Phase -->|"Yes"| L34DirSetup["Create Directory<br>Structure"]
-    L34DirSetup --> L34VerifyDirs["VERIFY Directories<br>Created Successfully"]
-    L34VerifyDirs --> L34Implementation["Build<br>Phase"]
+    L34Phase -->|"否"| L34Error["错误：<br>返回创意模式"]
+    L34Phase -->|"是"| L34DirSetup["创建目录<br>结构"]
+    L34DirSetup --> L34VerifyDirs["验证目录<br>创建成功"]
+    L34VerifyDirs --> L34Implementation["构建<br>阶段"]
     
-    %% Implementation Phases
-    L34Implementation --> L34Phase1["Phase 1<br>Build"]
-    L34Phase1 --> L34VerifyFiles["VERIFY Files<br>Created Successfully"]
-    L34VerifyFiles --> L34Test1["Test<br>Phase 1"]
-    L34Test1 --> L34Document1["Document<br>Phase 1"]
-    L34Document1 --> L34Next1{"Next<br>Phase?"}
-    L34Next1 -->|"Yes"| L34Implementation
+    %% 实现阶段
+    L34Implementation --> L34Phase1["第1阶段<br>构建"]
+    L34Phase1 --> L34VerifyFiles["验证文件<br>创建成功"]
+    L34VerifyFiles --> L34Test1["测试<br>第1阶段"]
+    L34Test1 --> L34Document1["记录<br>第1阶段"]
+    L34Document1 --> L34Next1{"下一<br>阶段？"}
+    L34Next1 -->|"是"| L34Implementation
     
-    L34Next1 -->|"No"| L34Integration["Integration<br>Testing"]
-    L34Integration --> L34Document["Document<br>Integration Points"]
-    L34Document --> L34Update["Update<br>tasks.md"]
+    L34Next1 -->|"否"| L34Integration["集成<br>测试"]
+    L34Integration --> L34Document["记录<br>集成点"]
+    L34Document --> L34Update["更新<br>tasks.md"]
     
-    %% Command Execution
-    L1Fix & L2Implement & L34Phase1 --> CommandExec["COMMAND EXECUTION<br>Core/command-execution.md"]
-    CommandExec --> DocCommands["Document Commands<br>& Results"]
+    %% 命令执行
+    L1Fix & L2Implement & L34Phase1 --> CommandExec["命令执行<br>Core/command-execution.md"]
+    CommandExec --> DocCommands["记录命令<br>和结果"]
     
-    %% Completion & Transition
-    L1Update & L2Update & L34Update --> VerifyComplete["Verify Build<br>Complete"]
-    VerifyComplete --> UpdateProgress["Update progress.md<br>with Status"]
-    UpdateProgress --> Transition["NEXT MODE:<br>REFLECT MODE"]
+    %% 完成和转换
+    L1Update & L2Update & L34Update --> VerifyComplete["验证构建<br>完成"]
+    VerifyComplete --> UpdateProgress["用状态更新<br>progress.md"]
+    UpdateProgress --> Transition["下一模式：<br>反思模式"]
 ```
 
-## 📋 REQUIRED FILE STATE VERIFICATION
+## 📋 必需的文件状态验证
 
-Before implementation can begin, verify file state:
+在实现开始前，验证文件状态：
 
 ```mermaid
 graph TD
-    Start["File State<br>Verification"] --> CheckTasks{"tasks.md has<br>planning complete?"}
+    Start["文件状态<br>验证"] --> CheckTasks{"tasks.md<br>规划完成？"}
     
-    CheckTasks -->|"No"| ErrorPlan["ERROR:<br>Return to PLAN Mode"]
-    CheckTasks -->|"Yes"| CheckLevel{"Task<br>Complexity?"}
+    CheckTasks -->|"否"| ErrorPlan["错误：<br>返回计划模式"]
+    CheckTasks -->|"是"| CheckLevel{"任务<br>复杂度？"}
     
-    CheckLevel -->|"Level 1"| L1Ready["Ready for<br>Implementation"]
+    CheckLevel -->|"第1级"| L1Ready["准备<br>实现"]
     
-    CheckLevel -->|"Level 2"| L2Ready["Ready for<br>Implementation"]
+    CheckLevel -->|"第2级"| L2Ready["准备<br>实现"]
     
-    CheckLevel -->|"Level 3-4"| CheckCreative{"Creative phases<br>required?"}
+    CheckLevel -->|"第3-4级"| CheckCreative{"需要创意<br>阶段？"}
     
-    CheckCreative -->|"No"| L34Ready["Ready for<br>Implementation"]
-    CheckCreative -->|"Yes"| VerifyCreative{"Creative phases<br>completed?"}
+    CheckCreative -->|"否"| L34Ready["准备<br>实现"]
+    CheckCreative -->|"是"| VerifyCreative{"创意阶段<br>已完成？"}
     
-    VerifyCreative -->|"No"| ErrorCreative["ERROR:<br>Return to CREATIVE Mode"]
-    VerifyCreative -->|"Yes"| L34Ready
+    VerifyCreative -->|"否"| ErrorCreative["错误：<br>返回创意模式"]
+    VerifyCreative -->|"是"| L34Ready
 ```
 
-## 🔄 FILE SYSTEM VERIFICATION PROCESS
+## 🔄 文件系统验证流程
 
 ```mermaid
 graph TD
-    Start["Start File<br>Verification"] --> CheckDir["Check Directory<br>Structure"]
-    CheckDir --> DirResult{"Directories<br>Exist?"}
+    Start["开始文件<br>验证"] --> CheckDir["检查目录<br>结构"]
+    CheckDir --> DirResult{"目录<br>存在？"}
     
-    DirResult -->|"No"| ErrorDir["❌ ERROR:<br>Missing Directories"]
-    DirResult -->|"Yes"| CheckFiles["Check Each<br>Created File"]
+    DirResult -->|"否"| ErrorDir["❌ 错误：<br>缺少目录"]
+    DirResult -->|"是"| CheckFiles["检查每个<br>创建的文件"]
     
-    ErrorDir --> FixDir["Fix Directory<br>Structure"]
+    ErrorDir --> FixDir["修复目录<br>结构"]
     FixDir --> CheckDir
     
-    CheckFiles --> FileResult{"All Files<br>Exist?"}
-    FileResult -->|"No"| ErrorFile["❌ ERROR:<br>Missing/Wrong Path Files"]
-    FileResult -->|"Yes"| Complete["✅ Verification<br>Complete"]
+    CheckFiles --> FileResult{"所有文件<br>存在？"}
+    FileResult -->|"否"| ErrorFile["❌ 错误：<br>缺失/路径错误的文件"]
+    FileResult -->|"是"| Complete["✅ 验证<br>完成"]
     
-    ErrorFile --> FixFile["Fix File Paths<br>or Recreate Files"]
+    ErrorFile --> FixFile["修复文件路径<br>或重新创建文件"]
     FixFile --> CheckFiles
 ```
 
-## 📋 DIRECTORY VERIFICATION STEPS
+## 📋 目录验证步骤
 
-Before beginning any file creation:
+在开始任何文件创建前：
 
 ```
-✓ DIRECTORY VERIFICATION PROCEDURE
-1. Create all directories first before any files
-2. Use ABSOLUTE paths: /full/path/to/directory
-3. Verify each directory after creation:
+✓ 目录验证程序
+1. 在创建任何文件之前先创建所有目录
+2. 使用绝对路径：/full/path/to/directory
+3. 创建后验证每个目录：
    ls -la /full/path/to/directory     # Linux/Mac
    dir "C:\full\path\to\directory"    # Windows
-4. Document directory structure in progress.md
-5. Only proceed to file creation AFTER verifying ALL directories exist
+4. 在progress.md中记录目录结构
+5. 仅在验证所有目录存在后才继续创建文件
 ```
 
-## 📋 FILE CREATION VERIFICATION
+## 📋 文件创建验证
 
-After creating files:
+创建文件后：
 
 ```
-✓ FILE VERIFICATION PROCEDURE
-1. Use ABSOLUTE paths for all file operations: /full/path/to/file.ext
-2. Verify each file creation was successful:
+✓ 文件验证程序
+1. 对所有文件操作使用绝对路径：/full/path/to/file.ext
+2. 验证每个文件创建是否成功：
    ls -la /full/path/to/file.ext     # Linux/Mac
    dir "C:\full\path\to\file.ext"    # Windows 
-3. If verification fails:
-   a. Check for path resolution issues
-   b. Verify directory exists
-   c. Try creating with corrected path
-   d. Recheck file exists after correction
-4. Document all file paths in progress.md
+3. 如果验证失败：
+   a. 检查路径解析问题
+   b. 验证目录是否存在
+   c. 尝试使用更正的路径创建
+   d. 更正后重新检查文件是否存在
+4. 在progress.md中记录所有文件路径
 ```
 
-## 🔄 COMMAND EXECUTION WORKFLOW
+## 🔄 命令执行工作流
 
 ```mermaid
 graph TD
-    Start["Command<br>Execution"] --> Analyze["Analyze Command<br>Requirements"]
-    Analyze --> Complexity{"Command<br>Complexity?"}
+    Start["命令<br>执行"] --> Analyze["分析命令<br>需求"]
+    Analyze --> Complexity{"命令<br>复杂度？"}
     
-    Complexity -->|"Simple"| Simple["Execute<br>Single Command"]
-    Complexity -->|"Moderate"| Chain["Use Efficient<br>Command Chaining"]
-    Complexity -->|"Complex"| Break["Break Into<br>Logical Steps"]
+    Complexity -->|"简单"| Simple["执行<br>单个命令"]
+    Complexity -->|"中等"| Chain["使用高效的<br>命令链接"]
+    Complexity -->|"复杂"| Break["分解为<br>逻辑步骤"]
     
-    Simple & Chain & Break --> Verify["Verify<br>Results"]
-    Verify --> Document["Document<br>Command & Result"]
-    Document --> Next["Next<br>Command"]
+    Simple & Chain & Break --> Verify["验证<br>结果"]
+    Verify --> Document["记录<br>命令和结果"]
+    Document --> Next["下一个<br>命令"]
 ```
 
-## 📋 LEVEL-SPECIFIC BUILD APPROACHES
+## 📋 特定级别的构建方法
 
 ```mermaid
 graph TD
-    subgraph "Level 1: Quick Bug Fix"
-        L1A["Targeted Code<br>Examination"]
-        L1B["Minimal<br>Change Scope"]
-        L1C["Direct<br>Fix"]
-        L1D["Verify<br>Fix"]
+    subgraph "第1级：快速错误修复"
+        L1A["目标代码<br>检查"]
+        L1B["最小<br>更改范围"]
+        L1C["直接<br>修复"]
+        L1D["验证<br>修复"]
     end
     
-    subgraph "Level 2: Enhancement"
-        L2A["Sequential<br>Build"]
-        L2B["Contained<br>Changes"]
-        L2C["Standard<br>Testing"]
-        L2D["Component<br>Documentation"]
+    subgraph "第2级：增强功能"
+        L2A["顺序<br>构建"]
+        L2B["包含的<br>更改"]
+        L2C["标准<br>测试"]
+        L2D["组件<br>文档"]
     end
     
-    subgraph "Level 3-4: Feature/System"
-        L3A["Directory<br>Structure First"]
-        L3B["Verify Dirs<br>Before Files"]
-        L3C["Phased<br>Build"]
-        L3D["Verify Files<br>After Creation"]
-        L3E["Integration<br>Testing"]
-        L3F["Detailed<br>Documentation"]
+    subgraph "第3-4级：功能/系统"
+        L3A["首先确定<br>目录结构"]
+        L3B["在文件之前<br>验证目录"]
+        L3C["分阶段<br>构建"]
+        L3D["创建后<br>验证文件"]
+        L3E["集成<br>测试"]
+        L3F["详细<br>文档"]
     end
     
     L1A --> L1B --> L1C --> L1D
@@ -191,75 +190,68 @@ graph TD
     L3A --> L3B --> L3C --> L3D --> L3E --> L3F
 ```
 
-## 📝 BUILD DOCUMENTATION FORMAT
+## 📝 构建文档格式
 
-Document builds with:
-
-```
-## Build: [Component/Feature]
-
-### Approach
-[Brief description of build approach]
-
-### Directory Structure
-- [/absolute/path/to/dir1/]: [Purpose]
-- [/absolute/path/to/dir2/]: [Purpose]
-
-### Code Changes
-- [/absolute/path/to/file1.ext]: [Description of changes]
-- [/absolute/path/to/file2.ext]: [Description of changes]
-
-### Verification Steps
-- [✓] Directory structure created and verified
-- [✓] All files created in correct locations
-- [✓] File content verified
-
-### Commands Executed
-```
-[Command 1]
-[Result]
-```
+文档构建示例：
 
 ```
-[Command 2]
-[Result]
+## 构建：[组件/功能]
+
+### 方法
+[构建方法的简要描述]
+
+### 目录结构
+- [/absolute/path/to/dir1/]：[用途]
+- [/absolute/path/to/dir2/]：[用途]
+
+### 代码更改
+- [/absolute/path/to/file1.ext]：[更改描述]
+- [/absolute/path/to/file2.ext]：[更改描述]
+
+### 验证步骤
+- [✓] 创建并验证了目录结构
+- [✓] 所有文件都创建在正确位置
+- [✓] 已验证文件内容
+
+### 执行的命令
+```
+[命令1]
+[结果]
 ```
 
-### Testing
-- [Test 1]: [Result]
-- [Test 2]: [Result]
-
-### Status
-- [x] Build complete
-- [x] Testing performed
-- [x] File verification completed
-- [ ] Documentation updated
+```
+[命令2]
+[结果]
 ```
 
-## 📊 TASKS.MD UPDATE FORMAT
+### 测试
+- [测试1]：[结果]
+- [测试2]：[结果]
 
-During the build process, update tasks.md with progress:
+### 状态
+- [x] 构建完成
+- [x] 执行了测试
+- [x] 完成了文件验证
+- [ ] 更新了文档
+```
+
+## 📊 TASKS.MD更新格式
+
+在构建过程中，用进度更新tasks.md：
 
 ```
-## Status
-- [x] Initialization complete
-- [x] Planning complete
-[For Level 3-4:]
-- [x] Creative phases complete
-- [x] Directory structure created and verified
-- [x] [Built component 1]
-- [x] [Built component 2]
-- [ ] [Remaining component]
+## 状态
+- [x] 初始化完成
+- [x] 规划完成
+[对于第3-4级：]
+- [x] 创意阶段完成
+- [x] 创建并验证了目录结构
+- [x] [构建的组件1]
+- [x] [构建的组件2]
+- [ ] [剩余组件]
 
-## Build Progress
-- [Component 1]: Complete
-  - Files: [/absolute/path/to/files]
-  - [Details about implementation]
-- [Component 2]: Complete
-  - Files: [/absolute/path/to/files]
-  - [Details about implementation]
-- [Component 3]: In Progress
-  - [Current status]
+## 构建进度
+- [组件1]：完成
 ```
 
 ## 📋 PROGRESS.MD UPDATE FORMAT

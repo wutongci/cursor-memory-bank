@@ -3,17 +3,17 @@ description: Utility for remembering how to call VAN QA rules
 globs: van-qa-utils/rule-calling-help.mdc
 alwaysApply: false
 ---
-# VAN QA: HOW TO CALL RULES
+# VAN QA: 如何调用规则
 
-> **TL;DR:** This file provides examples and reminders on how to properly call VAN QA rules using the fetch_rules tool.
+> **简介:** 本文件提供使用fetch_rules工具正确调用VAN QA规则的示例和提醒。
 
-## 🚨 RULE CALLING SYNTAX
+## 🚨 规则调用语法
 
-Always use the `fetch_rules` tool with the correct syntax:
+始终使用`fetch_rules`工具并使用正确的语法:
 
 ```
 <function_calls>
 <invoke name="fetch_rules">
-<parameter name="rule_names">["isolation_rules/visual-maps/rule-name"]
+<parameter name="rule_names">["isolation_rules/visual-maps/rule-name"]</parameter>
 </invoke>
 </function_calls> 

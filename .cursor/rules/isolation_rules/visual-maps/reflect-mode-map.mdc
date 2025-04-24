@@ -9,100 +9,100 @@ globs: "**/reflect*/**", "**/review*/**", "**/retrospect*/**"
 alwaysApply: false
 ---
 
-# REFLECT MODE: TASK REVIEW PROCESS MAP
+# 反思模式：任务审查流程图
 
-> **TL;DR:** This visual map guides the REFLECT mode process, focusing on structured review of the implementation, documenting lessons learned, and preparing insights for future reference.
+> **简介：** 本可视化地图指导反思模式流程，专注于对实现进行结构化审查，记录经验教训，并准备洞察以供未来参考。
 
-## 🧭 REFLECT MODE PROCESS FLOW
+## 🧭 反思模式流程
 
 ```mermaid
 graph TD
-    Start["START REFLECT MODE"] --> ReadTasks["Read tasks.md<br>and progress.md"]
+    Start["开始反思模式"] --> ReadTasks["阅读tasks.md<br>和progress.md"]
     
-    %% Initial Assessment
-    ReadTasks --> VerifyImplement{"Implementation<br>Complete?"}
-    VerifyImplement -->|"No"| ReturnImplement["Return to<br>IMPLEMENT Mode"]
-    VerifyImplement -->|"Yes"| AssessLevel{"Determine<br>Complexity Level"}
+    %% 初始评估
+    ReadTasks --> VerifyImplement{"实现<br>完成？"}
+    VerifyImplement -->|"否"| ReturnImplement["返回<br>实现模式"]
+    VerifyImplement -->|"是"| AssessLevel{"确定<br>复杂度级别"}
     
-    %% Level-Based Reflection
-    AssessLevel -->|"Level 1"| L1Reflect["LEVEL 1 REFLECTION<br>Level1/reflection-basic.md"]
-    AssessLevel -->|"Level 2"| L2Reflect["LEVEL 2 REFLECTION<br>Level2/reflection-standard.md"]
-    AssessLevel -->|"Level 3"| L3Reflect["LEVEL 3 REFLECTION<br>Level3/reflection-comprehensive.md"]
-    AssessLevel -->|"Level 4"| L4Reflect["LEVEL 4 REFLECTION<br>Level4/reflection-advanced.md"]
+    %% 基于级别的反思
+    AssessLevel -->|"第1级"| L1Reflect["第1级反思<br>Level1/reflection-basic.md"]
+    AssessLevel -->|"第2级"| L2Reflect["第2级反思<br>Level2/reflection-standard.md"]
+    AssessLevel -->|"第3级"| L3Reflect["第3级反思<br>Level3/reflection-comprehensive.md"]
+    AssessLevel -->|"第4级"| L4Reflect["第4级反思<br>Level4/reflection-advanced.md"]
     
-    %% Level 1 Reflection (Quick)
-    L1Reflect --> L1Review["Review<br>Bug Fix"]
-    L1Review --> L1Document["Document<br>Solution"]
-    L1Document --> L1Update["Update<br>tasks.md"]
+    %% 第1级反思（快速）
+    L1Reflect --> L1Review["审查<br>错误修复"]
+    L1Review --> L1Document["记录<br>解决方案"]
+    L1Document --> L1Update["更新<br>tasks.md"]
     
-    %% Level 2 Reflection (Standard)
-    L2Reflect --> L2Review["Review<br>Enhancement"]
-    L2Review --> L2WWW["Document<br>What Went Well"]
-    L2WWW --> L2Challenges["Document<br>Challenges"]
-    L2Challenges --> L2Lessons["Document<br>Lessons Learned"]
-    L2Lessons --> L2Update["Update<br>tasks.md"]
+    %% 第2级反思（标准）
+    L2Reflect --> L2Review["审查<br>增强"]
+    L2Review --> L2WWW["记录<br>进展顺利的方面"]
+    L2WWW --> L2Challenges["记录<br>挑战"]
+    L2Challenges --> L2Lessons["记录<br>经验教训"]
+    L2Lessons --> L2Update["更新<br>tasks.md"]
     
-    %% Level 3-4 Reflection (Comprehensive)
-    L3Reflect & L4Reflect --> L34Review["Review Implementation<br>& Creative Phases"]
-    L34Review --> L34Plan["Compare Against<br>Original Plan"]
-    L34Plan --> L34WWW["Document<br>What Went Well"]
-    L34WWW --> L34Challenges["Document<br>Challenges"]
-    L34Challenges --> L34Lessons["Document<br>Lessons Learned"]
-    L34Lessons --> L34ImproveProcess["Document Process<br>Improvements"]
-    L34ImproveProcess --> L34Update["Update<br>tasks.md"]
+    %% 第3-4级反思（综合）
+    L3Reflect & L4Reflect --> L34Review["审查实现<br>和创意阶段"]
+    L34Review --> L34Plan["与原始计划<br>进行比较"]
+    L34Plan --> L34WWW["记录<br>进展顺利的方面"]
+    L34WWW --> L34Challenges["记录<br>挑战"]
+    L34Challenges --> L34Lessons["记录<br>经验教训"]
+    L34Lessons --> L34ImproveProcess["记录流程<br>改进"]
+    L34ImproveProcess --> L34Update["更新<br>tasks.md"]
     
-    %% Completion & Transition
-    L1Update & L2Update & L34Update --> CreateReflection["Create<br>reflection.md"]
-    CreateReflection --> UpdateSystem["Update System<br>Documentation"]
-    UpdateSystem --> Transition["NEXT MODE:<br>ARCHIVE MODE"]
+    %% 完成和转换
+    L1Update & L2Update & L34Update --> CreateReflection["创建<br>reflection.md"]
+    CreateReflection --> UpdateSystem["更新系统<br>文档"]
+    UpdateSystem --> Transition["下一模式：<br>归档模式"]
 ```
 
-## 📋 REFLECTION STRUCTURE
+## 📋 反思结构
 
-The reflection should follow this structured format:
+反思应遵循以下结构化格式：
 
 ```mermaid
 graph TD
-    subgraph "Reflection Document Structure"
-        Header["# TASK REFLECTION: [Task Name]"]
-        Summary["## SUMMARY<br>Brief summary of completed task"]
-        WWW["## WHAT WENT WELL<br>Successful aspects of implementation"]
-        Challenges["## CHALLENGES<br>Difficulties encountered during implementation"]
-        Lessons["## LESSONS LEARNED<br>Key insights gained from the experience"]
-        ProcessImp["## PROCESS IMPROVEMENTS<br>How to improve for future tasks"]
-        TechImp["## TECHNICAL IMPROVEMENTS<br>Better approaches for similar tasks"]
-        NextSteps["## NEXT STEPS<br>Follow-up actions or future work"]
+    subgraph "反思文档结构"
+        Header["# 任务反思：[任务名称]"]
+        Summary["## 摘要<br>已完成任务的简要总结"]
+        WWW["## 进展顺利的方面<br>实现的成功方面"]
+        Challenges["## 挑战<br>实现过程中遇到的困难"]
+        Lessons["## 经验教训<br>从经验中获得的关键洞察"]
+        ProcessImp["## 流程改进<br>如何改进未来任务"]
+        TechImp["## 技术改进<br>类似任务的更好方法"]
+        NextSteps["## 下一步<br>后续行动或未来工作"]
     end
     
     Header --> Summary --> WWW --> Challenges --> Lessons --> ProcessImp --> TechImp --> NextSteps
 ```
 
-## 📊 REQUIRED FILE STATE VERIFICATION
+## 📊 必需的文件状态验证
 
-Before reflection can begin, verify file state:
+在开始反思前，验证文件状态：
 
 ```mermaid
 graph TD
-    Start["File State<br>Verification"] --> CheckTasks{"tasks.md has<br>implementation<br>complete?"}
+    Start["文件状态<br>验证"] --> CheckTasks{"tasks.md<br>实现<br>完成？"}
     
-    CheckTasks -->|"No"| ErrorImplement["ERROR:<br>Return to IMPLEMENT Mode"]
-    CheckTasks -->|"Yes"| CheckProgress{"progress.md<br>has implementation<br>details?"}
+    CheckTasks -->|"否"| ErrorImplement["错误：<br>返回实现模式"]
+    CheckTasks -->|"是"| CheckProgress{"progress.md<br>包含实现<br>细节？"}
     
-    CheckProgress -->|"No"| ErrorProgress["ERROR:<br>Update progress.md first"]
-    CheckProgress -->|"Yes"| ReadyReflect["Ready for<br>Reflection"]
+    CheckProgress -->|"否"| ErrorProgress["错误：<br>先更新progress.md"]
+    CheckProgress -->|"是"| ReadyReflect["准备<br>反思"]
 ```
 
-## 🔍 IMPLEMENTATION REVIEW APPROACH
+## 🔍 实现审查方法
 
 ```mermaid
 graph TD
-    subgraph "Implementation Review"
-        Original["Review Original<br>Requirements"]
-        Plan["Compare Against<br>Implementation Plan"]
-        Actual["Assess Actual<br>Implementation"]
-        Creative["Review Creative<br>Phase Decisions"]
-        Changes["Identify Deviations<br>from Plan"]
-        Results["Evaluate<br>Results"]
+    subgraph "实现审查"
+        Original["审查原始<br>需求"]
+        Plan["与实现计划<br>进行比较"]
+        Actual["评估实际<br>实现"]
+        Creative["审查创意<br>阶段决策"]
+        Changes["识别与计划<br>的偏差"]
+        Results["评估<br>结果"]
     end
     
     Original --> Plan --> Actual
@@ -111,124 +111,124 @@ graph TD
     Changes --> Results
 ```
 
-## 📝 REFLECTION DOCUMENT TEMPLATES
+## 📝 反思文档模板
 
-### Level 1 (Basic) Reflection
+### 第1级（基础）反思
 ```
-# Bug Fix Reflection: [Bug Name]
+# 错误修复反思：[错误名称]
 
-## Summary
-[Brief description of the bug and solution]
+## 摘要
+[错误和解决方案的简要描述]
 
-## Implementation
-[Description of the fix implemented]
+## 实现
+[已实施修复的描述]
 
-## Testing
-[Description of testing performed]
+## 测试
+[执行的测试描述]
 
-## Additional Notes
-[Any other relevant information]
-```
-
-### Levels 2-4 (Comprehensive) Reflection
-```
-# Task Reflection: [Task Name]
-
-## Summary
-[Brief summary of the task and what was achieved]
-
-## What Went Well
-- [Success point 1]
-- [Success point 2]
-- [Success point 3]
-
-## Challenges
-- [Challenge 1]: [How it was addressed]
-- [Challenge 2]: [How it was addressed]
-- [Challenge 3]: [How it was addressed]
-
-## Lessons Learned
-- [Lesson 1]
-- [Lesson 2]
-- [Lesson 3]
-
-## Process Improvements
-- [Process improvement 1]
-- [Process improvement 2]
-
-## Technical Improvements
-- [Technical improvement 1]
-- [Technical improvement 2]
-
-## Next Steps
-- [Follow-up task 1]
-- [Follow-up task 2]
+## 附加说明
+[任何其他相关信息]
 ```
 
-## 📊 REFLECTION QUALITY METRICS
+### 第2-4级（综合）反思
+```
+# 任务反思：[任务名称]
+
+## 摘要
+[任务及其成就的简要总结]
+
+## 进展顺利的方面
+- [成功点1]
+- [成功点2]
+- [成功点3]
+
+## 挑战
+- [挑战1]：[如何解决]
+- [挑战2]：[如何解决]
+- [挑战3]：[如何解决]
+
+## 经验教训
+- [经验1]
+- [经验2]
+- [经验3]
+
+## 流程改进
+- [流程改进1]
+- [流程改进2]
+
+## 技术改进
+- [技术改进1]
+- [技术改进2]
+
+## 下一步
+- [后续任务1]
+- [后续任务2]
+```
+
+## 📊 反思质量指标
 
 ```mermaid
 graph TD
-    subgraph "Reflection Quality Metrics"
-        Specific["Specific<br>Not general or vague"]
-        Actionable["Actionable<br>Provides clear direction"]
-        Honest["Honest<br>Acknowledges successes and failures"]
-        Forward["Forward-Looking<br>Focuses on future improvement"]
-        Evidence["Evidence-Based<br>Based on concrete examples"]
+    subgraph "反思质量指标"
+        Specific["具体<br>不含糊或模糊"]
+        Actionable["可行动<br>提供明确方向"]
+        Honest["诚实<br>承认成功和失败"]
+        Forward["前瞻性<br>专注于未来改进"]
+        Evidence["基于证据<br>基于具体示例"]
     end
 ```
 
-## 📋 TASKS.MD UPDATE FORMAT
+## 📋 TASKS.MD更新格式
 
-During reflection, update tasks.md with:
-
-```
-## Status
-- [x] Initialization complete
-- [x] Planning complete
-[For Level 3-4:]
-- [x] Creative phases complete
-- [x] Implementation complete
-- [x] Reflection complete
-- [ ] Archiving
-
-## Reflection Highlights
-- **What Went Well**: [Key successes]
-- **Challenges**: [Key challenges]
-- **Lessons Learned**: [Key lessons]
-- **Next Steps**: [Follow-up actions]
-```
-
-## 📊 REFLECTION VERIFICATION CHECKLIST
+在反思期间，使用以下内容更新tasks.md：
 
 ```
-✓ REFLECTION VERIFICATION
-- Implementation thoroughly reviewed? [YES/NO]
-- What Went Well section completed? [YES/NO]
-- Challenges section completed? [YES/NO]
-- Lessons Learned section completed? [YES/NO]
-- Process Improvements identified? [YES/NO]
-- Technical Improvements identified? [YES/NO]
-- Next Steps documented? [YES/NO]
-- reflection.md created? [YES/NO]
-- tasks.md updated with reflection status? [YES/NO]
+## 状态
+- [x] 初始化完成
+- [x] 规划完成
+[对于第3-4级：]
+- [x] 创意阶段完成
+- [x] 实现完成
+- [x] 反思完成
+- [ ] 归档
 
-→ If all YES: Reflection complete - ready for ARCHIVE mode
-→ If any NO: Complete missing reflection elements
+## 反思亮点
+- **进展顺利的方面**：[关键成功]
+- **挑战**：[关键挑战]
+- **经验教训**：[关键经验]
+- **下一步**：[后续行动]
 ```
 
-## 🔄 MODE TRANSITION NOTIFICATION
-
-When reflection is complete, notify user with:
+## 📊 反思验证清单
 
 ```
-## REFLECTION COMPLETE
+✓ 反思验证
+- 实现是否经过彻底审查？[是/否]
+- 是否完成了进展顺利的方面部分？[是/否]
+- 是否完成了挑战部分？[是/否]
+- 是否完成了经验教训部分？[是/否]
+- 是否确定了流程改进？[是/否]
+- 是否确定了技术改进？[是/否]
+- 是否记录了下一步？[是/否]
+- 是否创建了reflection.md？[是/否]
+- 是否用反思状态更新了tasks.md？[是/否]
 
-✅ Implementation thoroughly reviewed
-✅ Reflection document created
-✅ Lessons learned documented
-✅ Process improvements identified
-✅ tasks.md updated with reflection status
+→ 如果全是：反思完成 - 准备进入归档模式
+→ 如果有否：完成缺失的反思元素
+```
 
-→ NEXT RECOMMENDED MODE: ARCHIVE MODE
+## 🔄 模式转换通知
+
+当反思完成时，通知用户：
+
+```
+## 反思完成
+
+✅ 实现经过彻底审查
+✅ 已创建反思文档
+✅ 已记录经验教训
+✅ 已确定流程改进
+✅ 已用反思状态更新tasks.md
+
+→ 推荐下一模式：归档模式
 ``` 

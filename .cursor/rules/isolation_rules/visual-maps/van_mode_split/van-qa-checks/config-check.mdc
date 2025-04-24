@@ -3,28 +3,28 @@ description: Process map for VAN QA configuration validation
 globs: van-qa-checks/config-check.mdc
 alwaysApply: false
 ---
-# VAN QA: CONFIGURATION VALIDATION
+# VAN QA: 配置验证
 
-> **TL;DR:** This component validates configuration files for proper syntax and compatibility with the project and platform.
+> **简介:** 此组件验证配置文件的语法正确性以及与项目和平台的兼容性。
 
-## 2️⃣ CONFIGURATION VALIDATION PROCESS
+## 2️⃣ 配置验证流程
 
 ```mermaid
 graph TD
-    Start["Configuration Validation"] --> IdentifyConfigs["Identify Configuration<br>Files"]
-    IdentifyConfigs --> ReadConfigs["Read Configuration<br>Files"]
-    ReadConfigs --> ValidateSyntax["Validate Syntax<br>and Format"]
-    ValidateSyntax --> SyntaxStatus{"Syntax<br>Valid?"}
+    Start["配置验证"] --> IdentifyConfigs["识别配置<br>文件"]
+    IdentifyConfigs --> ReadConfigs["读取配置<br>文件"]
+    ReadConfigs --> ValidateSyntax["验证语法<br>和格式"]
+    ValidateSyntax --> SyntaxStatus{"语法<br>有效?"}
     
-    SyntaxStatus -->|"Yes"| CheckCompatibility["Check Compatibility<br>with Platform"]
-    SyntaxStatus -->|"No"| FixSyntax["Fix Syntax<br>Errors"]
-    FixSyntax --> RetryValidate["Retry Validation"]
+    SyntaxStatus -->|"是"| CheckCompatibility["检查与平台<br>的兼容性"]
+    SyntaxStatus -->|"否"| FixSyntax["修复语法<br>错误"]
+    FixSyntax --> RetryValidate["重试验证"]
     RetryValidate --> SyntaxStatus
     
-    CheckCompatibility --> CompatStatus{"Compatible with<br>Platform?"}
-    CompatStatus -->|"Yes"| ConfigSuccess["Configurations Validated<br>✅ PASS"]
-    CompatStatus -->|"No"| AdaptConfigs["Adapt Configurations<br>for Platform"]
-    AdaptConfigs --> RetryCompat["Retry Compatibility<br>Check"]
+    CheckCompatibility --> CompatStatus{"与平台<br>兼容?"}
+    CompatStatus -->|"是"| ConfigSuccess["配置已验证<br>✅ 通过"]
+    CompatStatus -->|"否"| AdaptConfigs["调整配置<br>适配平台"]
+    AdaptConfigs --> RetryCompat["重试兼容性<br>检查"]
     RetryCompat --> CompatStatus
     
     style Start fill:#4da6ff,stroke:#0066cc,color:white
@@ -33,9 +33,9 @@ graph TD
     style CompatStatus fill:#f6546a,stroke:#c30052,color:white
 ```
 
-### Configuration Validation Implementation:
+### 配置验证实现:
 ```powershell
-# Example: Validate configuration files for a web project
+# 示例: 验证Web项目的配置文件
 function Validate-Configurations {
     $configFiles = @(
         "package.json",
@@ -48,56 +48,56 @@ function Validate-Configurations {
     
     foreach ($configFile in $configFiles) {
         if (Test-Path $configFile) {
-            # Check JSON syntax for JSON files
+            # 检查JSON文件的JSON语法
             if ($configFile -match "\.json$") {
                 try {
                     Get-Content $configFile -Raw | ConvertFrom-Json | Out-Null
                 } catch {
-                    $invalidConfigs += "$configFile (JSON syntax error: $($_.Exception.Message))"
+                    $invalidConfigs += "$configFile (JSON语法错误: $($_.Exception.Message))"
                     continue
                 }
             }
             
-            # Specific configuration compatibility checks
+            # 特定配置兼容性检查
             if ($configFile -eq "vite.config.js") {
                 $content = Get-Content $configFile -Raw
-                # Check for React plugin in Vite config
+                # 检查Vite配置中的React插件
                 if ($content -notmatch "react\(\)") {
-                    $incompatibleConfigs += "$configFile (Missing React plugin for React project)"
+                    $incompatibleConfigs += "$configFile (React项目缺少React插件)"
                 }
             }
         } else {
-            $invalidConfigs += "$configFile (file not found)"
+            $invalidConfigs += "$configFile (文件未找到)"
         }
     }
     
-    # Display results
+    # 显示结果
     if ($invalidConfigs.Count -eq 0 -and $incompatibleConfigs.Count -eq 0) {
-        Write-Output "✅ All configurations validated and compatible"
+        Write-Output "✅ 所有配置已验证并兼容"
         return $true
     } else {
         if ($invalidConfigs.Count -gt 0) {
-            Write-Output "❌ Invalid configurations: $($invalidConfigs -join ', ')"
+            Write-Output "❌ 无效配置: $($invalidConfigs -join ', ')"
         }
         if ($incompatibleConfigs.Count -gt 0) {
-            Write-Output "❌ Incompatible configurations: $($incompatibleConfigs -join ', ')"
+            Write-Output "❌ 不兼容配置: $($incompatibleConfigs -join ', ')"
         }
         return $false
     }
 }
 ```
 
-## 📋 CONFIGURATION VALIDATION CHECKPOINT
+## 📋 配置验证检查点
 
 ```
-✓ CHECKPOINT: CONFIGURATION VALIDATION
-- All configuration files found? [YES/NO]
-- All configuration syntax valid? [YES/NO]
-- All configurations compatible with platform? [YES/NO]
+✓ 检查点: 配置验证
+- 找到所有配置文件? [是/否]
+- 所有配置语法有效? [是/否]
+- 所有配置与平台兼容? [是/否]
 
-→ If all YES: Continue to Environment Validation.
-→ If any NO: Fix configuration issues before continuing.
+→ 如果全部为是: 继续进行环境验证。
+→ 如果任一为否: 在继续前修复配置问题。
 ```
 
-**Next Step (on PASS):** Load `van-qa-checks/environment-check.mdc`.
-**Next Step (on FAIL):** Check `van-qa-utils/common-fixes.mdc` for configuration fixes. 
+**下一步(通过时):** 加载 `van-qa-checks/environment-check.mdc`。
+**下一步(失败时):** 查看 `van-qa-utils/common-fixes.mdc` 获取配置修复方案。 

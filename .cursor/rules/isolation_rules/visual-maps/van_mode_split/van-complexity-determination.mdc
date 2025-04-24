@@ -3,29 +3,29 @@ description: Visual process map for VAN mode complexity determination
 globs: van-complexity-determination.mdc
 alwaysApply: false
 ---
-# VAN MODE: EARLY COMPLEXITY DETERMINATION
+# VAN模式: 早期复杂度判断
 
-> **TL;DR:** Analyzes the task to determine complexity level. For Level 1, VAN mode completes. For Levels 2-4, triggers a mandatory switch to PLAN mode.
+> **简介:** 分析任务以确定复杂度级别。对于级别1，VAN模式完成。对于级别2-4，触发强制切换到PLAN模式。
 
-## 🧩 COMPLEXITY DETERMINATION PROCESS
+## 🧩 复杂度判断流程
 
 ```mermaid
 graph TD
-    CD["Complexity<br>Determination"] --> AnalyzeTask["Analyze Task<br>Requirements"]
+    CD["复杂度<br>判断"] --> AnalyzeTask["分析任务<br>需求"]
     
-    AnalyzeTask --> CheckKeywords["Check Task<br>Keywords"]
-    CheckKeywords --> ScopeCheck["Assess<br>Scope Impact"]
-    ScopeCheck --> RiskCheck["Evaluate<br>Risk Level"]
-    RiskCheck --> EffortCheck["Estimate<br>Implementation Effort"]
+    AnalyzeTask --> CheckKeywords["检查任务<br>关键词"]
+    CheckKeywords --> ScopeCheck["评估<br>影响范围"]
+    ScopeCheck --> RiskCheck["评估<br>风险级别"]
+    RiskCheck --> EffortCheck["估算<br>实现工作量"]
     
-    EffortCheck --> DetermineLevel{"Determine<br>Complexity Level"}
-    DetermineLevel -->|"Level 1"| L1["Level 1:<br>Quick Bug Fix"]
-    DetermineLevel -->|"Level 2"| L2["Level 2:<br>Simple Enhancement"]
-    DetermineLevel -->|"Level 3"| L3["Level 3:<br>Intermediate Feature"]
-    DetermineLevel -->|"Level 4"| L4["Level 4:<br>Complex System"]
+    EffortCheck --> DetermineLevel{"确定<br>复杂度级别"}
+    DetermineLevel -->|"级别1"| L1["级别1:<br>快速Bug修复"]
+    DetermineLevel -->|"级别2"| L2["级别2:<br>简单增强"]
+    DetermineLevel -->|"级别3"| L3["级别3:<br>中等功能"]
+    DetermineLevel -->|"级别4"| L4["级别4:<br>复杂系统"]
     
-    L1 --> CDComplete["Complexity Determination<br>Complete (Level 1)"]
-    L2 & L3 & L4 --> ModeSwitch["Force Mode Switch<br>to PLAN"]
+    L1 --> CDComplete["复杂度判断<br>完成(级别1)"]
+    L2 & L3 & L4 --> ModeSwitch["强制模式切换<br>到PLAN"]
     
     style CD fill:#4da6ff,stroke:#0066cc,color:white
     style CDComplete fill:#10b981,stroke:#059669,color:white
@@ -33,28 +33,28 @@ graph TD
     style DetermineLevel fill:#f6546a,stroke:#c30052,color:white
 ```
 
-## 🚨 MODE TRANSITION TRIGGER (VAN to PLAN)
+## 🚨 模式转换触发器(VAN到PLAN)
 
-If complexity is determined to be Level 2, 3, or 4:
-
-```
-🚫 LEVEL [2-4] TASK DETECTED
-Implementation in VAN mode is BLOCKED
-This task REQUIRES PLAN mode
-You MUST switch to PLAN mode for proper documentation and planning
-Type 'PLAN' to switch to planning mode
-```
-
-## 📋 CHECKPOINT VERIFICATION TEMPLATE (Example)
+如果复杂度被确定为级别2、3或4:
 
 ```
-✓ SECTION CHECKPOINT: COMPLEXITY DETERMINATION
-- Task Analyzed? [YES/NO]
-- Complexity Level Determined? [YES/NO]
-
-→ If Level 1: Proceed to VAN Mode Completion.
-→ If Level 2-4: Trigger PLAN Mode transition.
+🚫 检测到[2-4]级别任务
+VAN模式下的实现被阻止
+此任务需要PLAN模式
+您必须切换到PLAN模式以进行适当的文档记录和规划
+输入'PLAN'切换到规划模式
 ```
 
-**Next Step (Level 1):** Complete VAN Initialization (e.g., initialize Memory Bank if needed).
-**Next Step (Level 2-4):** Exit VAN mode and initiate PLAN mode. 
+## 📋 检查点验证模板(示例)
+
+```
+✓ 部分检查点: 复杂度判断
+- 任务已分析? [是/否]
+- 复杂度级别已确定? [是/否]
+
+→ 如果级别1: 继续完成VAN模式。
+→ 如果级别2-4: 触发PLAN模式转换。
+```
+
+**下一步(级别1):** 完成VAN初始化(例如，如需要初始化Memory Bank)。
+**下一步(级别2-4):** 退出VAN模式并启动PLAN模式。 
