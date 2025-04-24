@@ -1,36 +1,36 @@
-# 📚 CURRENT SYSTEM STATE
+# 📚 当前系统状态
 
-The Memory Bank System now features:
+记忆库系统现在具有以下特点：
 
-1. **Context-Optimized Visual Navigation**
-   - Selective document loading based on current phase
-   - Visual process maps requiring minimal context space
-   - Phase-specific document lists to prevent context overconsumption
-   - Pattern-based information processing for cognitive efficiency
+1. **上下文优化的可视化导航**
+   - 基于当前阶段的选择性文档加载
+   - 需要最小上下文空间的视觉流程图
+   - 防止上下文过度消耗的特定阶段文档列表
+   - 用于认知效率的基于模式的信息处理
 
-2. **7 Core Files with Optimal Loading**
-   - projectbrief.md - Loaded selectively at initialization
-   - productContext.md - Referenced only when needed
-   - activeContext.md - Loaded during current task focus
-   - systemPatterns.md - Referenced for architectural decisions
-   - techContext.md - Loaded for technology-specific guidance
-   - progress.md - Referenced for status updates
-   - tasks.md - Single source of truth, consistently maintained
+2. **具有最佳加载的7个核心文件**
+   - projectbrief.md - 在初始化时选择性加载
+   - productContext.md - 仅在需要时引用
+   - activeContext.md - 在当前任务焦点期间加载
+   - systemPatterns.md - 用于架构决策的参考
+   - techContext.md - 为特定技术指导加载
+   - progress.md - 用于状态更新的参考
+   - tasks.md - 唯一真实来源，持续维护
 
-3. **Context-Efficient Creative Phase System**
-   - Visual markers requiring minimal context space
-   - Standardized format with optimized information density
-   - Compact decision matrices for option evaluation
-   - Visual enforcement requiring minimal context overhead
+3. **上下文高效的创意阶段系统**
+   - 需要最小上下文空间的视觉标记
+   - 具有优化信息密度的标准格式
+   - 用于选项评估的紧凑决策矩阵
+   - 需要最小上下文开销的视觉执行
 
-4. **Context-Aware Process Enforcement**
-   - Visual checkpoints consuming minimal context space
-   - Compact violation detection and correction mechanisms
-   - Pattern-based verification for efficient processing
-   - Reference-based guidance rather than duplication
+4. **上下文感知的流程执行**
+   - 消耗最小上下文空间的视觉检查点
+   - 紧凑的违规检测和纠正机制
+   - 用于高效处理的基于模式的验证
+   - 基于引用而非重复的指导
 
-5. **Dynamic Context Management**
-   - Real-time context window usage optimization
-   - Minimal mode for constrained operations
-   - Automated document unloading for non-essential information
-   - Visual references replacing full document loading 
+5. **动态上下文管理**
+   - 实时上下文窗口使用优化
+   - 用于受限操作的最小模式
+   - 对非必要信息的自动文档卸载
+   - 替代完整文档加载的视觉引用 

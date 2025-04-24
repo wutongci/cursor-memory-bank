@@ -1,18 +1,18 @@
-# MEMORY BANK SYSTEM: INTRODUCTION
+# 记忆库系统：介绍
 
-> **TL;DR:** The Memory Bank System evolved through nine optimization rounds to address verbosity, redundancy, maintenance challenges, process scaling, decision quality, creative phase implementation, and context window optimization. The latest improvement implements a Visual Navigation Layer with selective document loading that dramatically reduces context window usage, allowing the AI more working space while maintaining process integrity.
+> **摘要：** 记忆库系统经历了九轮优化，解决了冗长、冗余、维护挑战、流程扩展、决策质量、创意阶段实施和上下文窗口优化等问题。最新的改进实现了具有选择性文档加载的可视化导航层，大幅减少了上下文窗口的使用，让AI在保持流程完整性的同时拥有更多工作空间。
 
-## 🎯 SYSTEM PURPOSE & INITIAL STATE
+## 🎯 系统目的和初始状态
 
-The Memory Bank System was designed to overcome a fundamental limitation of LLMs: their inability to retain context between sessions. The system creates a structured documentation architecture that serves as the AI's "memory" across interactions, consisting of:
+记忆库系统旨在克服LLMs的一个基本限制：它们无法在会话之间保留上下文。该系统创建了一个结构化的文档架构，作为AI跨交互的"记忆"，包括：
 
-- Core documentation files (projectbrief.md, productContext.md, etc.)
-- Structured workflow with verification steps
-- Command execution protocols
-- Documentation creation and maintenance rules
+- 核心文档文件（projectbrief.md、productContext.md等）
+- 带有验证步骤的结构化工作流
+- 命令执行协议
+- 文档创建和维护规则
 
-While effective, the initial system had several opportunities for optimization:
-- Verbose documentation requiring significant context window space
-- Rigid structures that were sometimes cumbersome
-- Redundancies across multiple files
-- Heavy maintenance overhead 
+虽然有效，但初始系统有几个优化机会：
+- 详细的文档需要大量上下文窗口空间
+- 有时繁琐的刚性结构
+- 多个文件之间的冗余
+- 沉重的维护开销 

@@ -70,3 +70,4 @@ pids
 
 # Cursor specific
 .cursor/workspace/ 
+.specstory

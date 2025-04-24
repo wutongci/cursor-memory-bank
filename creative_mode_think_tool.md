@@ -1,10 +1,10 @@
-# CREATIVE Mode and Claude's "Think" Tool
+# CREATIVE模式和Claude的"Think"工具
 
-This document explains how Memory Bank's CREATIVE mode implements concepts similar to Anthropic's Claude "Think" tool methodology, as described in their [engineering blog](https://www.anthropic.com/engineering/claude-think-tool).
+本文档解释了记忆库的CREATIVE模式如何实现类似于Anthropic的Claude "Think"工具方法论的概念，如他们的[工程博客](https://www.anthropic.com/engineering/claude-think-tool)所述。
 
-## Conceptual Parallels
+## 概念并行
 
-The following diagram illustrates the conceptual similarities between Claude's "Think" tool methodology and Memory Bank's CREATIVE mode:
+以下图表说明了Claude的"Think"工具方法论和记忆库的CREATIVE模式之间的概念相似性：
 
 ```mermaid
 graph TD
@@ -35,223 +35,223 @@ graph TD
     style CM5 fill:#a8d5ff,stroke:#88b5e0
 ```
 
-## Core Principles of Claude's "Think" Tool
+## Claude的"Think"工具核心原则
 
-Claude's "Think" tool methodology centers around:
+Claude的"Think"工具方法论围绕以下几点：
 
-1. **Structured Thinking Process**: Breaking down complex problems into manageable components
-2. **Explicit Reasoning**: Clearly documenting the reasoning process
-3. **Option Exploration**: Systematically exploring multiple solution approaches
-4. **Trade-off Analysis**: Weighing pros and cons of different options
-5. **Decision Documentation**: Creating a record of decisions and their rationales
+1. **结构化思考过程**：将复杂问题分解为可管理的组件
+2. **明确推理**：清晰记录推理过程
+3. **选项探索**：系统地探索多种解决方案方法
+4. **权衡分析**：权衡不同选项的利弊
+5. **决策文档**：创建决策及其理由的记录
 
-## How CREATIVE Mode Implements These Principles
+## CREATIVE模式如何实现这些原则
 
-The Memory Bank CREATIVE mode implements similar concepts through:
+记忆库CREATIVE模式通过以下方式实现类似概念：
 
-### 1. Structured Phases
+### 1. 结构化阶段
 
-CREATIVE mode enforces a structured approach to design decisions through explicit phases:
+CREATIVE模式通过明确的阶段强制执行设计决策的结构化方法：
 
 ```
-Phase 1: Component Breakdown
-Phase 2: Option Exploration
-Phase 3: Trade-off Analysis
-Phase 4: Decision Documentation
-Phase 5: Decision Verification
+阶段1：组件分解
+阶段2：选项探索
+阶段3：权衡分析
+阶段4：决策文档
+阶段5：决策验证
 ```
 
-Each phase has specific outputs and acceptance criteria that must be met before proceeding.
+每个阶段都有在继续之前必须满足的特定输出和接受标准。
 
-### 2. Component Breakdown Templates
+### 2. 组件分解模板
 
-The CREATIVE mode provides templates for breaking down complex components:
+CREATIVE模式提供用于分解复杂组件的模板：
 
 ```markdown
-# Component: [Component Name]
+# 组件：[组件名称]
 
-## Functional Requirements
-- [Requirement 1]
-- [Requirement 2]
+## 功能需求
+- [需求1]
+- [需求2]
 
-## Technical Constraints
-- [Constraint 1]
-- [Constraint 2]
+## 技术约束
+- [约束1]
+- [约束2]
 
-## Integration Points
-- [Integration Point 1]
-- [Integration Point 2]
+## 集成点
+- [集成点1]
+- [集成点2]
 ```
 
-### 3. Option Exploration Templates
+### 3. 选项探索模板
 
-For exploring design alternatives:
+用于探索设计替代方案：
 
 ```markdown
-# Design Option: [Option Name]
+# 设计选项：[选项名称]
 
-## Core Approach
-[Brief description of approach]
+## 核心方法
+[方法简要描述]
 
-## Implementation Details
-[Key implementation considerations]
+## 实施细节
+[关键实施考虑因素]
 
-## Preliminary Assessment
-- **Strengths**: [List strengths]
-- **Weaknesses**: [List weaknesses]
-- **Unknowns**: [List unknowns]
+## 初步评估
+- **优势**：[列出优势]
+- **劣势**：[列出劣势]
+- **未知**：[列出未知]
 ```
 
-### 4. Trade-off Analysis Matrix
+### 4. 权衡分析矩阵
 
-For systematic comparison of options:
+用于系统比较选项：
 
 ```markdown
-# Trade-off Analysis
+# 权衡分析
 
-| Criterion | Option A | Option B | Option C |
+| 标准 | 选项A | 选项B | 选项C |
 |-----------|----------|----------|----------|
-| Performance | Rating | Rating | Rating |
-| Maintainability | Rating | Rating | Rating |
-| Scalability | Rating | Rating | Rating |
-| Complexity | Rating | Rating | Rating |
-| Risk | Rating | Rating | Rating |
+| 性能 | 评分 | 评分 | 评分 |
+| 可维护性 | 评分 | 评分 | 评分 |
+| 可扩展性 | 评分 | 评分 | 评分 |
+| 复杂性 | 评分 | 评分 | 评分 |
+| 风险 | 评分 | 评分 | 评分 |
 
-## Detailed Analysis
-[Detailed discussion of trade-offs]
+## 详细分析
+[权衡的详细讨论]
 ```
 
-### 5. Decision Documentation
+### 5. 决策文档
 
-For capturing final decisions with rationales:
+用于捕获带有理由的最终决策：
 
 ```markdown
-# Design Decision: [Decision Name]
+# 设计决策：[决策名称]
 
-## Selected Approach
-[Description of selected approach]
+## 选定的方法
+[所选方法的描述]
 
-## Rationale
-[Explanation of why this approach was selected]
+## 理由
+[解释为什么选择这种方法]
 
-## Discarded Alternatives
-[Brief description of alternatives considered but not selected]
+## 放弃的替代方案
+[考虑但未选择的替代方案的简要描述]
 
-## Implementation Guidance
-[Notes to guide implementation]
+## 实施指导
+[指导实施的注意事项]
 ```
 
-## Practical Example
+## 实践示例
 
-Here's a simplified example of how a CREATIVE mode session might look when designing a data caching system:
+以下是设计数据缓存系统时CREATIVE模式会话可能的简化示例：
 
-### Step 1: Break Down the Problem
-
-```
-CREATIVE: Let's design a caching system for our application. First, let's break down the components and requirements.
-
-Component: Data Caching System
-
-Functional Requirements:
-- Store frequently accessed data to reduce database load
-- Provide configurable expiration policies
-- Handle cache invalidation
-- Support distributed caching across application instances
-
-Technical Constraints:
-- Must work with existing Redis infrastructure
-- Memory usage must not exceed 2GB
-- Cache operations must complete within 10ms
-```
-
-### Step 2: Explore Options
+### 步骤1：分解问题
 
 ```
-Let's explore three design options:
+CREATIVE：让我们为我们的应用程序设计一个缓存系统。首先，让我们分解组件和需求。
 
-Option A: Simple Redis Key-Value Implementation
-- Directly use Redis key-value store with string serialization
-- Simple TTL-based expiration
-- Manual invalidation through direct key deletion
+组件：数据缓存系统
 
-Option B: Redis Hash-based Hierarchical Cache
-- Organize data in Redis Hashes by entity type
-- Use Redis pub/sub for invalidation notifications
-- Implement hierarchical expiration policies
+功能需求：
+- 存储频繁访问的数据以减少数据库负载
+- 提供可配置的过期策略
+- 处理缓存失效
+- 支持跨应用程序实例的分布式缓存
 
-Option C: Hybrid Local-Redis Caching
-- Local in-memory LRU cache as first level
-- Redis as second-level distributed cache
-- Background synchronization between levels
+技术约束：
+- 必须与现有Redis基础设施配合使用
+- 内存使用不得超过2GB
+- 缓存操作必须在10ms内完成
 ```
 
-### Step 3: Analyze Trade-offs
+### 步骤2：探索选项
 
 ```
-Trade-off Analysis:
+让我们探索三个设计选项：
 
-| Criterion | Option A | Option B | Option C |
+选项A：简单Redis键值实现
+- 直接使用Redis键值存储与字符串序列化
+- 简单的基于TTL的过期
+- 通过直接键删除的手动失效
+
+选项B：基于Redis哈希的层次缓存
+- 按实体类型在Redis哈希中组织数据
+- 使用Redis发布/订阅进行失效通知
+- 实施层次过期策略
+
+选项C：混合本地-Redis缓存
+- 本地内存LRU缓存作为第一级
+- Redis作为第二级分布式缓存
+- 级别之间的后台同步
+```
+
+### 步骤3：分析权衡
+
+```
+权衡分析：
+
+| 标准 | 选项A | 选项B | 选项C |
 |-----------|----------|----------|----------|
-| Implementation Complexity | Low | Medium | High |
-| Performance | Medium | Medium | High |
-| Memory Efficiency | Medium | High | Medium |
-| Scalability | Medium | High | High |
-| Maintenance | Low | Medium | High |
+| 实施复杂性 | 低 | 中 | 高 |
+| 性能 | 中 | 中 | 高 |
+| 内存效率 | 中 | 高 | 中 |
+| 可扩展性 | 中 | 高 | 高 |
+| 维护 | 低 | 中 | 高 |
 
-Detailed Analysis:
-- Option A is simplest but provides limited features
-- Option B offers good balance of performance and features
-- Option C provides best performance but at cost of complexity
+详细分析：
+- 选项A最简单但提供有限功能
+- 选项B提供性能和功能的良好平衡
+- 选项C提供最佳性能但复杂度较高
 ```
 
-### Step 4: Document Decision
+### 步骤4：记录决策
 
 ```
-Design Decision: Redis Hash-based Hierarchical Cache (Option B)
+设计决策：基于Redis哈希的层次缓存（选项B）
 
-Rationale:
-- Provides good balance between performance and maintainability
-- Better memory efficiency than Option A due to Redis Hash structure
-- Less complexity than Option C while still meeting performance requirements
-- Better supports our distributed architecture
+理由：
+- 在性能和可维护性之间提供良好平衡
+- 由于Redis哈希结构，比选项A具有更好的内存效率
+- 复杂度低于选项C，同时仍满足性能要求
+- 更好地支持我们的分布式架构
 
-Implementation Guidance:
-- Create CacheManager class with entity-specific APIs
-- Implement Redis pub/sub listeners for invalidation events
-- Add monitoring for cache hit/miss rates
+实施指导：
+- 创建带有实体特定API的CacheManager类
+- 实施Redis发布/订阅监听器用于失效事件
+- 添加缓存命中/未命中率的监控
 ```
 
-## Core Methodology Alignment
+## 核心方法论对齐
 
-The structured approach in the above example mirrors Claude's "Think" tool methodology by:
+上述示例中的结构化方法反映了Claude的"Think"工具方法论，通过：
 
-1. **Breaking down** the caching problem into specific requirements and constraints
-2. **Exploring** multiple design options systematically
-3. **Analyzing trade-offs** using explicit criteria
-4. **Documenting decisions** with clear rationales
-5. **Providing implementation guidance** based on the decision
+1. **分解**缓存问题为特定需求和约束
+2. 系统地**探索**多个设计选项
+3. 使用明确标准**分析权衡**
+4. 以明确理由**记录决策**
+5. 基于决策提供**实施指导**
 
-## Impact on Development Process
+## 对开发过程的影响
 
-By implementing these Claude-inspired methodologies, the CREATIVE mode provides several benefits:
+通过实施这些受Claude启发的方法论，CREATIVE模式提供了几个好处：
 
-1. **Improved Decision Quality**: More systematic exploration of options
-2. **Better Decision Documentation**: Explicit capture of design rationales
-3. **Knowledge Preservation**: Design decisions are preserved for future reference
-4. **Reduced Design Bias**: Structured approach reduces cognitive biases
-5. **Clearer Implementation Guidance**: Implementation phase has clearer direction
+1. **改进决策质量**：更系统地探索选项
+2. **更好的决策文档**：明确捕获设计理由
+3. **知识保存**：设计决策保存以供将来参考
+4. **减少设计偏见**：结构化方法减少认知偏见
+5. **更清晰的实施指导**：实施阶段有更明确的方向
 
-## Ongoing Refinement
+## 持续改进
 
-As Claude's capabilities evolve, the CREATIVE mode's implementation of these methodologies will be refined to:
+随着Claude能力的发展，CREATIVE模式对这些方法论的实施将被完善以：
 
-- Incorporate advancements in structured thinking approaches
-- Improve the templates and frameworks for design decisions
-- Enhance integration with other Memory Bank modes
-- Optimize the balance between structure and flexibility
+- 整合结构化思考方法的进步
+- 改进设计决策的模板和框架
+- 增强与其他记忆库模式的集成
+- 优化结构和灵活性之间的平衡
 
-The goal is to maintain the core methodology while continually improving its practical implementation within the Memory Bank ecosystem.
+目标是保持核心方法论，同时在记忆库生态系统内不断改进其实际实施。
 
 ---
 
-*Note: This document describes how Memory Bank v0.6-beta implements concepts similar to Claude's "Think" tool methodology. The implementation will continue to evolve as both systems mature.* 
+*注：本文档描述了记忆库v0.6-beta如何实现类似于Claude的"Think"工具方法论的概念。随着两个系统的成熟，实施将继续发展。* 
